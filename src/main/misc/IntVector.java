@@ -13,4 +13,9 @@ public class IntVector {
         this(arr[0], arr[1]);
         if (arr.length > 2) System.out.println("IntVector must have a length of two");
     }
+
+    @Override
+    public String toString() {
+        return "{" + x + ", " + y + "}";
+    }
 }
