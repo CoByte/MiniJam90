@@ -53,7 +53,7 @@ public class Hand {
     private void displayHeld() {
         if (!held.equals("null") && heldSprite != null) {
             P.tint(255, 150);
-            P.image(heldSprite, (roundToLeft(matrixMousePosition.x, 50)) - (25f / 2) - offset.x + 13, roundToLeft(matrixMousePosition.y, 50) - (25f / 2) - offset.y + 13);
+            P.image(heldSprite, (roundToInteger(matrixMousePosition.x, 50)) - (25f / 2) - offset.x + 13, roundToInteger(matrixMousePosition.y, 50) - (25f / 2) - offset.y + 13);
             P.tint(255);
         }
     }
@@ -76,7 +76,7 @@ public class Hand {
      */
     private void place() {
         if (held.endsWith("TL")) {
-            Tile tile = tiles.get((roundToLeft(matrixMousePosition.x, 50) / 50), (roundToLeft(matrixMousePosition.y, 50) / 50));
+            Tile tile = tiles.get((roundToInteger(matrixMousePosition.x, 50) / 50), (roundToInteger(matrixMousePosition.y, 50) / 50));
             if (held.endsWith("Ba_TL")) tile.setBase(held);
             else if (held.endsWith("De_TL")) tile.setDecoration(held);
             else if (held.endsWith("Br_TL")) tile.setBreakable(held);

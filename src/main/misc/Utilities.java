@@ -3,7 +3,6 @@ package main.misc;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
-import processing.sound.SoundFile;
 
 import java.awt.*;
 
@@ -17,7 +16,7 @@ public class Utilities {
      * @param p2 the second position
      * @return the slope between the positions
      */
-    public static float findSlope(PVector p1, PVector p2) {
+    public static float getSlope(PVector p1, PVector p2) {
         float m = (p2.y - p1.y) / (p2.x - p1.x);
         return m * -1;
     }
@@ -31,7 +30,7 @@ public class Utilities {
      * @return something
      */
     @Deprecated
-    public static float findAngleBetween(PVector p1, PVector p2) {
+    public static float getAngleBetween(PVector p1, PVector p2) {
         float a = atan2((p1.y - p2.y), p1.x - p2.x);
         if (a < 0) a += TWO_PI;
         return a;
@@ -43,7 +42,7 @@ public class Utilities {
      * @param rounder number input will be rounded to a multiple of
      * @return input but rounded by rounder
      */
-    public static int roundToLeft(float input, int rounder) {
+    public static int roundToInteger(float input, int rounder) {
         return ((int) (input / rounder)) * rounder;
     }
 
@@ -53,7 +52,7 @@ public class Utilities {
      * @param rounder number input will be a multiple of, must be less than 1
      * @return input rounded by the rounder
      */
-    public static float roundToRight(float input, float rounder) {
+    public static float roundToDecimal(float input, float rounder) {
         return (round(input / rounder)) * rounder;
     }
 
@@ -64,7 +63,7 @@ public class Utilities {
      * @param v2 the second position
      * @return the angle of a line between the two positions in radians
      */
-    public static float findAngle(PVector v1, PVector v2) {
+    public static float getAngle(PVector v1, PVector v2) {
         float angle = 0;
         PVector ratio = PVector.sub(v2, v1);
         if (v1.x == v2.x) { //if on the same x
@@ -98,8 +97,8 @@ public class Utilities {
      * @param v the position to draw a line to
      * @return the angle of the line
      */
-    public static float findAngle(PVector v) {
-        return findAngle(new PVector(0, 0), v);
+    public static float getAngle(PVector v) {
+        return getAngle(new PVector(0, 0), v);
     }
 
     /**
@@ -107,7 +106,7 @@ public class Utilities {
      * @param a the angle to convert
      * @return an angle between 0 and TWO_PI
      */
-    public static float clampAngle(float a) {
+    public static float normalizeAngle(float a) {
         return a - TWO_PI * floor(a / TWO_PI);
     }
 
@@ -117,10 +116,10 @@ public class Utilities {
      * @param current angle to be compared
      * @return the angle between target and current
      */
-    public static float angleDifference(float target, float current) {
+    public static float getAngleDifference(float target, float current) {
         float diffA = -(current - target);
         float diffB = diffA - TWO_PI;
-        float diffC = clampAngle(diffB);
+        float diffC = normalizeAngle(diffB);
         float f = min(abs(diffA), abs(diffB), abs(diffC));
         if (f == abs(diffA)) return diffA;
         if (f == abs(diffB)) return diffB;
@@ -285,7 +284,7 @@ public class Utilities {
      * @param target value to approach
      * @return a value closer to but not overshooting the target
      */
-    public static float incrementByTo(float input, float by, float target) {
+    public static float smartIncrement(float input, float by, float target) {
         if (input == target) return target;
         if (input < target) {
             return Math.min(input + by, target);
@@ -301,13 +300,13 @@ public class Utilities {
      * @param by amount to increment by, must be positive
      * @return input a little closer to target
      */
-    public static Color incrementColorTo(Color input, int by, Color target) {
+    public static Color smartIncrementColor(Color input, int by, Color target) {
         int red = input.getRed();
         int green = input.getGreen();
         int blue = input.getBlue();
-        red = (int) incrementByTo(red, by, target.getRed());
-        green = (int) incrementByTo(green, by, target.getGreen());
-        blue = (int) incrementByTo(blue, by, target.getBlue());
+        red = (int) smartIncrement(red, by, target.getRed());
+        green = (int) smartIncrement(green, by, target.getGreen());
+        blue = (int) smartIncrement(blue, by, target.getBlue());
         return new Color(red, green, blue);
     }
 
@@ -320,10 +319,17 @@ public class Utilities {
         return input + p.random(-input * by, input * by);
     }
 
+    /**
+     * @return the center of the grid
+     */
     public static PVector getCenter() {
         return new PVector(BOARD_SIZE.x / 2, BOARD_SIZE.y / 2);
     }
 
+    /**
+     * @param color color to randomize
+     * @return color but brighter, darker or the same
+     */
     public static Color randomizeColorBrightness(PApplet p, Color color) {
         int r = (int) p.random(0, 3);
         if (r == 0) return color.brighter();
@@ -331,17 +337,28 @@ public class Utilities {
         return color;
     }
 
-    public static boolean tileNotPassable(int x, int y) {
+    /**
+     * Checks if a tile has collision
+     * @param x grid x of tile
+     * @param y grid y of tile
+     * @return if collision
+     */
+    public static boolean isTileNotPassable(int x, int y) {
         Tile tile = tiles.get(x, y);
         if (tile == null) return true;
         if (tile.obstacleName != null) return true;
         return tile.baseName == null;
     }
 
+    /**
+     * Converts a world position to a grid position based on tile size
+     * @param position world position
+     * @return position rounded down to tile size
+     */
     public static IntVector worldPositionToGridPosition(PVector position) {
         return new IntVector(
-          roundToLeft(position.x, TILE_SIZE) / TILE_SIZE,
-          roundToLeft(position.y, TILE_SIZE) / TILE_SIZE
+          roundToInteger(position.x, TILE_SIZE) / TILE_SIZE,
+          roundToInteger(position.y, TILE_SIZE) / TILE_SIZE
         );
     }
 
@@ -382,12 +399,12 @@ public class Utilities {
             //iterates through all the overlapping tiles, checks collision with tiles in the axes directions
             if (x != 0 && xAxis == x) {
                 for (int i = 0; i < overlappingTiles.length; i++) {
-                    if (tileNotPassable(collisionBoxGridPositions[i].x + x, collisionBoxGridPositions[i].y)
+                    if (isTileNotPassable(collisionBoxGridPositions[i].x + x, collisionBoxGridPositions[i].y)
                       && matchCollisionBox(overlappingTiles[i], x, 0, position, collisionBox)) collideX = true;
                 }
             } if (y != 0 && yAxis == y) {
                 for (int i = 0; i < overlappingTiles.length; i++) {
-                    if (tileNotPassable(collisionBoxGridPositions[i].x, collisionBoxGridPositions[i].y + y)
+                    if (isTileNotPassable(collisionBoxGridPositions[i].x, collisionBoxGridPositions[i].y + y)
                       && matchCollisionBox(overlappingTiles[i], 0, y, position, collisionBox)) collideY = true;
                 }
             }
