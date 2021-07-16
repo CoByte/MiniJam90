@@ -11,7 +11,7 @@ public class Timer {
     private int counter;
 
     /**
-     * Counts up when updated
+     * Counts up when updated todo: fix betweenCounts
      * @param alarmTime when the alarm will trigger
      * @param betweenCounts how many frames to wait before incrementing timer
      * @param startTriggered if the alarms starts triggered, or untriggered
