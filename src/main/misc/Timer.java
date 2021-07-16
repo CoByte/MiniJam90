@@ -1,7 +1,5 @@
 package main.misc;
 
-import processing.core.PApplet;
-
 public class Timer {
 
     private final int BETWEEN_COUNTS;
