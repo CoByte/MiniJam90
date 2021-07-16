@@ -4,20 +4,19 @@ import processing.core.PApplet;
 
 public class Timer {
 
-    private final PApplet P;
     private final int BETWEEN_COUNTS;
 
     private int alarmTime;
     private int counter;
+    private int betweenCounter;
 
     /**
-     * Counts up when updated todo: fix betweenCounts
+     * Counts up when updated
      * @param alarmTime when the alarm will trigger
      * @param betweenCounts how many frames to wait before incrementing timer
      * @param startTriggered if the alarms starts triggered, or untriggered
      */
-    public Timer(PApplet p, int alarmTime, int betweenCounts, boolean startTriggered) {
-        P = p;
+    public Timer(int alarmTime, int betweenCounts, boolean startTriggered) {
         BETWEEN_COUNTS = betweenCounts;
         this.alarmTime = alarmTime;
         if (startTriggered) counter = this.alarmTime;
@@ -27,8 +26,8 @@ public class Timer {
      * Counts up when updated
      * @param alarmTime when the alarm will trigger
      */
-    public Timer(PApplet p, int alarmTime) {
-        this(p, alarmTime, 1, false);
+    public Timer(int alarmTime) {
+        this(alarmTime, 1, false);
     }
 
     /**
@@ -36,8 +35,8 @@ public class Timer {
      * @param alarmTime when the alarm will trigger
      * @param betweenCounts how many frames to wait before incrementing timer
      */
-    public Timer(PApplet p, int alarmTime, int betweenCounts) {
-        this(p, alarmTime, betweenCounts, false);
+    public Timer(int alarmTime, int betweenCounts) {
+        this(alarmTime, betweenCounts, false);
     }
 
     /**
@@ -45,15 +44,15 @@ public class Timer {
      * @param alarmTime when the alarm will trigger
      * @param startTriggered if the alarms starts triggered, or untriggered
      */
-    public Timer(PApplet p, int alarmTime, boolean startTriggered) {
-        this(p, alarmTime, 1, startTriggered);
+    public Timer(int alarmTime, boolean startTriggered) {
+        this(alarmTime, 1, startTriggered);
     }
 
     /**
      * Counts up when updated
      */
-    public Timer(PApplet p) {
-        this(p, 0);
+    public Timer() {
+        this(0);
     }
 
     /**
@@ -61,7 +60,11 @@ public class Timer {
      * between counts will only work if this is run every frame
      */
     public void update() {
-        if (P.frameCount % BETWEEN_COUNTS == 0) counter++;
+        betweenCounter++;
+        if (betweenCounter >= BETWEEN_COUNTS) {
+            counter++;
+            betweenCounter = 0;
+        }
     }
 
     public int getCurrentTime() {
@@ -79,8 +82,12 @@ public class Timer {
         } return false;
     }
 
+    /**
+     * Set counter and betweenCounter to 0
+     */
     public void reset() {
         counter = 0;
+        betweenCounter = 0;
     }
 
     public void setAlarmTime(int alarmTime) {
