@@ -165,6 +165,7 @@ public class Main extends PApplet {
 
     private void drawBlackBars() {
         fill(0);
+        rectMode(CORNER);
         noStroke();
         if (hasVerticalBars()) {
             rect(0, 0, matrixOffset, height);
@@ -173,6 +174,7 @@ public class Main extends PApplet {
             rect(0, 0, width, matrixOffset);
             rect(0, height - matrixOffset, width, matrixOffset);
         }
+        rectMode(DEFAULT_MODE);
     }
 
     /**
