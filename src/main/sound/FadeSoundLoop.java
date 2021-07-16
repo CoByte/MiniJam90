@@ -7,7 +7,7 @@ import static main.misc.Utilities.smartIncrement;
 
 public class FadeSoundLoop {
 
-    private final int MIN_LENGTH;
+    private final int AUTO_STOP_TIME;
     private final SoundFile SOUND_FILE;
 
     private int timer;
@@ -19,22 +19,24 @@ public class FadeSoundLoop {
      * A constantly playing loop that fades to audible then back to inaudible.
      * @param p the PApplet
      * @param name identifier
-     * @param minLength how long it will run before automatically stopping
+     * @param autoStopTime how long it will run before automatically stopping
      */
-    public FadeSoundLoop(PApplet p, String name, int minLength) {
+    public FadeSoundLoop(PApplet p, String name, int autoStopTime) {
         SOUND_FILE = new SoundFile(p, "sounds/loops/" + name + ".wav");
-        MIN_LENGTH = minLength;
+        AUTO_STOP_TIME = autoStopTime;
         SOUND_FILE.loop(1, 0.001f);
         targetVolume = 0.001f;
         //never goes to 0 because that throws errors for some reason :/
     }
 
+    public FadeSoundLoop(PApplet p, String name) {
+        this(p, name, -1);
+    }
+
     public void main() {
         volume = smartIncrement(volume, 0.05f, targetVolume);
         SOUND_FILE.amp(volume);
-        if (timer > MIN_LENGTH) {
-            targetVolume = 0.01f;
-        }
+        if (timer > AUTO_STOP_TIME && AUTO_STOP_TIME != -1) targetVolume = 0.01f;
         timer++;
     }
 
