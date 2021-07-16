@@ -6,8 +6,8 @@ public class Timer {
 
     private final PApplet P;
     private final int BETWEEN_COUNTS;
-    private final int ALARM_TIME;
 
+    private int alarmTime;
     private int counter;
 
     /**
@@ -19,8 +19,8 @@ public class Timer {
     public Timer(PApplet p, int alarmTime, int betweenCounts, boolean startTriggered) {
         P = p;
         BETWEEN_COUNTS = betweenCounts;
-        ALARM_TIME = alarmTime;
-        if (startTriggered) counter = ALARM_TIME;
+        this.alarmTime = alarmTime;
+        if (startTriggered) counter = this.alarmTime;
     }
 
     /**
@@ -73,7 +73,7 @@ public class Timer {
      * @return if the counter is >= alarm time
      */
     public boolean triggered(boolean reset) {
-        if (counter >= ALARM_TIME) {
+        if (counter >= alarmTime) {
             if (reset) reset();
             return true;
         } return false;
@@ -81,5 +81,9 @@ public class Timer {
 
     public void reset() {
         counter = 0;
+    }
+
+    public void setAlarmTime(int alarmTime) {
+        this.alarmTime = alarmTime;
     }
 }
