@@ -423,4 +423,108 @@ public class Utilities {
         if (y == 1) return position.y >= tile.position.y + TILE_SIZE - collisionBox.getBottomEdge();
         return false;
     }
+
+    /**
+     * Gets an angle from axes, compensating for collision
+     * @param speed how fast it's moving, prevent from getting stuck
+     * @param position position of collision box
+     * @param collisionBox box to check
+     * @param axes what cardinal direction it's moving in
+     * @return an angle
+     */
+    public static float getDirectionFromAxesWithCollision(float speed, PVector position, CollisionBox collisionBox, IntVector axes) {
+        int xAxis, yAxis, direction = 0;
+        xAxis = axes.x;
+        yAxis = axes.y;
+
+        boolean[] collisions = collisionWithTiles(collisionBox, position, speed, xAxis, yAxis);
+        if (collisions[0]) xAxis = 0;
+        if (collisions[1]) yAxis = 0;
+
+        switch (xAxis) {
+            case -1:
+                switch (yAxis) {
+                    case -1:
+                        direction = 225;
+                        break;
+                    case 0:
+                        direction = 180;
+                        break;
+                    case 1:
+                        direction = 135;
+                        break;
+                }
+                break;
+            case 0:
+                switch (yAxis) {
+                    case -1:
+                        direction = 270;
+                        break;
+                    case 0:
+                        //will not
+                        return -1;
+                    case 1:
+                        direction = 90;
+                        break;
+                }
+                break;
+            case 1:
+                switch (yAxis) {
+                    case -1:
+                        direction = 315;
+                        break;
+                    case 0:
+                        direction = 0;
+                        break;
+                    case 1:
+                        direction = 45;
+                        break;
+                }
+                break;
+        }
+
+        return radians(direction);
+    }
+
+    /**
+     * @return cardinal axes from WASD or IJKL
+     */
+    public static IntVector getAxesFromMovementKeys() {
+        boolean left, right, up, down;
+        IntVector axes = new IntVector(0, 0);
+
+        left = keysPressed.getPressed('a') || keysPressed.getPressed('j');
+        right = keysPressed.getPressed('d') || keysPressed.getPressed('l');
+        up = keysPressed.getPressed('w') || keysPressed.getPressed('i');
+        down = keysPressed.getPressed('s') || keysPressed.getPressed('k');
+
+        if (left && right) axes.x = 0;
+        else if (left) axes.x = -1;
+        else if (right) axes.x = 1;
+        else axes.x = 0;
+        if (up && down) axes.y = 0;
+        else if (up) axes.y = -1;
+        else if (down) axes.y = 1;
+        else axes.y = 0;
+
+        return axes;
+    }
+
+    /**
+     * @param angle angle to check
+     * @return if angle is facing towards the left
+     */
+    public static boolean isAngleFacingLeft(float angle) {
+        angle = normalizeAngle(angle);
+        return angle < HALF_PI || angle > PI + HALF_PI;
+    }
+
+    /**
+     * @param angle angle to check
+     * @return if angle is facing towards the top of the screen
+     */
+    public static boolean isAngleFacingUp(float angle) {
+        angle = normalizeAngle(angle);
+        return angle < PI;
+    }
 }
