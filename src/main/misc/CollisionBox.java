@@ -6,7 +6,9 @@ import processing.core.PVector;
 
 import java.awt.*;
 
-import static main.misc.Utilities.worldPositionToGridPosition;
+import static main.misc.Utilities.*;
+import static processing.core.PConstants.HALF_PI;
+import static processing.core.PConstants.PI;
 
 public class CollisionBox {
 
@@ -65,5 +67,46 @@ public class CollisionBox {
             new PVector(position.x + POSITION.x + SIZE.x - ceilBuffer, position.y + POSITION.y + SIZE.y - ceilBuffer
             ))
         };
+    }
+
+    /**
+     * todo: doesn't always work as expected
+     * @param angle angle to check
+     * @param position position of box
+     * @return angle reflected off sides
+     */
+    public float collideAngleWithInside(float angle, PVector position) {
+        float edgeAngle;
+        float angleOfIncidence;
+        if (position.x > getRightEdge() && angleIsFacingLeft(angle)) {
+            if (!angleIsFacingUp(angle)) return -angle + PI;
+            return angle + HALF_PI;
+        } if (position.x < getLeftEdge() && !angleIsFacingLeft(angle)) {
+            if (angleIsFacingUp(angle)) return angle - HALF_PI;
+            else return -(angle - PI);
+        } if (position.y > getBottomEdge() && angleIsFacingUp(angle)) {
+            edgeAngle = HALF_PI;
+            angleOfIncidence = getAngleDifference(angle, edgeAngle);
+            return -edgeAngle - angleOfIncidence;
+        } if (position.y < getTopEdge() && !angleIsFacingUp(angle)) {
+            edgeAngle = PI + HALF_PI;
+            angleOfIncidence = getAngleDifference(angle, edgeAngle);
+            return -edgeAngle - angleOfIncidence;
+        }
+        return angle;
+    }
+
+    /**
+     * Check if a point is inside the box
+     * @param position position of box
+     * @param point point to check
+     * @return if inside
+     */
+    public boolean pointIsInsideBox(PVector position, PVector point) {
+        boolean left = point.x > position.x + getLeftEdge();
+        boolean right = point.x < position.x + getRightEdge();
+        boolean top = point.y > position.y + getTopEdge();
+        boolean bottom = point.y < position.y + getBottomEdge();
+        return left && right && top && bottom;
     }
 }

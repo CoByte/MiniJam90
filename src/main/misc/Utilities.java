@@ -514,7 +514,7 @@ public class Utilities {
      * @param angle angle to check
      * @return if angle is facing towards the left
      */
-    public static boolean isAngleFacingLeft(float angle) {
+    public static boolean angleIsFacingLeft(float angle) {
         angle = normalizeAngle(angle);
         return angle < HALF_PI || angle > PI + HALF_PI;
     }
@@ -523,7 +523,7 @@ public class Utilities {
      * @param angle angle to check
      * @return if angle is facing towards the top of the screen
      */
-    public static boolean isAngleFacingUp(float angle) {
+    public static boolean angleIsFacingUp(float angle) {
         angle = normalizeAngle(angle);
         return angle < PI;
     }
