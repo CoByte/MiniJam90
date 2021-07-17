@@ -31,6 +31,7 @@ public class Animator {
     }
 
     /**
+     * Gets the current frame, resets back to the beginning if it's past the end
      * @return the current frame of the animation
      */
     public PImage getCurrentFrame() {
