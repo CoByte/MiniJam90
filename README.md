@@ -11,6 +11,7 @@ https://processing.org/reference/libraries/sound/
 - A simple level builder
 - I/O with JSON
 - Loading of images
+- Utilities for animation  
 - Loading and playing of sound
 - Utilities for managing sounds and sound loops
 - A somewhat janky method for scaling arrays by removing and duplicating items
