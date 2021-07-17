@@ -1,11 +1,9 @@
 package main.misc;
 
-import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Animator {
 
-    private final PApplet P;
     private final PImage[] ANIMATION;
     private final Timer ANIMATION_TIMER;
 
@@ -16,8 +14,7 @@ public class Animator {
      * @param animation a looped sequence of images
      * @param betweenFrames how many frames before flipping to next image
      */
-    public Animator(PApplet p, PImage[] animation, int betweenFrames) {
-        P = p;
+    public Animator(PImage[] animation, int betweenFrames) {
         ANIMATION = animation;
         ANIMATION_TIMER = new Timer(animation.length, betweenFrames);
     }
