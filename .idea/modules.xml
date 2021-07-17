@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ProcessingFullscreenTemplate.iml" filepath="$PROJECT_DIR$/ProcessingFullscreenTemplate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AdvancedProcessingTemplate.iml" filepath="$PROJECT_DIR$/AdvancedProcessingTemplate.iml" />
     </modules>
   </component>
 </project>
