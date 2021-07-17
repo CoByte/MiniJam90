@@ -1,6 +1,9 @@
 # Advanced Processing Template
 A template project for the Processing Java library that makes a bunch of 
-things easier, centered around game development.
+things easier, centered around game development.  
+
+Requires Processing with the sound library,  
+https://processing.org/reference/libraries/sound/
 
 ## Features
 - A timer
