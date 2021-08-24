@@ -61,11 +61,10 @@ public class Main extends PApplet {
 
     @Override
     public void settings() {
-        size((int) BOARD_SIZE.x, (int) BOARD_SIZE.y);
         if (FULLSCREEN) {
-            fullScreen();
+            fullScreen(P2D);
             noSmooth();
-        }
+        } else size((int) BOARD_SIZE.x, (int) BOARD_SIZE.y, P2D);
     }
 
     @Override
@@ -89,6 +88,7 @@ public class Main extends PApplet {
     }
 
     private void setupMisc() {
+        keysPressed = new InputHandler.KeyDS();
         inputHandler = new InputHandler(this);
         keysPressed = new InputHandler.KeyDS();
         hand = new Hand(this);
@@ -132,6 +132,8 @@ public class Main extends PApplet {
         hand.main();
 
         popFullscreen();
+
+        if (inputHandler != null) inputHandler.reset();
     }
 
     private void drawSound() {
