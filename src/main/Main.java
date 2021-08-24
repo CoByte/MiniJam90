@@ -2,11 +2,13 @@ package main;
 
 import main.gui.Hand;
 import main.gui.LevelBuilderGui;
+import main.gui.TitleScreen;
 import main.misc.InputHandler;
 import main.misc.Tile;
 import main.sound.FadeSoundLoop;
 import main.sound.SoundWithAlts;
 import main.sound.StartStopSoundLoop;
+import main.world.World;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
@@ -23,6 +25,18 @@ import static main.misc.SpriteLoader.loadSprites;
 import static main.sound.SoundLoader.loadSounds;
 
 public class Main extends PApplet {
+
+    public enum Scene {
+        World(0),
+        TitleScreen(1),
+        LoadingScreen(2);
+
+        public final int ID;
+
+        Scene(int id) {
+            ID = id;
+        }
+    }
 
     public static final int TILE_SIZE = 50;
     public static final int FRAMERATE = 60;
@@ -52,8 +66,14 @@ public class Main extends PApplet {
     public static InputHandler inputHandler;
     public static InputHandler.KeyDS keysPressed;
     public static PVector matrixMousePosition;
+
     public static Hand hand;
     public static LevelBuilderGui levelBuilderGui;
+
+    public static World world;
+    public static TitleScreen titleScreen;
+
+    public static Scene scene = Scene.LoadingScreen;
 
     public static void main(String[] args) {
         PApplet.main("main.Main", args);
@@ -128,8 +148,19 @@ public class Main extends PApplet {
 
         pushFullscreen();
 
-        levelBuilderGui.main();
-        hand.main();
+        switch (scene) {
+            case World:
+                world.main();
+                levelBuilderGui.main();
+                hand.main();
+                break;
+            case TitleScreen:
+                titleScreen.main();
+                break;
+            case LoadingScreen:
+                break;
+        }
+
 
         popFullscreen();
 
