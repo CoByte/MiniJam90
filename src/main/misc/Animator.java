@@ -2,6 +2,8 @@ package main.misc;
 
 import processing.core.PImage;
 
+import java.util.Arrays;
+
 public class Animator {
 
     private final PImage[] ANIMATION;
@@ -41,5 +43,14 @@ public class Animator {
      */
     public void reset() {
         ANIMATION_TIMER.reset();
+    }
+
+    public PImage getFrame(int i) {
+        try {
+            return ANIMATION[i];
+        } catch (IndexOutOfBoundsException ex) {
+            System.out.println(Arrays.toString(ex.getStackTrace()));
+        }
+        return null;
     }
 }
