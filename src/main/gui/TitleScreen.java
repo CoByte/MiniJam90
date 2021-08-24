@@ -14,16 +14,25 @@ import static processing.core.PConstants.CORNER;
 
 public class TitleScreen {
 
+    private enum ExitState {
+        DoNothing(0),
+        Exit(1),
+        Play(2);
+
+        final int ID;
+
+        ExitState(int id) {
+            ID = id;
+        }
+    }
+
     private static final int INCREASE_DARK = 3;
 
     private final PApplet P;
     private final MenuButton QUIT_BUTTON;
     private final MenuButton PLAY_BUTTON;
 
-    /**
-     * nothing, exiting, playing
-     */
-    private int exitState;
+    private ExitState exitState = ExitState.DoNothing;
     private boolean gettingDark;
     private int darkAmount;
 
@@ -45,20 +54,20 @@ public class TitleScreen {
         if (QUIT_BUTTON.isPressed()) {
             for (FadeSoundLoop fadeSoundLoop : fadeSoundLoops.values()) fadeSoundLoop.setTargetVolume(0.001f);
             gettingDark = true;
-            exitState = 1;
+            exitState = ExitState.Exit;
         }
         PLAY_BUTTON.hover();
         if (PLAY_BUTTON.isPressed()) {
             gettingDark = true;
-            exitState = 2;
+            exitState = ExitState.Play;
         }
 
         if (darkAmount >= 255) {
             switch (exitState) {
-                case 1:
+                case Exit:
                     P.exit();
                     break;
-                case 2:
+                case Play:
                     System.out.println("play!");
                     break;
             }
