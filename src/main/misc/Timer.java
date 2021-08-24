@@ -91,4 +91,12 @@ public class Timer {
     public void setAlarmTime(int alarmTime) {
         this.alarmTime = alarmTime;
     }
+
+    public void setCurrentTime(int time) {
+        counter = time;
+    }
+
+    public int getAlarmTime() {
+        return alarmTime;
+    }
 }
