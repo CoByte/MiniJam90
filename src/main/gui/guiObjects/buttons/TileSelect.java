@@ -59,8 +59,10 @@ public class TileSelect extends Button {
 
     @Override
     public void display() {
-        p.image(tileSprite, position.x, position.y, TILE_SIZE, TILE_SIZE);
-        p.image(sprite, position.x, position.y, TILE_SIZE, TILE_SIZE);
+        p.imageMode(CENTER);
+        p.image(tileSprite, position.x, position.y, 50, 50);
+        p.image(sprite, position.x, position.y, 50, 50);
+        p.imageMode(DEFAULT_MODE);
     }
 
     /**

@@ -40,9 +40,7 @@ public class LevelBuilderGui {
     }
 
     private void placeButton(int x, int y, String type) {
-        float xPos = (TILE_SIZE / 2f) + (x * TILE_SIZE);
-        if (right) xPos += BOARD_SIZE.x - (TILE_SIZE * 4);
-        TILE_SELECT_BUTTONS.add(new TileSelect(P, xPos, (TILE_SIZE / 2f) + (y * TILE_SIZE), type));
-        TILE_SELECT_BUTTONS.add(new TileSelect(P, 925 + (x * 50), 25 + (y * 50), type));
+        if (right) TILE_SELECT_BUTTONS.add(new TileSelect(P, 925 + (x * 50), 25 + (y * 50), type));
+        else TILE_SELECT_BUTTONS.add(new TileSelect(P, (TILE_SIZE / 2f) + (x * TILE_SIZE), (TILE_SIZE / 2f) + (y * TILE_SIZE), type));
     }
 }

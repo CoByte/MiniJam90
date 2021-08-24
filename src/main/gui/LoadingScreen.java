@@ -51,7 +51,7 @@ public class LoadingScreen {
         }
 
         progress++;
-        if (progress == MAX_PROGRESS) Main.scene = Main.Scene.TitleScreen;
+        if (progress == MAX_PROGRESS) Main.scene = Main.Scene.World;
     }
 
     private void display() {
