@@ -6,32 +6,44 @@ import processing.core.PFont;
 import processing.core.PVector;
 
 public class FadeInText {
-    enum State {
-        Unloaded,
-        Loaded,
-        Disabling,
-        Disabled,
-    }
 
-    private final float LOAD_DISTANCE = 200;
+    enum State {
+        Unloaded(0),
+        Loaded(1),
+        Disabling(2),
+        Disabled(3);
+
+        final int ID;
+
+        State(int id) {
+            ID = id;
+        }
+    }
 
     private final PApplet p;
     private final PFont font;
 
-    private String text;
-    private PVector position;
-    private PVector size;
+    private final String TEXT;
+    private final PVector POSITION;
+    private final PVector SIZE;
 
     private int alpha = 0;
     private State state = State.Unloaded;
 
+    /**
+     * A textbox that can fade in and out.
+     * @param font font to display text in
+     * @param text what to display
+     * @param position where in world to display
+     * @param size size of text box
+     */
     public FadeInText(PApplet p, PFont font, String text, PVector position, PVector size) {
         this.p = p;
         this.font = font;
 
-        this.text = text;
-        this.position = position;
-        this.size = size;
+        this.TEXT = text;
+        this.POSITION = position;
+        this.SIZE = size;
     }
 
     public void update() {
@@ -54,6 +66,6 @@ public class FadeInText {
         p.textFont(font);
         p.textAlign(PConstants.CENTER);
         p.rectMode(PConstants.CENTER);
-        p.text(text, position.x, position.y, size.x, size.y);
+        p.text(TEXT, POSITION.x, POSITION.y, SIZE.x, SIZE.y);
     }
 }
