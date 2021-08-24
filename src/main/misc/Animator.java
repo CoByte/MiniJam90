@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 public class Animator {
 
+    private final boolean LOOP;
     private final PImage[] ANIMATION;
     private final Timer ANIMATION_TIMER;
 
@@ -16,15 +17,17 @@ public class Animator {
      * @param animation a looped sequence of images
      * @param betweenFrames how many frames before flipping to next image
      */
-    public Animator(PImage[] animation, int betweenFrames) {
+    public Animator(PImage[] animation, int betweenFrames, boolean loop) {
+        LOOP = loop;
         ANIMATION = animation;
         ANIMATION_TIMER = new Timer(animation.length, betweenFrames);
     }
 
     /**
-     * Flip to next image, loop back to start if at end
+     * Flip to next image, loop back to start if at end and looping enabled
      */
     public void update() {
+        if (LOOP || ANIMATION_TIMER.getCurrentTime() < ANIMATION.length - 1) ANIMATION_TIMER.update();
         ANIMATION_TIMER.update();
         ANIMATION_TIMER.triggered(true);
     }
