@@ -1,5 +1,6 @@
 package main.gui;
 
+import main.Main;
 import main.gui.guiObjects.buttons.MenuButton;
 import main.sound.FadeSoundLoop;
 import processing.core.PApplet;
@@ -68,7 +69,7 @@ public class TitleScreen {
                     P.exit();
                     break;
                 case Play:
-                    System.out.println("play!");
+                    scene = Scene.World;
                     break;
             }
         }

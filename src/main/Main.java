@@ -2,6 +2,7 @@ package main;
 
 import main.gui.Hand;
 import main.gui.LevelBuilderGui;
+import main.gui.LoadingScreen;
 import main.gui.TitleScreen;
 import main.misc.InputHandler;
 import main.misc.Tile;
@@ -72,6 +73,7 @@ public class Main extends PApplet {
 
     public static World world;
     public static TitleScreen titleScreen;
+    public static LoadingScreen loadingScreen;
 
     public static Scene scene = Scene.LoadingScreen;
 
@@ -91,28 +93,27 @@ public class Main extends PApplet {
     public void setup() {
         frameRate(FRAMERATE);
         surface.setTitle(TITLE);
+        loadingScreen = new LoadingScreen(this, createFont("Helvetica", 32));
+
         setupSound();
-        setupSprites();
-        setupMisc();
-        setupTiles();
         setupFullscreen();
     }
 
-    private void setupTiles() {
+    public static void setupTiles(PApplet p) {
         tiles = new Tile.TileDS();
         for (int y = 0; y <= BOARD_SIZE.y / TILE_SIZE; y++) {
             for (int x = 0; x <= BOARD_SIZE.x / TILE_SIZE; x++) {
-                tiles.add(new Tile(this, new PVector(x * TILE_SIZE, y * TILE_SIZE), tiles.size()), x, y);
+                tiles.add(new Tile(p, new PVector(x * TILE_SIZE, y * TILE_SIZE), tiles.size()), x, y);
             }
         }
     }
 
-    private void setupMisc() {
+    public static void setupMisc(PApplet p) {
         keysPressed = new InputHandler.KeyDS();
-        inputHandler = new InputHandler(this);
+        inputHandler = new InputHandler(p);
         keysPressed = new InputHandler.KeyDS();
-        hand = new Hand(this);
-        levelBuilderGui = new LevelBuilderGui(this);
+        hand = new Hand(p);
+        levelBuilderGui = new LevelBuilderGui(p);
     }
 
     private void setupFullscreen() {
@@ -134,11 +135,11 @@ public class Main extends PApplet {
         loadSounds(this);
     }
 
-    private void setupSprites() {
+    public static void setupSprites(PApplet p) {
         sprites = new HashMap<>();
         animations = new HashMap<>();
-        loadSprites(this);
-        loadAnimations(this);
+        loadSprites(p);
+        loadAnimations(p);
     }
 
     @Override
@@ -158,6 +159,7 @@ public class Main extends PApplet {
                 titleScreen.main();
                 break;
             case LoadingScreen:
+                loadingScreen.main();
                 break;
         }
 

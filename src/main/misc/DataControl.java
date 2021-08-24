@@ -102,7 +102,7 @@ public class DataControl extends ClassLoader {
      * Loads level data from a JSON file.
      * @param file the filename, sans extension.
      */
-    public static void loadLevel(PApplet p, String file) {
+    public static void loadLevel(String file) {
         File loadFile = new File(filePath()+"/data/"+file+".json");
         JSONArray loadArray = loadJSONArray(loadFile);
 
