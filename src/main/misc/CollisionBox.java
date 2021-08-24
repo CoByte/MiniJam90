@@ -78,17 +78,17 @@ public class CollisionBox {
     public float collideAngleWithInside(float angle, PVector position) {
         float edgeAngle;
         float angleOfIncidence;
-        if (position.x > getRightEdge() && angleIsFacingLeft(angle)) {
-            if (!angleIsFacingUp(angle)) return -angle + PI;
+        if (position.x > getRightEdge() && angleIsFacingLeftStandard(angle)) {
+            if (!angleIsFacingUpStandard(angle)) return -angle + PI;
             return angle + HALF_PI;
-        } if (position.x < getLeftEdge() && !angleIsFacingLeft(angle)) {
-            if (angleIsFacingUp(angle)) return angle - HALF_PI;
+        } if (position.x < getLeftEdge() && !angleIsFacingLeftStandard(angle)) {
+            if (angleIsFacingUpStandard(angle)) return angle - HALF_PI;
             else return -(angle - PI);
-        } if (position.y > getBottomEdge() && angleIsFacingUp(angle)) {
+        } if (position.y > getBottomEdge() && angleIsFacingUpStandard(angle)) {
             edgeAngle = HALF_PI;
             angleOfIncidence = getAngleDifference(angle, edgeAngle);
             return -edgeAngle - angleOfIncidence;
-        } if (position.y < getTopEdge() && !angleIsFacingUp(angle)) {
+        } if (position.y < getTopEdge() && !angleIsFacingUpStandard(angle)) {
             edgeAngle = PI + HALF_PI;
             angleOfIncidence = getAngleDifference(angle, edgeAngle);
             return -edgeAngle - angleOfIncidence;

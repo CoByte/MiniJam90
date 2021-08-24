@@ -168,17 +168,6 @@ public class Utilities {
     }
 
     /**
-     * Finds the distance between two points.
-     * @param p1 the first point
-     * @param p2 the second point
-     * @return the distance between the two points
-     */
-    public static float getDistBetween(PVector p1, PVector p2) {
-        PVector p0 = new PVector(p1.x - p2.x, p1.y - p2.y);
-        return sqrt(sq(p0.x) + sq(p0.y));
-    }
-
-    /**
      * Displays text with a rectangle backing.
      * @param p the PApplet
      * @param text text to be displayed
@@ -288,9 +277,8 @@ public class Utilities {
         if (input == target) return target;
         if (input < target) {
             return Math.min(input + by, target);
-        } if (input > target) {
-            return Math.max(input - by, target);
-        } return target;
+        }
+        return Math.max(input - by, target);
     }
 
     /**
@@ -498,14 +486,8 @@ public class Utilities {
         up = keysPressed.getPressed('w') || keysPressed.getPressed('i');
         down = keysPressed.getPressed('s') || keysPressed.getPressed('k');
 
-        if (left && right) axes.x = 0;
-        else if (left) axes.x = -1;
-        else if (right) axes.x = 1;
-        else axes.x = 0;
-        if (up && down) axes.y = 0;
-        else if (up) axes.y = -1;
-        else if (down) axes.y = 1;
-        else axes.y = 0;
+        axes.x = (right ? 1 : 0) - (left ? 1 : 0);
+        axes.y = (down ? 1 : 0) - (up ? 1 : 0);
 
         return axes;
     }
@@ -514,7 +496,7 @@ public class Utilities {
      * @param angle angle to check
      * @return if angle is facing towards the left
      */
-    public static boolean angleIsFacingLeft(float angle) {
+    public static boolean angleIsFacingLeftStandard(float angle) {
         angle = normalizeAngle(angle);
         return angle < HALF_PI || angle > PI + HALF_PI;
     }
@@ -523,8 +505,16 @@ public class Utilities {
      * @param angle angle to check
      * @return if angle is facing towards the top of the screen
      */
-    public static boolean angleIsFacingUp(float angle) {
+    public static boolean angleIsFacingUpStandard(float angle) {
         angle = normalizeAngle(angle);
         return angle < PI;
+    }
+
+    public static boolean angleIsFacingLeftWeird(float angle) {
+        boolean facingRight = true;
+        if (angle <= QUARTER_PI) facingRight = false;
+        else if (angle >= HALF_PI + QUARTER_PI && angle < PI + QUARTER_PI) facingRight = true;
+        else if (angle >= PI + HALF_PI + QUARTER_PI) facingRight = false;
+        return !facingRight;
     }
 }
