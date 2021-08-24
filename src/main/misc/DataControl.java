@@ -15,10 +15,8 @@ public class DataControl extends ClassLoader {
     private static String filePath() {
         //run from terminal
         String filePath = new File("").getAbsolutePath();
-        //run from intelliJ
-        if (filePath.equals("/Users/blakebabb/Documents/GitHub/MiniJam83")) {
-            filePath = "resources";
-        }
+        //run from intelliJ todo: comment out before release
+        filePath = "resources";
         return filePath;
     }
 
