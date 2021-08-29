@@ -10,8 +10,6 @@ public class Animator {
     private final PImage[] ANIMATION;
     private final Timer ANIMATION_TIMER;
 
-    private int frame;
-
     /**
      * Handles animating
      * @param animation a looped sequence of images
@@ -33,7 +31,7 @@ public class Animator {
     public void update() {
         if (LOOP || ANIMATION_TIMER.getCurrentTime() < ANIMATION.length - 1) ANIMATION_TIMER.update();
         ANIMATION_TIMER.update();
-        ANIMATION_TIMER.triggered(true);
+        ANIMATION_TIMER.triggered(LOOP);
     }
 
     /**
@@ -41,7 +39,7 @@ public class Animator {
      * @return the current frame of the animation
      */
     public PImage getCurrentFrame() {
-        if (ANIMATION_TIMER.getCurrentTime() > ANIMATION.length) ANIMATION_TIMER.reset();
+        if (ANIMATION_TIMER.getCurrentTime() > ANIMATION.length - 1) return ANIMATION[ANIMATION.length - 1];
         return ANIMATION[ANIMATION_TIMER.getCurrentTime()];
     }
 
@@ -59,5 +57,17 @@ public class Animator {
             System.out.println(Arrays.toString(ex.getStackTrace()));
         }
         return null;
+    }
+
+    public int getCurrentTime() {
+        return ANIMATION_TIMER.getCurrentTime();
+    }
+
+    public int getLength() {
+        return ANIMATION_TIMER.getAlarmTime();
+    }
+
+    public boolean ended() {
+        return ANIMATION_TIMER.getCurrentTime() == ANIMATION.length - 1;
     }
 }
