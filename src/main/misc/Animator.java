@@ -30,7 +30,6 @@ public class Animator {
      */
     public void update() {
         if (LOOP || ANIMATION_TIMER.getCurrentTime() < ANIMATION.length - 1) ANIMATION_TIMER.update();
-        ANIMATION_TIMER.update();
         ANIMATION_TIMER.triggered(LOOP);
     }
 
