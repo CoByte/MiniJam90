@@ -23,6 +23,10 @@ public class Animator {
         ANIMATION_TIMER = new Timer(animation.length, betweenFrames);
     }
 
+    public Animator(PImage[] animation, int betweenFrames) {
+        this(animation, betweenFrames, true);
+    }
+
     /**
      * Flip to next image, loop back to start if at end and looping enabled
      */
