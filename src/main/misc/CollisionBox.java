@@ -12,18 +12,18 @@ import static processing.core.PConstants.PI;
 
 public class CollisionBox {
 
-    private final PVector POSITION;
+    private final PVector OFFSET;
     private final PVector SIZE;
 
     private final PApplet P;
 
     /**
-     * @param position top left of collision box RELATIVE TO OBJECT POSITION
+     * @param offset top left of collision box RELATIVE TO OBJECT POSITION
      * @param size length and width of collision box
      */
-    public CollisionBox(PApplet p, PVector position, PVector size) {
+    public CollisionBox(PApplet p, PVector offset, PVector size) {
         P = p;
-        POSITION = position;
+        OFFSET = offset;
         SIZE = size;
     }
 
@@ -31,23 +31,23 @@ public class CollisionBox {
         P.noFill();
         P.stroke(Color.MAGENTA.getRGB());
         P.rectMode(PConstants.CORNER);
-        P.rect(position.x + POSITION.x, position.y + POSITION.y, SIZE.x, SIZE.y);
+        P.rect(position.x + OFFSET.x, position.y + OFFSET.y, SIZE.x, SIZE.y);
     }
 
     public float getRightEdge() {
-        return POSITION.x + SIZE.x;
+        return OFFSET.x + SIZE.x;
     }
 
     public float getLeftEdge() {
-        return POSITION.x;
+        return OFFSET.x;
     }
 
     public float getBottomEdge() {
-        return POSITION.y + SIZE.y;
+        return OFFSET.y + SIZE.y;
     }
 
     public float getTopEdge() {
-        return POSITION.y;
+        return OFFSET.y;
     }
 
     /**
@@ -58,13 +58,13 @@ public class CollisionBox {
         int ceilBuffer = (int) Math.ceil(buffer);
         return new IntVector[]{
           worldPositionToGridPosition(
-            new PVector(position.x + POSITION.x + ceilBuffer, position.y + POSITION.y + ceilBuffer
+            new PVector(position.x + OFFSET.x + ceilBuffer, position.y + OFFSET.y + ceilBuffer
             )), worldPositionToGridPosition(
-            new PVector(position.x + POSITION.x + SIZE.x - ceilBuffer, position.y + POSITION.y + ceilBuffer
+            new PVector(position.x + OFFSET.x + SIZE.x - ceilBuffer, position.y + OFFSET.y + ceilBuffer
             )), worldPositionToGridPosition(
-            new PVector(position.x + POSITION.x + ceilBuffer, position.y + POSITION.y + SIZE.y - ceilBuffer
+            new PVector(position.x + OFFSET.x + ceilBuffer, position.y + OFFSET.y + SIZE.y - ceilBuffer
             )), worldPositionToGridPosition(
-            new PVector(position.x + POSITION.x + SIZE.x - ceilBuffer, position.y + POSITION.y + SIZE.y - ceilBuffer
+            new PVector(position.x + OFFSET.x + SIZE.x - ceilBuffer, position.y + OFFSET.y + SIZE.y - ceilBuffer
             ))
         };
     }
