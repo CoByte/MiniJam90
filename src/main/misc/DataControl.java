@@ -13,11 +13,7 @@ import static main.Main.*;
 public class DataControl extends ClassLoader {
 
     private static String filePath() {
-        //run from terminal
-        String filePath = new File("").getAbsolutePath();
-        //run from intelliJ todo: comment out before release
-        filePath = "resources";
-        return filePath;
+        return new File("").getAbsolutePath();
     }
 
     /**
