@@ -11,11 +11,11 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file:///Applications/Processing 3.app/Contents/Java/core/library" />
+          <root url="file://$MODULE_DIR$/../../processing-4.0b1/core/library" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-        <jarDirectory url="file:///Applications/Processing 3.app/Contents/Java/core/library" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../../processing-4.0b1/core/library" recursive="false" />
       </library>
     </orderEntry>
     <orderEntry type="module-library">

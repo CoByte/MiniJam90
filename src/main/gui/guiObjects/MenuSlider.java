@@ -1,5 +1,6 @@
 package main.gui.guiObjects;
 
+import main.misc.InputManager;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PVector;
@@ -7,7 +8,6 @@ import processing.sound.SoundFile;
 
 import java.awt.*;
 
-import static main.Main.inputHandler;
 import static main.Main.sounds;
 import static main.misc.Utilities.highlightedText;
 import static main.sound.SoundUtilities.playSound;
@@ -15,6 +15,8 @@ import static processing.core.PConstants.CENTER;
 import static processing.core.PConstants.LEFT;
 
 public class MenuSlider {
+
+    private final InputManager inputManager = InputManager.getInstance();
 
     private static final int MAX_PROGRESS = 200;
     private static final int BOX_SIZE = 20;
@@ -81,8 +83,8 @@ public class MenuSlider {
 
     private void hover() {
         if (mouseNear() || held) {
-            if (inputHandler.leftMousePressedPulse) playSound(CLICK_IN, 1, 1);
-            if (held && inputHandler.leftMouseReleasedPulse) playSound(CLICK_OUT, 1, 1);
+            if (inputManager.leftMouse.rising()) playSound(CLICK_IN, 1, 1);
+            if (held && inputManager.leftMouse.falling()) playSound(CLICK_OUT, 1, 1);
             if (P.mousePressed && P.mouseButton == LEFT) {
                 fillColor = new Color(50, 50, 50);
                 progress = updateProgressBasedOnMouseX();

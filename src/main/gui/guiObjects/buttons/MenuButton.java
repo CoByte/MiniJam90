@@ -1,5 +1,6 @@
 package main.gui.guiObjects.buttons;
 
+import main.misc.InputManager;
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -8,6 +9,8 @@ import static main.sound.SoundUtilities.playSound;
 import static processing.core.PConstants.LEFT;
 
 public class MenuButton extends Button {
+
+    private final InputManager inputManager = InputManager.getInstance();
 
     private boolean pressed;
 
@@ -30,10 +33,10 @@ public class MenuButton extends Button {
         if (matrixMousePosition.x < position.x+size.x/2 && matrixMousePosition.x > position.x-size.x/2 &&
           matrixMousePosition.y < position.y+size.y/2 && matrixMousePosition.y > position.y-size.y/2) {
             sprite = spriteHover;
-            if (inputHandler.leftMousePressedPulse) playSound(clickIn, 1, 1);
+            if (inputManager.leftMouse.rising()) playSound(clickIn, 1, 1);
             if (p.mousePressed && p.mouseButton == LEFT) sprite = spritePressed;
             if (holdable && p.mousePressed && p.mouseButton == LEFT) action();
-            else if (inputHandler.leftMouseReleasedPulse) {
+            else if (inputManager.leftMouse.falling()) {
                 playSound(clickOut, 1, 1);
                 action();
                 sprite = spritePressed;

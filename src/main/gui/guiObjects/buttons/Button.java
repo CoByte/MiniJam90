@@ -1,5 +1,6 @@
 package main.gui.guiObjects.buttons;
 
+import main.misc.InputManager;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
@@ -14,6 +15,8 @@ public abstract class Button {
 
     public PVector position;
     public PVector size;
+
+    private final InputManager inputManager = InputManager.getInstance();
 
     protected boolean holdable;
     protected PImage sprite;
@@ -37,10 +40,10 @@ public abstract class Button {
         if (matrixMousePosition.x < position.x+size.x/2 && matrixMousePosition.x > position.x-size.x/2 &&
           matrixMousePosition.y < position.y+size.y/2 && matrixMousePosition.y > position.y-size.y/2) {
             sprite = spriteHover;
-            if (inputHandler.leftMousePressedPulse) playSound(clickIn, 1, 1);
+            if (inputManager.leftMouse.rising()) playSound(clickIn, 1, 1);
             if (p.mousePressed && p.mouseButton == LEFT) sprite = spritePressed;
             if (holdable && p.mousePressed && p.mouseButton == LEFT) action();
-            else if (inputHandler.leftMouseReleasedPulse) {
+            else if (inputManager.leftMouse.falling()) {
                 playSound(clickOut, 1, 1);
                 action();
                 sprite = spritePressed;

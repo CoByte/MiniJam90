@@ -4,7 +4,7 @@ import main.gui.Hand;
 import main.gui.LevelBuilderGui;
 import main.gui.LoadingScreen;
 import main.gui.TitleScreen;
-import main.misc.InputHandler;
+import main.misc.InputManager;
 import main.misc.Tile;
 import main.sound.FadeSoundLoop;
 import main.sound.SoundWithAlts;
@@ -20,7 +20,6 @@ import java.awt.*;
 import java.util.HashMap;
 
 import static java.lang.Character.toLowerCase;
-import static main.misc.InputHandler.*;
 import static main.misc.SpriteLoader.loadAnimations;
 import static main.misc.SpriteLoader.loadSprites;
 import static main.sound.SoundLoader.loadSounds;
@@ -64,9 +63,9 @@ public class Main extends PApplet {
     public static HashMap<String, SoundWithAlts> soundsWithAlts;
 
     public static Tile.TileDS tiles;
-    public static InputHandler inputHandler;
-    public static InputHandler.KeyDS keysPressed;
     public static PVector matrixMousePosition;
+
+    private final InputManager inputManager = InputManager.getInstance();
 
     public static Hand hand;
     public static LevelBuilderGui levelBuilderGui;
@@ -109,9 +108,6 @@ public class Main extends PApplet {
     }
 
     public static void setupMisc(PApplet p) {
-        keysPressed = new InputHandler.KeyDS();
-        inputHandler = new InputHandler(p);
-        keysPressed = new InputHandler.KeyDS();
         hand = new Hand(p);
         levelBuilderGui = new LevelBuilderGui(p);
     }
@@ -144,6 +140,7 @@ public class Main extends PApplet {
 
     @Override
     public void draw() {
+        inputManager.update();
         background(BACKGROUND_COLOR.getRGB());
         drawSound();
 
@@ -165,8 +162,6 @@ public class Main extends PApplet {
 
 
         popFullscreen();
-
-        if (inputHandler != null) inputHandler.reset();
     }
 
     private void drawSound() {
@@ -212,35 +207,25 @@ public class Main extends PApplet {
         rectMode(DEFAULT_MODE);
     }
 
-    /**
-     * Checks if a key is pressed.
-     * Also includes overrides.
-     */
     @Override
     public void keyPressed() {
-        key = toLowerCase(key);
-        if (keyCode == 8 || keyCode == 46) key = KEY_DELETE;
-        if (keyCode == 9) key = KEY_TAB;
-        if (keyCode == 27) key = KEY_ESC;
-        if (keyCode == 37) key = KEY_LEFT;
-        if (keyCode == 38) key = KEY_UP;
-        if (keyCode == 39) key = KEY_RIGHT;
-        if (keyCode == 40) key = KEY_DOWN;
-        inputHandler.key(true);
+        inputManager.testPresses((short) keyCode);
     }
 
     @Override
     public void keyReleased() {
-        inputHandler.key(false);
+        inputManager.testReleases((short) keyCode);
     }
 
     @Override
     public void mousePressed() {
-        inputHandler.mouse(true);
+        if (mouseButton == LEFT) inputManager.leftMouse.setState(true);
+        else if (mouseButton == RIGHT) inputManager.rightMouse.setState(true);
     }
 
     @Override
     public void mouseReleased() {
-        inputHandler.mouse(false);
+        if (mouseButton == LEFT) inputManager.leftMouse.setState(false);
+        else if (mouseButton == RIGHT) inputManager.rightMouse.setState(false);
     }
 }

@@ -1,5 +1,6 @@
 package main.gui;
 
+import main.misc.InputManager;
 import main.misc.Tile;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -33,7 +34,7 @@ public class Hand {
     }
 
     public void main() {
-        if (inputHandler.leftMousePressedPulse) tryPlace();
+        if (InputManager.getInstance().leftMouse.rising()) tryPlace();
         displayHeld();
     }
 

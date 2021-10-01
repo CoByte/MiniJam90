@@ -1,6 +1,7 @@
 package main.gui.guiObjects.buttons;
 
 import main.misc.DataControl;
+import main.misc.InputManager;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
@@ -73,7 +74,7 @@ public class TileSelect extends Button {
         if (matrixMousePosition.x < position.x+size.x/2 && matrixMousePosition.x > position.x-size.x/2 &&
           matrixMousePosition.y < position.y+size.y/2 && matrixMousePosition.y > position.y-size.y/2) {
             sprite = spritePressed;
-            if (inputHandler.leftMousePressedPulse) action();
+            if (InputManager.getInstance().leftMouse.rising()) action();
         }
         else sprite = spriteIdle;
     }

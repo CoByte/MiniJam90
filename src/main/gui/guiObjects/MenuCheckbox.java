@@ -1,18 +1,20 @@
 package main.gui.guiObjects;
 
+import main.misc.InputManager;
 import processing.core.PApplet;
 import processing.core.PVector;
 import processing.sound.SoundFile;
 
 import java.awt.*;
 
-import static main.Main.inputHandler;
 import static main.Main.sounds;
 import static main.misc.Utilities.highlightedText;
 import static main.sound.SoundUtilities.playSound;
 import static processing.core.PConstants.*;
 
 public class MenuCheckbox {
+
+    private final InputManager inputManager = InputManager.getInstance();
 
     private static final int BOX_SIZE = 25;
     private static final SoundFile CLICK_IN = sounds.get("clickIn");
@@ -50,8 +52,8 @@ public class MenuCheckbox {
     private boolean clicked() {
         boolean clicked = false;
         if (mouseNear()) {
-            if (inputHandler.leftMousePressedPulse) playSound(CLICK_IN, 1, 1);
-            if (inputHandler.leftMouseReleasedPulse) {
+            if (inputManager.leftMouse.rising()) playSound(CLICK_IN, 1, 1);
+            if (inputManager.leftMouse.falling()) {
                 playSound(CLICK_OUT, 1, 1);
                 clicked = true;
             } if (P.mousePressed && P.mouseButton == LEFT) borderColor = new Color(50, 50, 50);
