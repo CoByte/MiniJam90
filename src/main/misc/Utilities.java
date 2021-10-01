@@ -474,23 +474,23 @@ public class Utilities {
         return radians(direction);
     }
 
-    /**
-     * @return cardinal axes from WASD or IJKL
-     */
-    public static IntVector getAxesFromMovementKeys() {
-        boolean left, right, up, down;
-        IntVector axes = new IntVector(0, 0);
-
-        left = keysPressed.getPressed('a') || keysPressed.getPressed('j');
-        right = keysPressed.getPressed('d') || keysPressed.getPressed('l');
-        up = keysPressed.getPressed('w') || keysPressed.getPressed('i');
-        down = keysPressed.getPressed('s') || keysPressed.getPressed('k');
-
-        axes.x = (right ? 1 : 0) - (left ? 1 : 0);
-        axes.y = (down ? 1 : 0) - (up ? 1 : 0);
-
-        return axes;
-    }
+//    /**
+//     * @return cardinal axes from WASD or IJKL
+//     */
+//    public static IntVector getAxesFromMovementKeys() {
+//        boolean left, right, up, down;
+//        IntVector axes = new IntVector(0, 0);
+//
+//        left = keysPressed.getPressed('a') || keysPressed.getPressed('j');
+//        right = keysPressed.getPressed('d') || keysPressed.getPressed('l');
+//        up = keysPressed.getPressed('w') || keysPressed.getPressed('i');
+//        down = keysPressed.getPressed('s') || keysPressed.getPressed('k');
+//
+//        axes.x = (right ? 1 : 0) - (left ? 1 : 0);
+//        axes.y = (down ? 1 : 0) - (up ? 1 : 0);
+//
+//        return axes;
+//    }
 
     /**
      * @param angle angle to check
