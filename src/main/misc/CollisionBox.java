@@ -27,6 +27,10 @@ public class CollisionBox {
         SIZE = size;
     }
 
+    public CollisionBox(PApplet p, PVector size) {
+        this(p, new PVector(0, 0), size);
+    }
+
     public void display(PVector position) {
         P.noFill();
         P.stroke(Color.MAGENTA.getRGB());

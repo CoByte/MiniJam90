@@ -1,5 +1,6 @@
 package main.world;
 
+import main.Main;
 import main.misc.Tile;
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -12,6 +13,8 @@ public class World {
 
     private final PApplet P;
 
+    private Player player;
+
     public World(PApplet p) {
         P = p;
 
@@ -21,11 +24,15 @@ public class World {
                 TILEMAP.add(new Tile(p, new PVector(x * TILE_SIZE, y * TILE_SIZE), TILEMAP.size()), x, y);
             }
         }
+
+        player = new Player(P, new PVector(200, BOARD_SIZE.y - 200));
     }
 
     public void main() {
         for (int i = 0; i < TILEMAP.size(); i++) {
             TILEMAP.get(i).displayBaseAndDecoration();
         }
+
+        player.display();
     }
 }

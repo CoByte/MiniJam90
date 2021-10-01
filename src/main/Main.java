@@ -19,7 +19,6 @@ import processing.sound.SoundFile;
 import java.awt.*;
 import java.util.HashMap;
 
-import static java.lang.Character.toLowerCase;
 import static main.misc.SpriteLoader.loadAnimations;
 import static main.misc.SpriteLoader.loadSprites;
 import static main.sound.SoundLoader.loadSounds;
@@ -41,7 +40,7 @@ public class Main extends PApplet {
     public static final int TILE_SIZE = 50;
     public static final int FRAMERATE = 60;
     public static final int DEFAULT_MODE = CORNER;
-    public static final PVector BOARD_SIZE = new PVector(1100, 900);
+    public static final PVector BOARD_SIZE = new PVector(1400, 900);
     public static final String TITLE = "template";
 
     public static float globalVolume = 0.25f;
@@ -83,9 +82,10 @@ public class Main extends PApplet {
     @Override
     public void settings() {
         if (FULLSCREEN) {
-            fullScreen(P2D);
+            fullScreen();
             noSmooth();
-        } else size((int) BOARD_SIZE.x, (int) BOARD_SIZE.y, P2D);
+        }
+        else size((int) BOARD_SIZE.x, (int) BOARD_SIZE.y, P2D);
     }
 
     @Override
@@ -140,8 +140,8 @@ public class Main extends PApplet {
         switch (scene) {
             case World:
                 world.main();
-                levelBuilderGui.main();
-                hand.main();
+//                levelBuilderGui.main();
+//                hand.main();
                 break;
             case TitleScreen:
                 titleScreen.main();
