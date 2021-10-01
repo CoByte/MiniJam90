@@ -98,15 +98,6 @@ public class Main extends PApplet {
         setupFullscreen();
     }
 
-    public static void setupTiles(PApplet p) {
-        tiles = new Tile.TileDS();
-        for (int y = 0; y <= BOARD_SIZE.y / TILE_SIZE; y++) {
-            for (int x = 0; x <= BOARD_SIZE.x / TILE_SIZE; x++) {
-                tiles.add(new Tile(p, new PVector(x * TILE_SIZE, y * TILE_SIZE), tiles.size()), x, y);
-            }
-        }
-    }
-
     public static void setupMisc(PApplet p) {
         hand = new Hand(p);
         levelBuilderGui = new LevelBuilderGui(p);
@@ -159,7 +150,6 @@ public class Main extends PApplet {
                 loadingScreen.main();
                 break;
         }
-
 
         popFullscreen();
     }

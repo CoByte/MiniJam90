@@ -31,6 +31,6 @@ public class SpriteLoader {
     }
 
     public static void loadSprites(PApplet p) {
-
+        sprites.put("groundBa_TL", p.loadImage("sprites/tiles/ground.png"));
     }
 }

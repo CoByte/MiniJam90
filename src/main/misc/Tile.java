@@ -48,46 +48,12 @@ public class Tile {
 
     public void displayBaseAndDecoration() {
         if (base != null) P.image(base, position.x, position.y);
-        spillBaseEdges();
         if (decoration != null) P.image(decoration, position.x, position.y);
-    }
-
-    public void displayBreakableAndShadow() {
-        if (breakable != null) P.image(breakable, position.x, position.y);
-        if (obstacle != null) {
-            P.tint(0, 60);
-            P.image(obstacle, position.x + obstacleShadowLength, position.y + obstacleShadowLength);
-            P.tint(255);
-        }
     }
 
     public void displayObstacle() {
         P.tint(255);
         if (obstacle != null) P.image(obstacle, position.x, position.y);
-    }
-
-    /**
-     * Spills the edges of the base into surrounding tiles
-     */
-    private void spillBaseEdges() {
-        int x = (int) (position.x / 50);
-        int y = (int) (position.y / 50);
-        if (y != 0) {
-            Tile tile = tiles.get(x, y - 1);
-            if (canSpill(0, tile)) P.image(tile.baseEdges[0], position.x, position.y);
-        }
-        if (x != 0) {
-            Tile tile = tiles.get(x - 1, y);
-            if (canSpill(3, tile)) P.image(tile.baseEdges[3], position.x, position.y);
-        }
-        if (y != 18) {
-            Tile tile = tiles.get(x, y + 1);
-            if (canSpill(2, tile)) P.image(tile.baseEdges[2], position.x, position.y);
-        }
-        if (x != 18) {
-            Tile tile = tiles.get(x + 1, y);
-            if (canSpill(1, tile)) P.image(tile.baseEdges[1], position.x, position.y);
-        }
     }
 
     /**

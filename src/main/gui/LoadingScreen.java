@@ -42,7 +42,6 @@ public class LoadingScreen {
                 Main.titleScreen = new TitleScreen(P);
                 break;
             case 3:
-                Main.setupTiles(P);
 //                DataControl.loadLevel("world");
                 break;
             case 4:

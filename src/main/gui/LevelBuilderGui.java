@@ -35,6 +35,8 @@ public class LevelBuilderGui {
         int bottom = (int) (BOARD_SIZE.y / TILE_SIZE) - 1;
         int middle = (int) ((BOARD_SIZE.y / TILE_SIZE) / 2) - 1;
 
+        placeButton(0, 0, "groundBa");
+
         placeButton(0, 17, "Na");
         placeButton(3, bottom, "Sa");
     }
