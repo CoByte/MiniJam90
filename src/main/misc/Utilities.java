@@ -1,5 +1,6 @@
 package main.misc;
 
+import com.jogamp.newt.event.KeyEvent;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
@@ -480,11 +481,12 @@ public class Utilities {
     public static IntVector getAxesFromMovementKeys() {
         boolean left, right, up, down;
         IntVector axes = new IntVector(0, 0);
+        InputManager input = InputManager.getInstance();
 
-        left = keysPressed.getPressed('a') || keysPressed.getPressed('j');
-        right = keysPressed.getPressed('d') || keysPressed.getPressed('l');
-        up = keysPressed.getPressed('w') || keysPressed.getPressed('i');
-        down = keysPressed.getPressed('s') || keysPressed.getPressed('k');
+        left = input.isPressed(KeyEvent.VK_A) || input.isPressed(KeyEvent.VK_J);
+        right = input.isPressed(KeyEvent.VK_D) || input.isPressed(KeyEvent.VK_L);
+        up = input.isPressed(KeyEvent.VK_W) || input.isPressed(KeyEvent.VK_I);
+        down = input.isPressed(KeyEvent.VK_S) || input.isPressed(KeyEvent.VK_K);
 
         axes.x = (right ? 1 : 0) - (left ? 1 : 0);
         axes.y = (down ? 1 : 0) - (up ? 1 : 0);
