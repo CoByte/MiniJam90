@@ -33,6 +33,7 @@ public class World {
             TILEMAP.get(i).displayBaseAndDecoration();
         }
 
+        player.update();
         player.display();
     }
 }
