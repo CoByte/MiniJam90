@@ -2,7 +2,6 @@ package main.world;
 
 import main.Main;
 import main.misc.CollisionBox;
-import main.misc.InputManager;
 import main.misc.IntVector;
 import main.misc.Utilities;
 import processing.core.PApplet;
@@ -12,6 +11,7 @@ import processing.core.PVector;
 public class Player {
 
     private static final float WALK_SPEED = 2;
+    private static final float JUMP_SPEED = -5;
     private static final float ACCELERATION_Y = 0.1f;
 
     private final PApplet P;
@@ -33,8 +33,8 @@ public class Player {
     }
 
     public void update() {
-        InputManager in = InputManager.getInstance();
         IntVector axes = Utilities.getAxesFromMovementKeys();
+        boolean grounded = POSITION.y >= Main.BOARD_SIZE.y - 200; //todo: temp
 
         /*
         I use this instead of `facingLeft = axes.x < 0` because I don't want the player's
@@ -43,11 +43,9 @@ public class Player {
         if (axes.x < 0) facingLeft = true;
         else if (axes.x > 0) facingLeft = false;
 
-        if (axes.y < 0) velocity_y = -5;
+        if (axes.y < 0 && grounded) velocity_y = JUMP_SPEED;
         velocity_y += ACCELERATION_Y;
-
-        //todo: temp
-        if (POSITION.y <= Main.BOARD_SIZE.y - 200 && axes.y == 0) velocity_y = 0;
+        if (grounded && velocity_y > 0) velocity_y = 0;
 
         POSITION.x += axes.x * WALK_SPEED;
         POSITION.y += velocity_y;
