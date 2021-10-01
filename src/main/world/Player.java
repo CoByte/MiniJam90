@@ -12,19 +12,17 @@ import processing.core.PVector;
 public class Player {
 
     private static final float WALK_SPEED = 2;
+    private static final float ACCELERATION_Y = 0.1f;
 
     private final PApplet P;
-    /**
-     * Top left corner
-     */
+    /**Top left corner*/
     private final PVector POSITION;
     private final PImage SPRITE;
-    /**
-     * I use this to control the player's size (both collision and visual). Don't set an offset, or it will break.
-     */
+    /**I use this to control the player's size (both collision and visual). Don't set an offset, or it will break.*/
     private final CollisionBox MAIN_HIT_BOX;
 
     private boolean facingLeft;
+    private float velocity_y;
 
     public Player(PApplet p, PVector position) {
         P = p;
@@ -36,7 +34,6 @@ public class Player {
 
     public void update() {
         InputManager in = InputManager.getInstance();
-
         IntVector axes = Utilities.getAxesFromMovementKeys();
 
         /*
@@ -46,7 +43,14 @@ public class Player {
         if (axes.x < 0) facingLeft = true;
         else if (axes.x > 0) facingLeft = false;
 
+        if (axes.y < 0) velocity_y = -5;
+        velocity_y += ACCELERATION_Y;
+
+        //todo: temp
+        if (POSITION.y <= Main.BOARD_SIZE.y - 200 && axes.y == 0) velocity_y = 0;
+
         POSITION.x += axes.x * WALK_SPEED;
+        POSITION.y += velocity_y;
     }
 
     public void display() {
