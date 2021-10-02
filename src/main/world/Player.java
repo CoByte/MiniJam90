@@ -3,6 +3,7 @@ package main.world;
 import main.Main;
 import main.world.entities.Entity;
 import main.misc.*;
+import main.world.entities.MovingPlatform;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
@@ -60,6 +61,13 @@ public class Player extends Entity {
 //        System.out.println(entities);
         for (Entity entity : entities) {
             CollisionBox.Collision offset = collider.calculateOffset(position, entity.position, entity.collider);
+            float speed = 0;
+            if (entity instanceof MovingPlatform) {
+                MovingPlatform mp = (MovingPlatform) entity;
+                speed = mp.speed * 2;
+                if (!mp.goingToB) speed *= -1;
+                if (mp.waiting) speed = 0;
+            }
 //            System.out.println(offset);
             switch (offset.direction) {
                 case Up:
@@ -69,6 +77,7 @@ public class Player extends Entity {
                 case Down:
                     position.y -= offset.offset;
                     grounded = true;
+                    position.x += speed;
                     break;
                 case Left: position.x += offset.offset; break;
                 case Right: position.x -= offset.offset; break;
