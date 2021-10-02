@@ -37,6 +37,7 @@ public class Player {
     public void update() {
         IntVector axes = Utilities.getAxesFromMovementKeys();
         boolean grounded = false;
+        float groundY = 0;
         IntVector[] hitBoxCorners = MAIN_HIT_BOX.getCornerGridPositions(POSITION, 0);
 
         //checks for collision with ground
@@ -44,6 +45,7 @@ public class Player {
             IntVector pos = hitBoxCorners[i];
             Tile tile = WORLD.TILEMAP.get(pos);
             if (tile.baseName != null) { //todo: temp
+                groundY = tile.position.y;
                 grounded = true;
                 break;
             }
@@ -59,7 +61,10 @@ public class Player {
         //collision with ground
         if (axes.y < 0 && grounded) velocity_y = JUMP_SPEED;
         velocity_y += ACCELERATION_Y;
-        if (grounded && velocity_y > 0) velocity_y = 0;
+        if (grounded && velocity_y > 0) {
+            velocity_y = 0;
+            POSITION.y = groundY - MAIN_HIT_BOX.getBottomEdge();
+        }
 
         if (axes.x != 0 && grounded) WALK_ANIMATION.update();
 
