@@ -25,13 +25,10 @@ public class Tile extends Entity {
     int baseHierarchy;
     PImage[] baseEdges;
 
-    private int obstacleShadowLength;
-
     public Tile(PApplet p, PVector position, int id) {
         super(p, new CollisionBox(p, new PVector(), new PVector(TILE_SIZE, TILE_SIZE)), position);
 
         this.id = id;
-        obstacleShadowLength = 3;
         baseEdges = new PImage[4];
     }
 
@@ -135,8 +132,8 @@ public class Tile extends Entity {
             setBreakable(null);
             obstacle = sprites.get(name);
             obstacleName = name;
-            if (name.contains("smallTree")) obstacleShadowLength = 3;
-            if (containsCorners(name,"tree")) obstacleShadowLength = 8;
+            if (name.contains("smallTree")) ;
+            if (containsCorners(name,"tree")) ;
         }
     }
 

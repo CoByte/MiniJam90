@@ -97,7 +97,7 @@ public class World {
         return Arrays.stream(hitBoxCorners)
                 .map(TILEMAP::get)
                 .filter(Objects::nonNull)
-                .filter(tile -> tile.baseName != null)
+                .filter(tile -> tile.obstacleName != null)
 //                .filter(e -> entity.collider.intersects(
 //                        entity.position,
 //                        e.position,

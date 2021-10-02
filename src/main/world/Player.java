@@ -16,7 +16,6 @@ public class Player extends Entity {
     private static final float JUMP_SPEED = -5;
     private static final float ACCELERATION_Y = 0.1f;
 
-    private final PImage SPRITE;
     private final World WORLD;
     private final Animator WALK_ANIMATION;
 
@@ -27,7 +26,6 @@ public class Player extends Entity {
     public Player(PApplet p, PVector position, World world) {
         super(p, new CollisionBox(p, new PVector(40, 52)), position);
 
-        SPRITE = Main.sprites.get("player");
         WORLD = world;
         WALK_ANIMATION = new Animator(Main.animations.get("walkPlayer"), 8);
     }
@@ -76,10 +74,10 @@ public class Player extends Entity {
             P.pushMatrix();
             P.translate(position.x, position.y);
             P.scale(-1, 1);
-            P.image(SPRITE, -collider.getRightEdge(), 0,
+            P.image(WALK_ANIMATION.getCurrentFrame(), -collider.getRightEdge(), 0,
                     collider.getRightEdge(), collider.getBottomEdge());
             P.popMatrix();
-        } else P.image(SPRITE, position.x, position.y,
+        } else P.image(WALK_ANIMATION.getCurrentFrame(), position.x, position.y,
                 collider.getRightEdge(), collider.getBottomEdge());
 
         if (Main.debug) collider.display(position);
