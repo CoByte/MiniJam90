@@ -1025,7 +1025,6 @@
   {
     "id": 206,
     "type": "tile",
-    "obstacle": "wall000Ob_TL",
     "base": "back"
   },
   {
@@ -1046,6 +1045,7 @@
   {
     "id": 210,
     "type": "tile",
+    "obstacle": "wall000Ob_TL",
     "base": "back"
   },
   {

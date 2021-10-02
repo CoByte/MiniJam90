@@ -14,14 +14,14 @@ public class MovingPlatform extends Entity {
     public final float width;
     public final float height;
 
-    public boolean goingToB = false;
-    public final float speed;
-    public boolean waiting = true;
-
     private final PVector pointA;
     private final PVector pointB;
 
+    private final float speed;
     private final Timer waitTimer;
+    private boolean waiting = true;
+
+    private boolean goingToB = false;
 
     public MovingPlatform(PApplet p, float width, float height, PVector pointA, PVector pointB, float speed, int endWait) {
         super(p, new CollisionBox(p, new PVector(WIDTH / 2, HEIGHT / 2)), pointA.copy());
