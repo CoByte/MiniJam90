@@ -62,13 +62,13 @@ public class CollisionBox {
         int ceilBuffer = (int) Math.ceil(buffer);
         return new IntVector[]{
           worldPositionToGridPosition(
-            new PVector(position.x + OFFSET.x + ceilBuffer, position.y + OFFSET.y + ceilBuffer
+                  new PVector(position.x + OFFSET.x + ceilBuffer, position.y + OFFSET.y + ceilBuffer
             )), worldPositionToGridPosition(
-            new PVector(position.x + OFFSET.x + SIZE.x - ceilBuffer, position.y + OFFSET.y + ceilBuffer
+                    new PVector(position.x + OFFSET.x + SIZE.x - ceilBuffer, position.y + OFFSET.y + ceilBuffer
             )), worldPositionToGridPosition(
-            new PVector(position.x + OFFSET.x + ceilBuffer, position.y + OFFSET.y + SIZE.y - ceilBuffer
+                    new PVector(position.x + OFFSET.x + ceilBuffer, position.y + OFFSET.y + SIZE.y - ceilBuffer
             )), worldPositionToGridPosition(
-            new PVector(position.x + OFFSET.x + SIZE.x - ceilBuffer, position.y + OFFSET.y + SIZE.y - ceilBuffer
+                    new PVector(position.x + OFFSET.x + SIZE.x - ceilBuffer, position.y + OFFSET.y + SIZE.y - ceilBuffer
             ))
         };
     }

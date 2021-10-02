@@ -140,8 +140,8 @@ public class Main extends PApplet {
         switch (scene) {
             case World:
                 world.main();
-//                levelBuilderGui.main();
-//                hand.main();
+                levelBuilderGui.main();
+                hand.main();
                 break;
             case TitleScreen:
                 titleScreen.main();
