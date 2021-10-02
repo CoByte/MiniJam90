@@ -1,6 +1,8 @@
 package main.gui;
 
+import com.jogamp.newt.event.KeyEvent;
 import main.gui.guiObjects.buttons.TileSelect;
+import main.misc.InputManager;
 import processing.core.PApplet;
 import processing.core.PConstants;
 
@@ -10,7 +12,7 @@ import static main.Main.*;
 
 public class LevelBuilderGui {
 
-    public static boolean right = false;
+    public boolean right = false;
 
     private final PApplet P;
 
@@ -29,6 +31,14 @@ public class LevelBuilderGui {
         else P.rect(0, 0, TILE_SIZE * 4, BOARD_SIZE.y);
         P.rectMode(DEFAULT_MODE);
         for (TileSelect tileSelectButton : TILE_SELECT_BUTTONS) tileSelectButton.main();
+
+        if (InputManager.getInstance().getEvent(KeyEvent.VK_F).rising()) {
+            for (TileSelect tileSelectButton : TILE_SELECT_BUTTONS) {
+                if (right) tileSelectButton.position.x -= BOARD_SIZE.x - TILE_SIZE * 4;
+                else tileSelectButton.position.x += BOARD_SIZE.x - TILE_SIZE * 4;
+            }
+            right = !right;
+        }
     }
 
     private void build() {

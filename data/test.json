@@ -1,19 +1,23 @@
 [
   {
     "id": 0,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 1,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 2,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 3,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 4,
@@ -141,19 +145,23 @@
   },
   {
     "id": 29,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 30,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 31,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 32,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 33,
@@ -281,19 +289,23 @@
   },
   {
     "id": 58,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 59,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 60,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 61,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 62,
@@ -421,15 +433,18 @@
   },
   {
     "id": 87,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 88,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 89,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 90,
@@ -562,19 +577,23 @@
   },
   {
     "id": 116,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 117,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 118,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 119,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 120,
@@ -702,15 +721,18 @@
   },
   {
     "id": 145,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 146,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 147,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 148,
@@ -843,19 +865,23 @@
   },
   {
     "id": 174,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 175,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 176,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 177,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 178,
@@ -983,19 +1009,23 @@
   },
   {
     "id": 203,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 204,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 205,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 206,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 207,
@@ -1124,19 +1154,23 @@
   },
   {
     "id": 232,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 233,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 234,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 235,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 236,
@@ -1264,19 +1298,23 @@
   },
   {
     "id": 261,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 262,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 263,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 264,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 265,
@@ -1405,19 +1443,23 @@
   },
   {
     "id": 290,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 291,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 292,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 293,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 294,
@@ -1546,19 +1588,23 @@
   },
   {
     "id": 319,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 320,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 321,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 322,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 323,
@@ -1691,19 +1737,23 @@
   },
   {
     "id": 348,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 349,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 350,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 351,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 352,
@@ -1831,19 +1881,23 @@
   },
   {
     "id": 377,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 378,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 379,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 380,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 381,
@@ -1971,19 +2025,23 @@
   },
   {
     "id": 406,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 407,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 408,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 409,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 410,
@@ -2113,22 +2171,22 @@
   {
     "id": 435,
     "type": "tile",
-    "obstacle": "wall006Ob_TL"
+    "obstacle": "wall002Ob_TL"
   },
   {
     "id": 436,
     "type": "tile",
-    "obstacle": "wall006Ob_TL"
+    "obstacle": "wall002Ob_TL"
   },
   {
     "id": 437,
     "type": "tile",
-    "obstacle": "wall006Ob_TL"
+    "obstacle": "wall002Ob_TL"
   },
   {
     "id": 438,
     "type": "tile",
-    "obstacle": "wall006Ob_TL"
+    "obstacle": "wall002Ob_TL"
   },
   {
     "id": 439,
