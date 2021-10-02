@@ -22,6 +22,9 @@ public class Player extends Entity {
     private final Timer COYOTE_TIMER;
     private final PVector DETECT_OFFSET;
 
+    private float pastY1 = 0;
+    private float pastY2 = 0;
+
     private boolean facingLeft;
     private boolean grounded;
     private float velocity_y;
@@ -90,7 +93,7 @@ public class Player extends Entity {
             switch (offset.direction) {
                 case Up:
                     position.y += offset.offset;
-                    velocity_y = Math.max(0, velocity_y);
+                    //velocity_y = Math.max(0, velocity_y);
                     break;
                 case Down:
                     position.y -= offset.offset;
@@ -107,6 +110,13 @@ public class Player extends Entity {
         }
         if (grounded) COYOTE_TIMER.reset();
         COYOTE_TIMER.update();
+
+        if (pastY2 == pastY1 && pastY1 == position.y && !grounded) {
+            velocity_y = 0;
+        }
+
+        pastY2 = pastY1;
+        pastY1 = position.y;
     }
 
     @Override
