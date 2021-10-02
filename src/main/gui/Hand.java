@@ -54,7 +54,10 @@ public class Hand {
     private void displayHeld() {
         if (!held.equals("null") && heldSprite != null) {
             P.tint(255, 150);
-            P.image(heldSprite, (roundToInteger(matrixMousePosition.x, 50)) - (25f / 2) - offset.x + 13, roundToInteger(matrixMousePosition.y, 50) - (25f / 2) - offset.y + 13);
+            P.image(heldSprite,
+                    (roundToInteger(matrixMousePosition.x, 50)) - (25f / 2) - offset.x + 13,
+                    roundToInteger(matrixMousePosition.y, 50) - (25f / 2) - offset.y + 13,
+                    TILE_SIZE, TILE_SIZE);
             P.tint(255);
         }
     }

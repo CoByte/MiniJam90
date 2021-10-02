@@ -1,11 +1,8 @@
 package main.world;
 
 import main.Main;
-import main.misc.CollisionBox;
-import main.misc.IntVector;
-import main.misc.Tile;
-import main.misc.Utilities;
 import main.world.entities.Entity;
+import main.misc.*;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
@@ -21,6 +18,7 @@ public class Player extends Entity {
 
     private final PImage SPRITE;
     private final World WORLD;
+    private final Animator WALK_ANIMATION;
 
     private boolean facingLeft;
     private boolean grounded;
@@ -31,16 +29,16 @@ public class Player extends Entity {
 
         SPRITE = Main.sprites.get("player");
         WORLD = world;
+        WALK_ANIMATION = new Animator(Main.animations.get("walkPlayer"), 8);
     }
 
     @Override
     public void update() {
         IntVector axes = Utilities.getAxesFromMovementKeys();
-
         /*
         I use this instead of `facingLeft = axes.x < 0` because I don't want the player's
         direction to change if they stop moving (axes.x == 0).
-         */
+        */
         if (axes.x < 0) facingLeft = true;
         else if (axes.x > 0) facingLeft = false;
 
@@ -48,6 +46,7 @@ public class Player extends Entity {
         if (axes.y < 0 && grounded) velocity_y = JUMP_SPEED;
         velocity_y += ACCELERATION_Y;
         if (grounded && velocity_y > 0) velocity_y = 0;
+        if (axes.x != 0 && grounded) WALK_ANIMATION.update();
 
         position.x += axes.x * WALK_SPEED;
         position.y += velocity_y;

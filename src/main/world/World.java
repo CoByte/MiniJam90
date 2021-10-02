@@ -3,6 +3,7 @@ package main.world;
 import main.Main;
 import main.misc.CollisionBox;
 import main.misc.IntVector;
+import main.misc.DataControl;
 import main.misc.Tile;
 import main.misc.Utilities;
 import main.world.entities.Entity;
@@ -26,6 +27,7 @@ public class World {
     // List of all entities in the scene
     private ArrayList<Entity> entities;
 
+    private Entity test;
     private Player player;
 
     public World(PApplet p) {
@@ -35,18 +37,28 @@ public class World {
         for (int y = 0; y <= BOARD_SIZE.y / TILE_SIZE; y++) {
             for (int x = 0; x <= BOARD_SIZE.x / TILE_SIZE; x++) {
                 TILEMAP.add(new Tile(p, new PVector(x * TILE_SIZE, y * TILE_SIZE), TILEMAP.size()), x, y);
-                //todo: temp
-                if (y > (BOARD_SIZE.y - 200) / TILE_SIZE) {
-                    TILEMAP.get(x, y).setBase("groundBa_TL");
-                }
+//                //todo: temp
+//                if (y > (BOARD_SIZE.y - 200) / TILE_SIZE) {
+//                    TILEMAP.get(x, y).setObstacle("wall006Ob_TL");
+//                }
             }
         }
 
         entities = new ArrayList<>();
 
-        player = new Player(P, new PVector(300, BOARD_SIZE.y - 200), this);
+        DataControl.loadLevel("test", TILEMAP);
+
+        test = new MovingPlatform(
+                P,
+                new PVector(250, 250),
+                new PVector(600, 250),
+                3,
+                10
+        );
+        player = new Player(P, new PVector(200, BOARD_SIZE.y - 200), this);
 
         entities.add(player);
+        entities.add(test);
     }
 
     public void main() {
@@ -54,6 +66,9 @@ public class World {
             Tile tile = TILEMAP.get(i);
             tile.displayBaseAndDecoration();
             if (debug) tile.collider.display(tile.position);
+        }
+        for (int i = 0; i < TILEMAP.size(); i++) {
+            TILEMAP.get(i).displayObstacle();
         }
 
         update();

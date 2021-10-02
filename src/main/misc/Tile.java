@@ -44,13 +44,13 @@ public class Tile extends Entity {
     }
 
     public void displayBaseAndDecoration() {
-        if (base != null) P.image(base, position.x, position.y);
-        if (decoration != null) P.image(decoration, position.x, position.y);
+        if (base != null) P.image(base, position.x, position.y, TILE_SIZE, TILE_SIZE);
+        if (decoration != null) P.image(decoration, position.x, position.y, TILE_SIZE, TILE_SIZE);
     }
 
     public void displayObstacle() {
         P.tint(255);
-        if (obstacle != null) P.image(obstacle, position.x, position.y);
+        if (obstacle != null) P.image(obstacle, position.x, position.y, TILE_SIZE, TILE_SIZE);
     }
 
     /**
@@ -71,6 +71,7 @@ public class Tile extends Entity {
      * @param name name of base
      */
     public void setBase(String name) {
+        if (name == null) return;
         name = name.replace("Ba_TL", "");
         baseName = name;
         base = sprites.get(name + "Ba_TL");
