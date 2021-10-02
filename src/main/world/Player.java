@@ -30,7 +30,7 @@ public class Player extends Entity {
 
         WORLD = world;
         WALK_ANIMATION = new Animator(Main.animations.get("walkPlayer"), 8);
-        COYOTE_TIMER = new Timer(Utilities.secondsToFrames(0.3f));
+        COYOTE_TIMER = new Timer(Utilities.secondsToFrames(0.3f), true);
     }
 
     @Override
