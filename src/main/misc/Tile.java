@@ -74,6 +74,7 @@ public class Tile {
      * @param name name of base
      */
     public void setBase(String name) {
+        if (name == null) return;
         name = name.replace("Ba_TL", "");
         baseName = name;
         base = sprites.get(name + "Ba_TL");

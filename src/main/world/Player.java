@@ -3,7 +3,6 @@ package main.world;
 import main.Main;
 import main.misc.*;
 import processing.core.PApplet;
-import processing.core.PImage;
 import processing.core.PVector;
 
 public class Player {
@@ -15,7 +14,6 @@ public class Player {
     private final PApplet P;
     /**Top left corner*/
     private final PVector POSITION;
-    private final PImage SPRITE;
     /**I use this to control the player's size (both collision and visual). Don't set an offset, or it will break.*/
     private final CollisionBox MAIN_HIT_BOX;
     private final World WORLD;
@@ -28,7 +26,6 @@ public class Player {
         P = p;
         POSITION = position;
 
-        SPRITE = Main.sprites.get("player");
         MAIN_HIT_BOX = new CollisionBox(P, new PVector(40, 52));
         WORLD = world;
         WALK_ANIMATION = new Animator(Main.animations.get("walkPlayer"), 8);

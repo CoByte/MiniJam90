@@ -19,11 +19,11 @@ public class DataControl extends ClassLoader {
     /**
      * Saves level data to a JSON file.
      */
-    public static void saveLevel() {
+    public static void saveLevel(Tile.TileDS tileMap) {
         JSONArray saveArray = new JSONArray();
         //tiles
-        for (int i = 0; i < tiles.size(); i++) {
-            Tile tile = tiles.get(i);
+        for (int i = 0; i < tileMap.size(); i++) {
+            Tile tile = tileMap.get(i);
             JSONObject saveObject = new JSONObject();
             saveObject.setString("type", "tile");
             saveObject.setInt("id", i);
@@ -36,12 +36,11 @@ public class DataControl extends ClassLoader {
         String name = "Save-"+month()+"-"+day()+"-"+year()+"-"+hour() +"-"+minute()+"-"+second();
         new File(filePath() + "/data/saveData/" + name + ".json");
         try {
-            FileWriter saveWriter = new FileWriter("resources/data/saveData/" + name + ".json");
+            FileWriter saveWriter = new FileWriter("data/saveData/" + name + ".json");
             saveWriter.write(saveArray.toString());
             saveWriter.close();
         } catch (IOException ex) {
-            System.out.println("failed to save " + "resources/data/saveData/" + name + ".json");
-
+            System.out.println("failed to save " + "data/saveData/" + name + ".json");
         }
     }
 
@@ -98,13 +97,13 @@ public class DataControl extends ClassLoader {
      * Loads level data from a JSON file.
      * @param file the filename, sans extension.
      */
-    public static void loadLevel(String file) {
+    public static void loadLevel(String file, Tile.TileDS tileMap) {
         File loadFile = new File(filePath()+"/data/"+file+".json");
         JSONArray loadArray = loadJSONArray(loadFile);
 
         //tiles
-        for (int i = 0; i < tiles.size(); i++) {
-            Tile tile = tiles.get(i);
+        for (int i = 0; i < tileMap.size(); i++) {
+            Tile tile = tileMap.get(i);
             JSONObject loadedTile = loadArray.getJSONObject(i);
 
             String base = loadedTile.getString("base");
