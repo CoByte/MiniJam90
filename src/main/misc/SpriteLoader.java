@@ -36,11 +36,9 @@ public class SpriteLoader {
     }
 
     public static void loadSprites(PApplet p) {
-        sprites.put("groundBa_TL", p.loadImage("sprites/tiles/ground.png"));
+        sprites.put("backBa_TL", p.loadImage("sprites/tiles/back.png"));
         for (int i = 0; i < 21; i++) {
             sprites.put("wall" + nf(i, 3) + "Ob_TL", p.loadImage("sprites/tiles/wall/" + nf(i, 3) + ".png"));
         }
-
-        sprites.put("player", p.loadImage("sprites/player/base.png"));
     }
 }

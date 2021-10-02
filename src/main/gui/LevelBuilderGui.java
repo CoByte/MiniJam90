@@ -47,6 +47,7 @@ public class LevelBuilderGui {
             if (breakable) break;
         }
 
+        placeButton(0, 16, "backBa");
         placeButton(0, 17, "Na");
         placeButton(3, bottom, "Sa");
     }

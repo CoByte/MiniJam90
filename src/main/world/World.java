@@ -48,6 +48,9 @@ public class World {
 
     public void main() {
         for (int i = 0; i < TILEMAP.size(); i++) {
+            TILEMAP.get(i).displayBaseAndDecoration();
+        }
+        for (int i = 0; i < TILEMAP.size(); i++) {
             TILEMAP.get(i).displayObstacle();
         }
 

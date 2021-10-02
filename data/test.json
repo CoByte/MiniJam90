@@ -17,83 +17,103 @@
   },
   {
     "id": 4,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 5,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 6,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 7,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 8,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 9,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 10,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 11,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 12,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 13,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 14,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 15,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 16,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 17,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 18,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 19,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 20,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 21,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 22,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 23,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 24,
@@ -137,83 +157,103 @@
   },
   {
     "id": 33,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 34,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 35,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 36,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 37,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 38,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 39,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 40,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 41,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 42,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 43,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 44,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 45,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 46,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 47,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 48,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 49,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 50,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 51,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 52,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 53,
@@ -257,83 +297,103 @@
   },
   {
     "id": 62,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 63,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 64,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 65,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 66,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 67,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 68,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 69,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 70,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 71,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 72,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 73,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 74,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 75,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 76,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 77,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 78,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 79,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 80,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 81,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 82,
@@ -373,87 +433,108 @@
   },
   {
     "id": 90,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 91,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 92,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 93,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 94,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 95,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 96,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 97,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 98,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 99,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 100,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 101,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 102,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 103,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 104,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 105,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 106,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 107,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 108,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 109,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 110,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 111,
@@ -497,83 +578,103 @@
   },
   {
     "id": 120,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 121,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 122,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 123,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 124,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 125,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 126,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 127,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 128,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 129,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 130,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 131,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 132,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 133,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 134,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 135,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 136,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 137,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 138,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 139,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 140,
@@ -613,87 +714,108 @@
   },
   {
     "id": 148,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 149,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 150,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 151,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 152,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 153,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 154,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 155,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 156,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 157,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 158,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 159,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 160,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 161,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 162,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 163,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 164,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 165,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 166,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 167,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 168,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 169,
@@ -737,83 +859,103 @@
   },
   {
     "id": 178,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 179,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 180,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 181,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 182,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 183,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 184,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 185,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 186,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 187,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 188,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 189,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 190,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 191,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 192,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 193,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 194,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 195,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 196,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 197,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 198,
@@ -857,84 +999,104 @@
   },
   {
     "id": 207,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 208,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 209,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 210,
     "type": "tile",
-    "obstacle": "wall000Ob_TL"
+    "obstacle": "wall000Ob_TL",
+    "base": "back"
   },
   {
     "id": 211,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 212,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 213,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 214,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 215,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 216,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 217,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 218,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 219,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 220,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 221,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 222,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 223,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 224,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 225,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 226,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 227,
@@ -978,83 +1140,103 @@
   },
   {
     "id": 236,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 237,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 238,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 239,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 240,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 241,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 242,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 243,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 244,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 245,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 246,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 247,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 248,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 249,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 250,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 251,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 252,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 253,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 254,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 255,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 256,
@@ -1098,84 +1280,104 @@
   },
   {
     "id": 265,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 266,
     "type": "tile",
-    "obstacle": "wall008Ob_TL"
+    "obstacle": "wall008Ob_TL",
+    "base": "back"
   },
   {
     "id": 267,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 268,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 269,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 270,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 271,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 272,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 273,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 274,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 275,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 276,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 277,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 278,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 279,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 280,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 281,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 282,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 283,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 284,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 285,
@@ -1219,84 +1421,104 @@
   },
   {
     "id": 294,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 295,
     "type": "tile",
-    "obstacle": "wall012Ob_TL"
+    "obstacle": "wall012Ob_TL",
+    "base": "back"
   },
   {
     "id": 296,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 297,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 298,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 299,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 300,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 301,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 302,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 303,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 304,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 305,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 306,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 307,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 308,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 309,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 310,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 311,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 312,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 313,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 314,
@@ -1340,88 +1562,108 @@
   },
   {
     "id": 323,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 324,
     "type": "tile",
-    "obstacle": "wall016Ob_TL"
+    "obstacle": "wall016Ob_TL",
+    "base": "back"
   },
   {
     "id": 325,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 326,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 327,
     "type": "tile",
-    "obstacle": "wall013Ob_TL"
+    "obstacle": "wall013Ob_TL",
+    "base": "back"
   },
   {
     "id": 328,
     "type": "tile",
-    "obstacle": "wall014Ob_TL"
+    "obstacle": "wall014Ob_TL",
+    "base": "back"
   },
   {
     "id": 329,
     "type": "tile",
-    "obstacle": "wall014Ob_TL"
+    "obstacle": "wall014Ob_TL",
+    "base": "back"
   },
   {
     "id": 330,
     "type": "tile",
-    "obstacle": "wall015Ob_TL"
+    "obstacle": "wall015Ob_TL",
+    "base": "back"
   },
   {
     "id": 331,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 332,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 333,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 334,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 335,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 336,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 337,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 338,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 339,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 340,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 341,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 342,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 343,
@@ -1465,83 +1707,103 @@
   },
   {
     "id": 352,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 353,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 354,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 355,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 356,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 357,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 358,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 359,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 360,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 361,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 362,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 363,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 364,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 365,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 366,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 367,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 368,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 369,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 370,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 371,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 372,
@@ -1585,39 +1847,48 @@
   },
   {
     "id": 381,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 382,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 383,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 384,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 385,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 386,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 387,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 388,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 389,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 390,
@@ -1636,51 +1907,63 @@
   },
   {
     "id": 393,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 394,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 395,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 396,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 397,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 398,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 399,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 400,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 401,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 402,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 403,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 404,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 405,
@@ -1704,39 +1987,48 @@
   },
   {
     "id": 410,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 411,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 412,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 413,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 414,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 415,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 416,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 417,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 418,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 419,
@@ -1751,55 +2043,68 @@
   {
     "id": 421,
     "type": "tile",
-    "obstacle": "wall007Ob_TL"
+    "obstacle": "wall007Ob_TL",
+    "base": "back"
   },
   {
     "id": 422,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 423,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 424,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 425,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 426,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 427,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 428,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 429,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 430,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 431,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 432,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 433,
-    "type": "tile"
+    "type": "tile",
+    "base": "back"
   },
   {
     "id": 434,

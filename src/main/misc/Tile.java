@@ -47,7 +47,7 @@ public class Tile {
     }
 
     public void displayBaseAndDecoration() {
-        if (base != null) P.image(base, position.x, position.y);
+        if (base != null) P.image(base, position.x, position.y, TILE_SIZE, TILE_SIZE);
         if (decoration != null) P.image(decoration, position.x, position.y, TILE_SIZE, TILE_SIZE);
     }
 
