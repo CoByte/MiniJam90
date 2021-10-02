@@ -1,6 +1,7 @@
 package main.misc;
 
 import com.jogamp.newt.event.KeyEvent;
+import main.Main;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
@@ -518,5 +519,21 @@ public class Utilities {
         else if (angle >= HALF_PI + QUARTER_PI && angle < PI + QUARTER_PI) facingRight = true;
         else if (angle >= PI + HALF_PI + QUARTER_PI) facingRight = false;
         return !facingRight;
+    }
+
+    public static int minutesToFrames(float minutes) {
+        return (int) ((minutes * 60) * Main.FRAMERATE);
+    }
+
+    public static int secondsToFrames(float seconds) {
+        return (int) (seconds * FRAMERATE);
+    }
+
+    public static float framesToMinutes(int frames) {
+        return (frames / (float) FRAMERATE) / 60;
+    }
+
+    public static float framesToSeconds(int frames) {
+        return (frames / (float) FRAMERATE);
     }
 }

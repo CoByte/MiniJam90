@@ -18,6 +18,8 @@ public class Player extends Entity {
 
     private final World WORLD;
     private final Animator WALK_ANIMATION;
+    /**Allows the player to jump if they have just stepped off an edge, this is common in platformers.**/
+    private final Timer COYOTE_TIMER;
 
     private boolean facingLeft;
     private boolean grounded;
@@ -28,6 +30,7 @@ public class Player extends Entity {
 
         WORLD = world;
         WALK_ANIMATION = new Animator(Main.animations.get("walkPlayer"), 8);
+        COYOTE_TIMER = new Timer(Utilities.secondsToFrames(0.3f));
     }
 
     @Override
@@ -41,7 +44,10 @@ public class Player extends Entity {
         else if (axes.x > 0) facingLeft = false;
 
         //collision with ground
-        if (axes.y < 0 && grounded) velocity_y = JUMP_SPEED;
+        if (axes.y < 0 && (grounded || !COYOTE_TIMER.triggered(false))) {
+            velocity_y = JUMP_SPEED;
+            COYOTE_TIMER.setCurrentTime(COYOTE_TIMER.getAlarmTime());
+        }
         velocity_y += ACCELERATION_Y;
         if (grounded && velocity_y > 0) velocity_y = 0;
         if (axes.x != 0 && grounded) WALK_ANIMATION.update();
@@ -68,6 +74,8 @@ public class Player extends Entity {
                 case Right: position.x -= offset.offset; break;
             }
         }
+        if (grounded) COYOTE_TIMER.reset();
+        COYOTE_TIMER.update();
     }
 
     @Override
