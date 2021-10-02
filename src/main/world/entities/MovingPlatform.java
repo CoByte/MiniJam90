@@ -8,8 +8,11 @@ import processing.core.PVector;
 
 public class MovingPlatform extends Entity {
 
-    public static final float WIDTH = 50;
-    public static final float HEIGHT = 20;
+    public static final float WIDTH = 150;
+    public static final float HEIGHT = 50;
+
+    public final float width;
+    public final float height;
 
     private final PVector pointA;
     private final PVector pointB;
@@ -20,14 +23,21 @@ public class MovingPlatform extends Entity {
 
     private boolean goingToB = false;
 
-    public MovingPlatform(PApplet p, PVector pointA, PVector pointB, float speed, int endWait) {
+    public MovingPlatform(PApplet p, float width, float height, PVector pointA, PVector pointB, float speed, int endWait) {
         super(p, new CollisionBox(p, new PVector(WIDTH / 2, HEIGHT / 2)), pointA.copy());
+
+        this.width = width;
+        this.height = height;
 
         this.pointA = pointA;
         this.pointB = pointB;
 
         this.speed = speed;
         this.waitTimer = new Timer(endWait);
+    }
+
+    public MovingPlatform(PApplet p, PVector pointA, PVector pointB, float speed, int endWait) {
+        this(p, WIDTH, HEIGHT, pointA, pointB, speed, endWait);
     }
 
     @Override

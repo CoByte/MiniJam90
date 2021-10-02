@@ -1,11 +1,19 @@
 package main.world;
 
 import main.Main;
+import main.misc.CollisionBox;
+import main.misc.IntVector;
 import main.misc.Tile;
+import main.misc.Utilities;
 import main.world.entities.Entity;
 import main.world.entities.MovingPlatform;
 import processing.core.PApplet;
 import processing.core.PVector;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static main.Main.*;
 
@@ -15,9 +23,10 @@ public class World {
 
     private final PApplet P;
 
-    private Player player;
+    // List of all entities in the scene
+    private ArrayList<Entity> entities;
 
-    private Entity test;
+    private Player player;
 
     public World(PApplet p) {
         P = p;
@@ -33,32 +42,60 @@ public class World {
             }
         }
 
-        test = new MovingPlatform(
-                P,
-                new PVector(250, 250),
-                new PVector(600, 250),
-                3,
-                10
-        );
-        player = new Player(P, new PVector(200, BOARD_SIZE.y - 200), this);
+        entities = new ArrayList<>();
+
+        player = new Player(P, new PVector(300, BOARD_SIZE.y - 200), this);
+
+        entities.add(player);
     }
 
     public void main() {
         for (int i = 0; i < TILEMAP.size(); i++) {
-            TILEMAP.get(i).displayBaseAndDecoration();
+            Tile tile = TILEMAP.get(i);
+            tile.displayBaseAndDecoration();
+            if (debug) tile.collider.display(tile.position);
         }
 
         update();
         display();
     }
 
+    public ArrayList<Entity> getCollidingEntities(Entity entity) {
+        ArrayList<Entity> collided = new ArrayList<>();
+
+        collided.addAll(getTileCollision(entity));
+        collided.addAll(entities.stream()
+                .filter(e -> e != entity)
+                .filter(e -> entity.collider.intersects(
+                        entity.position,
+                        e.position,
+                        e.collider
+                ))
+                .collect(Collectors.toList()));
+
+        return collided;
+    }
+
+    private ArrayList<Entity> getTileCollision(Entity entity) {
+        IntVector[] hitBoxCorners = entity.collider.getCornerGridPositions(entity.position, 0);
+
+        return Arrays.stream(hitBoxCorners)
+                .map(TILEMAP::get)
+                .filter(Objects::nonNull)
+                .filter(tile -> tile.baseName != null)
+//                .filter(e -> entity.collider.intersects(
+//                        entity.position,
+//                        e.position,
+//                        e.collider
+//                ))
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
     private void update() {
-        player.update();
-        test.update();
+        entities.forEach(Entity::update);
     }
 
     private void display() {
-        player.display();
-        test.draw();
+        entities.forEach(Entity::draw);
     }
 }

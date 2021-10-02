@@ -5,50 +5,37 @@ import main.misc.CollisionBox;
 import main.misc.IntVector;
 import main.misc.Tile;
 import main.misc.Utilities;
+import main.world.entities.Entity;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
 
-public class Player {
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
+public class Player extends Entity {
 
     private static final float WALK_SPEED = 2;
     private static final float JUMP_SPEED = -5;
     private static final float ACCELERATION_Y = 0.1f;
 
-    private final PApplet P;
-    /**Top left corner*/
-    private final PVector POSITION;
     private final PImage SPRITE;
-    /**I use this to control the player's size (both collision and visual). Don't set an offset, or it will break.*/
-    private final CollisionBox MAIN_HIT_BOX;
     private final World WORLD;
 
     private boolean facingLeft;
+    private boolean grounded;
     private float velocity_y;
 
     public Player(PApplet p, PVector position, World world) {
-        P = p;
-        POSITION = position;
+        super(p, new CollisionBox(p, new PVector(40, 52)), position);
 
         SPRITE = Main.sprites.get("player");
-        MAIN_HIT_BOX = new CollisionBox(P, new PVector(40, 52));
         WORLD = world;
     }
 
+    @Override
     public void update() {
         IntVector axes = Utilities.getAxesFromMovementKeys();
-        boolean grounded = false;
-        IntVector[] hitBoxCorners = MAIN_HIT_BOX.getCornerGridPositions(POSITION, 0);
-
-        //checks for collision with ground
-        for (int i = hitBoxCorners.length / 2; i < hitBoxCorners.length; i++) {
-            IntVector pos = hitBoxCorners[i];
-            Tile tile = WORLD.TILEMAP.get(pos);
-            if (tile.baseName != null) { //todo: temp
-                grounded = true;
-                break;
-            }
-        }
 
         /*
         I use this instead of `facingLeft = axes.x < 0` because I don't want the player's
@@ -62,19 +49,39 @@ public class Player {
         velocity_y += ACCELERATION_Y;
         if (grounded && velocity_y > 0) velocity_y = 0;
 
-        POSITION.x += axes.x * WALK_SPEED;
-        POSITION.y += velocity_y;
+        position.x += axes.x * WALK_SPEED;
+        position.y += velocity_y;
+
+        grounded = false;
+        ArrayList<Entity> entities = WORLD.getCollidingEntities(this);
+        System.out.println(entities);
+        for (Entity entity : entities) {
+            CollisionBox.Collision offset = collider.calculateOffset(position, entity.position, entity.collider);
+            System.out.println(offset);
+            switch (offset.direction()) {
+                case Up -> position.y += offset.offset();
+                case Down -> {
+                    position.y -= offset.offset();
+                    grounded = true;
+                }
+                case Left -> position.x += offset.offset();
+                case Right -> position.x -= offset.offset();
+            }
+        }
     }
 
-    public void display() {
+    @Override
+    public void draw() {
         if (facingLeft) { //mirroring
             P.pushMatrix();
-            P.translate(POSITION.x, POSITION.y);
+            P.translate(position.x, position.y);
             P.scale(-1, 1);
-            P.image(SPRITE, -MAIN_HIT_BOX.getRightEdge(), 0,
-                    MAIN_HIT_BOX.getRightEdge(), MAIN_HIT_BOX.getBottomEdge());
+            P.image(SPRITE, -collider.getRightEdge(), 0,
+                    collider.getRightEdge(), collider.getBottomEdge());
             P.popMatrix();
-        } else P.image(SPRITE, POSITION.x, POSITION.y,
-                MAIN_HIT_BOX.getRightEdge(), MAIN_HIT_BOX.getBottomEdge());
+        } else P.image(SPRITE, position.x, position.y,
+                collider.getRightEdge(), collider.getBottomEdge());
+
+        if (Main.debug) collider.display(position);
     }
 }

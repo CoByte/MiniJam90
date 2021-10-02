@@ -1,5 +1,6 @@
 package main.misc;
 
+import main.world.entities.Entity;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
@@ -9,12 +10,9 @@ import java.awt.*;
 import static main.Main.*;
 import static processing.core.PConstants.CORNER;
 
-public class Tile {
-
-    private final PApplet P;
+public class Tile extends Entity {
 
     public int id;
-    public PVector position;
     public PImage base;
     public String baseName;
     public PImage decoration;
@@ -30,9 +28,8 @@ public class Tile {
     private int obstacleShadowLength;
 
     public Tile(PApplet p, PVector position, int id) {
-        this.P = p;
+        super(p, new CollisionBox(p, new PVector(), new PVector(TILE_SIZE, TILE_SIZE)), position);
 
-        this.position = position;
         this.id = id;
         obstacleShadowLength = 3;
         baseEdges = new PImage[4];
@@ -154,6 +151,23 @@ public class Tile {
         int x = (int) (position.x / 50);
         int y = (int) (position.y / 50);
         return new PVector(x, y);
+    }
+
+    /**
+     * Tiles are static, this is just here cause entities need it
+     */
+    @Override
+    public void update() {
+        throw new RuntimeException("Don't call this");
+    }
+
+    /**
+     * Tiles have multiple layers, so a single draw doesn't make sense.
+     * This is just here because entity requires it
+     */
+    @Override
+    public void draw() {
+        throw new RuntimeException("Don't call this");
     }
 
     public static class TileDS {

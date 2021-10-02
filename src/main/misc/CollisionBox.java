@@ -12,8 +12,8 @@ import static processing.core.PConstants.PI;
 
 public class CollisionBox {
 
-    private final PVector OFFSET;
-    private final PVector SIZE;
+    public final PVector OFFSET;
+    public final PVector SIZE;
 
     private final PApplet P;
 
@@ -36,6 +36,9 @@ public class CollisionBox {
         P.stroke(Color.MAGENTA.getRGB());
         P.rectMode(PConstants.CORNER);
         P.rect(position.x + OFFSET.x, position.y + OFFSET.y, SIZE.x, SIZE.y);
+
+        PVector center = PVector.sub(position, OFFSET).add(PVector.div(SIZE, 2));
+        P.circle(center.x, center.y, 5);
     }
 
     public float getRightEdge() {
@@ -57,11 +60,13 @@ public class CollisionBox {
     /**
      * Buffer should be positive.
      * Left to right, top to bottom.
+     * Also includes some extra points to make things work
+     * I could do it dynamically but I choose not to out of apathy
      */
     public IntVector[] getCornerGridPositions(PVector position, float buffer) {
         int ceilBuffer = (int) Math.ceil(buffer);
         return new IntVector[]{
-          worldPositionToGridPosition(
+            worldPositionToGridPosition(
                   new PVector(position.x + OFFSET.x + ceilBuffer, position.y + OFFSET.y + ceilBuffer
             )), worldPositionToGridPosition(
                     new PVector(position.x + OFFSET.x + SIZE.x - ceilBuffer, position.y + OFFSET.y + ceilBuffer
@@ -69,8 +74,11 @@ public class CollisionBox {
                     new PVector(position.x + OFFSET.x + ceilBuffer, position.y + OFFSET.y + SIZE.y - ceilBuffer
             )), worldPositionToGridPosition(
                     new PVector(position.x + OFFSET.x + SIZE.x - ceilBuffer, position.y + OFFSET.y + SIZE.y - ceilBuffer
-            ))
-        };
+            )), worldPositionToGridPosition(
+                    new PVector(position.x + OFFSET.x + ceilBuffer, position.y + OFFSET.y + (SIZE.y - ceilBuffer) / 2)
+            ), worldPositionToGridPosition(
+                    new PVector(position.x + OFFSET.x + SIZE.x - ceilBuffer, position.y + OFFSET.y + (SIZE.y - ceilBuffer) / 2)
+        )};
     }
 
     /**
@@ -112,5 +120,47 @@ public class CollisionBox {
         boolean top = point.y > position.y + getTopEdge();
         boolean bottom = point.y < position.y + getBottomEdge();
         return left && right && top && bottom;
+    }
+
+    public boolean intersects(PVector positionA, PVector positionB, CollisionBox boxB) {
+        PVector boxATopLeft = new PVector(getLeftEdge(), getTopEdge()).add(positionA);
+        PVector boxBTopLeft = new PVector(boxB.getLeftEdge(), boxB.getTopEdge()).add(positionB);
+        PVector boxABottomRight = new PVector(getRightEdge(), getBottomEdge()).add(positionA);
+        PVector boxBBottomRight = new PVector(boxB.getRightEdge(), boxB.getBottomEdge()).add(positionB);
+
+        return
+                boxABottomRight.x > boxBTopLeft.x &&
+                boxATopLeft.x < boxBBottomRight.x &&
+                boxABottomRight.y > boxBTopLeft.y &&
+                boxATopLeft.y < boxBBottomRight.y;
+    }
+
+    public Collision calculateOffset(PVector positionA, PVector positionB, CollisionBox boxB) {
+        PVector centerA = PVector.sub(positionA, OFFSET).add(PVector.div(SIZE, 2));
+        PVector centerB = PVector.sub(positionB, boxB.OFFSET).add(PVector.div(boxB.SIZE, 2));
+
+        float widthDepth = (SIZE.x / 2) + (boxB.SIZE.x / 2) - Math.abs(centerB.x - centerA.x);
+        float heightDepth = (SIZE.y / 2) + (boxB.SIZE.y / 2) - Math.abs(centerB.y - centerA.y);
+
+        System.out.println("Width: " + widthDepth + ", Height: " + heightDepth);
+
+        if (widthDepth <= heightDepth && widthDepth != 0) {
+            if (centerA.x < centerB.x) return new Collision(Direction.Right, Math.abs(widthDepth));
+            else if (centerA.x > centerB.x) return new Collision(Direction.Left, Math.abs(widthDepth));
+        } else if (heightDepth < widthDepth && heightDepth != 0) {
+            if (centerA.y < centerB.y) return new Collision(Direction.Down, Math.abs(heightDepth));
+            else if (centerA.y > centerB.y) return new Collision(Direction.Up, Math.abs(heightDepth));
+        }
+        return new Collision(Direction.None, 0);
+    }
+
+    public record Collision(Direction direction, float offset) {}
+
+    public enum Direction {
+        Up, Down, Left, Right, None
+    }
+
+    public CollisionBox copy() {
+        return new CollisionBox(P, OFFSET, SIZE);
     }
 }

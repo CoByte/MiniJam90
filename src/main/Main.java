@@ -44,7 +44,7 @@ public class Main extends PApplet {
     public static final String TITLE = "template";
 
     public static float globalVolume = 0.25f;
-    public static boolean debug = false;
+    public static boolean debug = true;
 
     private static final Color BACKGROUND_COLOR = new Color(0, 15, 45);
     private static final boolean FULLSCREEN = true;
@@ -140,8 +140,10 @@ public class Main extends PApplet {
         switch (scene) {
             case World:
                 world.main();
-                levelBuilderGui.main();
-                hand.main();
+                if (debug) {
+                    levelBuilderGui.main();
+                    hand.main();
+                }
                 break;
             case TitleScreen:
                 titleScreen.main();
