@@ -13,6 +13,8 @@ public class SpriteLoader {
      */
     public static void loadAnimations(PApplet p) {
         getAnimation(p, "genericButton", "BT", 3);
+
+        getAnimation(p, "walk", "Player", 8);
     }
 
     private static void getAnimation(PApplet p, String name, String type, int length) {
@@ -20,6 +22,9 @@ public class SpriteLoader {
         switch (type) {
             case "BT":
                 path.append("gui/buttons/");
+                break;
+            case "Player":
+                path.append("player/");
                 break;
         }
         path.append(name).append("/");
