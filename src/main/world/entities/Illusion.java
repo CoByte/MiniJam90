@@ -1,13 +1,14 @@
 package main.world.entities;
 
+import main.misc.CollisionBox;
 import processing.core.PVector;
 
 import java.awt.*;
 
 public class Illusion extends Entity {
 
-    private final Entity trueEntity;
-    private final PVector offset;
+    public final Entity trueEntity;
+    public final PVector offset;
 
     public Illusion(Entity trueEntity, PVector offset) {
         super(trueEntity.P, trueEntity.collider.copy(), trueEntity.position.copy());
@@ -32,5 +33,9 @@ public class Illusion extends Entity {
 
     public PVector getPosition() {
         return PVector.add(trueEntity.position, offset);
+    }
+
+    public CollisionBox getCollider() {
+        return trueEntity.collider;
     }
 }

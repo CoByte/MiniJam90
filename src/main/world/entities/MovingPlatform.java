@@ -14,7 +14,7 @@ public class MovingPlatform extends Entity {
     public final float width;
     public final float height;
 
-    public final float speed;
+    public final float topSpeed;
     public boolean goingToB = false;
     public boolean waiting = true;
 
@@ -32,7 +32,7 @@ public class MovingPlatform extends Entity {
         this.pointA = pointA;
         this.pointB = pointB;
 
-        this.speed = speed;
+        this.topSpeed = speed;
         this.waitTimer = new Timer(endWait);
     }
 
@@ -53,12 +53,19 @@ public class MovingPlatform extends Entity {
         PVector target = goingToB ? pointB : pointA;
         PVector starting = goingToB ? pointA : pointB;
 
-        if (PVector.dist(position, target) < speed) {
+        if (PVector.dist(position, target) < topSpeed) {
             position.set(target);
             waiting = true;
         } else {
-            position.add(PVector.sub(target, starting).setMag(speed));
+            position.add(PVector.sub(target, starting).setMag(topSpeed));
         }
+    }
+
+    public float getSpeed() {
+        float speed = topSpeed * 2;
+        if (!goingToB) speed *= -1;
+        if (waiting) speed = 0;
+        return speed;
     }
 
     @Override

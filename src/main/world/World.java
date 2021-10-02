@@ -83,7 +83,7 @@ public class World {
                 ))
                 .collect(Collectors.toList()));
         if (illusion != null &&
-                illusion.collider.intersects(entity.position, illusion.getPosition(), entity.collider))
+                entity.collider.intersects(entity.position, illusion.getPosition(), illusion.getCollider()))
             collided.add(illusion);
 
         return collided;
