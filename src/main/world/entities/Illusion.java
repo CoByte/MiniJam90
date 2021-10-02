@@ -29,4 +29,8 @@ public class Illusion extends Entity {
         P.tint(255);
         P.popMatrix();
     }
+
+    public PVector getPosition() {
+        return PVector.add(trueEntity.position, offset);
+    }
 }

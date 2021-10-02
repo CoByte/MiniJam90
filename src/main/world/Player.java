@@ -82,6 +82,10 @@ public class Player extends Entity {
         for (Entity entity : entities) {
             CollisionBox otherCollider = entity.collider;
             CollisionBox.Collision offset = collider.calculateOffset(position, entity.position, otherCollider);
+            if (entity instanceof Illusion) {
+                Illusion illusion = (Illusion) entity;
+                offset = collider.calculateOffset(position, illusion.getPosition(), otherCollider);
+            }
             float speed = 0;
             if (entity instanceof MovingPlatform) {
                 MovingPlatform mp = (MovingPlatform) entity;
