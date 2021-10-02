@@ -83,11 +83,17 @@ public class Player extends Entity {
             CollisionBox otherCollider = entity.collider;
             CollisionBox.Collision offset = collider.calculateOffset(position, entity.position, otherCollider);
             float speed = 0;
+            if (entity instanceof Illusion) {
+                Illusion illusion = (Illusion) entity;
+                offset = collider.calculateOffset(position, illusion.getPosition(), illusion.getCollider());
+                if (illusion.trueEntity instanceof MovingPlatform) {
+                    MovingPlatform mp = (MovingPlatform) ((Illusion) entity).trueEntity;
+                    speed = mp.getSpeed();
+                }
+            }
             if (entity instanceof MovingPlatform) {
                 MovingPlatform mp = (MovingPlatform) entity;
-                speed = mp.speed * 2;
-                if (!mp.goingToB) speed *= -1;
-                if (mp.waiting) speed = 0;
+                speed = mp.getSpeed();
             }
 //            System.out.println(offset);
             switch (offset.direction) {
@@ -104,7 +110,8 @@ public class Player extends Entity {
                 case Right: position.x -= offset.offset; break;
             }
 
-            if (otherCollider.pointIsInsideBox(entity.position, PVector.add(position, DETECT_OFFSET))) {
+            if (otherCollider.pointIsInsideBox(entity.position, PVector.add(position, DETECT_OFFSET))
+                    && !(entity instanceof Illusion)) {
                 standingOn = entity;
             }
         }
