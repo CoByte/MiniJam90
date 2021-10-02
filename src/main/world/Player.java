@@ -44,7 +44,7 @@ public class Player {
         for (int i = hitBoxCorners.length / 2; i < hitBoxCorners.length; i++) {
             IntVector pos = hitBoxCorners[i];
             Tile tile = WORLD.TILEMAP.get(pos);
-            if (tile.baseName != null) { //todo: temp
+            if (tile.obstacleName != null) { //todo: temp
                 groundY = tile.position.y;
                 grounded = true;
                 break;

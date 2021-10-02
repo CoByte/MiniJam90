@@ -35,7 +35,17 @@ public class LevelBuilderGui {
         int bottom = (int) (BOARD_SIZE.y / TILE_SIZE) - 1;
         int middle = (int) ((BOARD_SIZE.y / TILE_SIZE) / 2) - 1;
 
-        placeButton(0, 0, "groundBa");
+        boolean breakable = false;
+        for (int y = 0; y < 17; y++) {
+            for (int x = 0; x < 4; x++) {
+                int loc = x + y * 4;
+                String name = "wall" + nf(loc, 3) + "Ob";
+                if (!sprites.containsKey(name + "_TL")) breakable = true;
+                if (breakable) break;
+                placeButton(x, y, name);
+            }
+            if (breakable) break;
+        }
 
         placeButton(0, 17, "Na");
         placeButton(3, bottom, "Sa");

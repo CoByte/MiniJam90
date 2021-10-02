@@ -48,12 +48,12 @@ public class Tile {
 
     public void displayBaseAndDecoration() {
         if (base != null) P.image(base, position.x, position.y);
-        if (decoration != null) P.image(decoration, position.x, position.y);
+        if (decoration != null) P.image(decoration, position.x, position.y, TILE_SIZE, TILE_SIZE);
     }
 
     public void displayObstacle() {
         P.tint(255);
-        if (obstacle != null) P.image(obstacle, position.x, position.y);
+        if (obstacle != null) P.image(obstacle, position.x, position.y, TILE_SIZE, TILE_SIZE);
     }
 
     /**

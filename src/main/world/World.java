@@ -28,7 +28,7 @@ public class World {
                 TILEMAP.add(new Tile(p, new PVector(x * TILE_SIZE, y * TILE_SIZE), TILEMAP.size()), x, y);
                 //todo: temp
                 if (y > (BOARD_SIZE.y - 200) / TILE_SIZE) {
-                    TILEMAP.get(x, y).setBase("groundBa_TL");
+                    TILEMAP.get(x, y).setObstacle("wall006Ob_TL");
                 }
             }
         }
@@ -45,7 +45,7 @@ public class World {
 
     public void main() {
         for (int i = 0; i < TILEMAP.size(); i++) {
-            TILEMAP.get(i).displayBaseAndDecoration();
+            TILEMAP.get(i).displayObstacle();
         }
 
         update();
