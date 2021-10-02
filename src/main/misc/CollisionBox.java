@@ -142,7 +142,7 @@ public class CollisionBox {
         float widthDepth = (SIZE.x / 2) + (boxB.SIZE.x / 2) - Math.abs(centerB.x - centerA.x);
         float heightDepth = (SIZE.y / 2) + (boxB.SIZE.y / 2) - Math.abs(centerB.y - centerA.y);
 
-        System.out.println("Width: " + widthDepth + ", Height: " + heightDepth);
+//        System.out.println("Width: " + widthDepth + ", Height: " + heightDepth);
 
         if (widthDepth <= heightDepth && widthDepth != 0) {
             if (centerA.x < centerB.x) return new Collision(Direction.Right, Math.abs(widthDepth));

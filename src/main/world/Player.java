@@ -78,7 +78,7 @@ public class Player extends Entity {
         grounded = false;
         standingOn = null;
         ArrayList<Entity> entities = WORLD.getCollidingEntities(this);
-        System.out.println(entities);
+//        System.out.println(entities);
         for (Entity entity : entities) {
             CollisionBox otherCollider = entity.collider;
             CollisionBox.Collision offset = collider.calculateOffset(position, entity.position, otherCollider);
@@ -89,7 +89,7 @@ public class Player extends Entity {
                 if (!mp.goingToB) speed *= -1;
                 if (mp.waiting) speed = 0;
             }
-            System.out.println(offset);
+//            System.out.println(offset);
             switch (offset.direction) {
                 case Up:
                     position.y += offset.offset;

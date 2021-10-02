@@ -63,7 +63,6 @@ public class MovingPlatform extends Entity {
 
     @Override
     public void draw() {
-        P.rectMode(PConstants.CENTER);
         collider.display(position);
         P.circle(pointA.x, pointA.y, 5);
         P.circle(pointB.x, pointB.y, 5);

@@ -4,6 +4,7 @@ import main.misc.DataControl;
 import main.misc.IntVector;
 import main.misc.Tile;
 import main.world.entities.Entity;
+import main.world.entities.Fire;
 import main.world.entities.Illusion;
 import main.world.entities.MovingPlatform;
 import processing.core.PApplet;
@@ -43,13 +44,14 @@ public class World {
 
         DataControl.loadLevel("test", TILEMAP);
 
-        test = new MovingPlatform(
-                P,
-                new PVector(250, 250),
-                new PVector(600, 250),
-                3,
-                10
-        );
+//        test = new MovingPlatform(
+//                P,
+//                new PVector(250, 250),
+//                new PVector(600, 250),
+//                3,
+//                10
+//        );
+        test = new Fire(P, new PVector(400, 700));
         player = new Player(P, new PVector(200, BOARD_SIZE.y - 200), this);
 
         entities.add(player);
