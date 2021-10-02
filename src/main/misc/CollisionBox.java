@@ -136,6 +136,10 @@ public class CollisionBox {
     }
 
     public Collision calculateOffset(PVector positionA, PVector positionB, CollisionBox boxB) {
+        return calculateOffset(positionA, positionB, boxB, 0);
+    }
+
+    public Collision calculateOffset(PVector positionA, PVector positionB, CollisionBox boxB, float movementSpeed) {
         PVector centerA = PVector.sub(positionA, OFFSET).add(PVector.div(SIZE, 2));
         PVector centerB = PVector.sub(positionB, boxB.OFFSET).add(PVector.div(boxB.SIZE, 2));
 
@@ -145,18 +149,27 @@ public class CollisionBox {
 //        System.out.println("Width: " + widthDepth + ", Height: " + heightDepth);
 
         if (widthDepth <= heightDepth && widthDepth != 0) {
-            if (centerA.x < centerB.x) return new Collision(Direction.Right, Math.abs(widthDepth));
-            else if (centerA.x > centerB.x) return new Collision(Direction.Left, Math.abs(widthDepth));
+            if (centerA.x < centerB.x) return new Collision(Direction.Right, Math.abs(widthDepth), movementSpeed);
+            else if (centerA.x > centerB.x) return new Collision(Direction.Left, Math.abs(widthDepth), movementSpeed);
         } else if (heightDepth < widthDepth && heightDepth != 0) {
-            if (centerA.y < centerB.y) return new Collision(Direction.Down, Math.abs(heightDepth));
-            else if (centerA.y > centerB.y) return new Collision(Direction.Up, Math.abs(heightDepth));
+            if (centerA.y < centerB.y) return new Collision(Direction.Down, Math.abs(heightDepth), movementSpeed);
+            else if (centerA.y > centerB.y) return new Collision(Direction.Up, Math.abs(heightDepth), movementSpeed);
         }
         return new Collision(Direction.None, 0);
     }
 
     public static class Collision {
+
         public Direction direction;
         public float offset;
+        public float movementSpeed;
+
+        public Collision(Direction direction, float offset, float movementSpeed) {
+            this.direction = direction;
+            this.offset = offset;
+            this.movementSpeed = movementSpeed;
+        }
+
         public Collision(Direction direction, float offset) {
             this.direction = direction;
             this.offset = offset;
