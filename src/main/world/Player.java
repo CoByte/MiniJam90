@@ -57,14 +57,15 @@ public class Player extends Entity {
         for (Entity entity : entities) {
             CollisionBox.Collision offset = collider.calculateOffset(position, entity.position, entity.collider);
             System.out.println(offset);
-            switch (offset.direction()) {
-                case Up -> position.y += offset.offset();
-                case Down -> {
-                    position.y -= offset.offset();
+            switch (offset.direction) {
+                case Up: position.y += offset.offset; break;
+                case Down: {
+                    position.y -= offset.offset;
                     grounded = true;
+                    break;
                 }
-                case Left -> position.x += offset.offset();
-                case Right -> position.x -= offset.offset();
+                case Left: position.x += offset.offset; break;
+                case Right: position.x -= offset.offset; break;
             }
         }
     }

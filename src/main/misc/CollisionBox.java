@@ -154,7 +154,14 @@ public class CollisionBox {
         return new Collision(Direction.None, 0);
     }
 
-    public record Collision(Direction direction, float offset) {}
+    public static class Collision {
+        public Direction direction;
+        public float offset;
+        public Collision(Direction direction, float offset) {
+            this.direction = direction;
+            this.offset = offset;
+        }
+    }
 
     public enum Direction {
         Up, Down, Left, Right, None
