@@ -28,7 +28,7 @@ public class Player extends Entity {
     private Entity standingOn;
 
     public Player(PApplet p, PVector position, World world) {
-        super(p, new CollisionBox(p, new PVector(40, 52)), position);
+        super(p, new CollisionBox(p, new PVector(39, 50)/*, new PVector(0, 2)*/), position);
 
         WORLD = world;
         WALK_ANIMATION = new Animator(Main.animations.get("walkPlayer"), 8);
@@ -75,7 +75,7 @@ public class Player extends Entity {
         grounded = false;
         standingOn = null;
         ArrayList<Entity> entities = WORLD.getCollidingEntities(this);
-//        System.out.println(entities);
+        System.out.println(entities);
         for (Entity entity : entities) {
             CollisionBox otherCollider = entity.collider;
             CollisionBox.Collision offset = collider.calculateOffset(position, entity.position, otherCollider);
@@ -86,15 +86,15 @@ public class Player extends Entity {
                 if (!mp.goingToB) speed *= -1;
                 if (mp.waiting) speed = 0;
             }
-//            System.out.println(offset);
+            System.out.println(offset);
             switch (offset.direction) {
                 case Up:
                     position.y += offset.offset;
-                    velocity_y = 0;
+                    //velocity_y = 0;
                     break;
                 case Down:
                     position.y -= offset.offset;
-                    grounded = true;
+                    if (velocity_y > 0) grounded = true;
                     position.x += speed;
                     break;
                 case Left: position.x += offset.offset; break;
