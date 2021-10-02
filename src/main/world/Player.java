@@ -21,10 +21,12 @@ public class Player extends Entity {
     private final Animator WALK_ANIMATION;
     /**Allows the player to jump if they have just stepped off an edge, this is common in platformers.**/
     private final Timer COYOTE_TIMER;
+    private final PVector DETECT_OFFSET;
 
     private boolean facingLeft;
     private boolean grounded;
     private float velocity_y;
+    private Entity standingOn;
 
     public Player(PApplet p, PVector position, World world) {
         super(p, new CollisionBox(p, new PVector(40, 52)), position);
@@ -32,6 +34,10 @@ public class Player extends Entity {
         WORLD = world;
         WALK_ANIMATION = new Animator(Main.animations.get("walkPlayer"), 8);
         COYOTE_TIMER = new Timer(Utilities.secondsToFrames(0.3f), true);
+        DETECT_OFFSET = new PVector(
+                collider.getRightEdge() / 2,
+                collider.getBottomEdge() + 5
+        );
     }
 
     @Override
@@ -57,10 +63,12 @@ public class Player extends Entity {
         position.y += velocity_y;
 
         grounded = false;
+        standingOn = null;
         ArrayList<Entity> entities = WORLD.getCollidingEntities(this);
 //        System.out.println(entities);
         for (Entity entity : entities) {
-            CollisionBox.Collision offset = collider.calculateOffset(position, entity.position, entity.collider);
+            CollisionBox otherCollider = entity.collider;
+            CollisionBox.Collision offset = collider.calculateOffset(position, entity.position, otherCollider);
             float speed = 0;
             if (entity instanceof MovingPlatform) {
                 MovingPlatform mp = (MovingPlatform) entity;
@@ -82,6 +90,10 @@ public class Player extends Entity {
                 case Left: position.x += offset.offset; break;
                 case Right: position.x -= offset.offset; break;
             }
+
+            if (otherCollider.pointIsInsideBox(entity.position, PVector.add(position, DETECT_OFFSET))) {
+                standingOn = entity;
+            }
         }
         if (grounded) COYOTE_TIMER.reset();
         COYOTE_TIMER.update();
@@ -100,5 +112,7 @@ public class Player extends Entity {
                 collider.getRightEdge(), collider.getBottomEdge());
 
         if (Main.debug) collider.display(position);
+
+        if (standingOn != null) standingOn.highlight();
     }
 }
