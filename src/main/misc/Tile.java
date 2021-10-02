@@ -51,19 +51,6 @@ public class Tile extends Entity {
     }
 
     /**
-     * @param i what edge to check
-     * @param tile neighbor tile to check
-     * @return whether this tile can spill its base
-     */
-    private boolean canSpill(int i, Tile tile) {
-        if (baseName == null) return false;
-        boolean nameDoesNotMatch = !baseName.equals(tile.baseName);
-        boolean tileTypeCanSpill = tile.baseEdges[i] != null;
-        boolean higherHierarchy = baseHierarchy < tile.baseHierarchy;
-        return nameDoesNotMatch && tileTypeCanSpill && higherHierarchy;
-    }
-
-    /**
      * Sets the base layer of the tile.
      * @param name name of base
      */
