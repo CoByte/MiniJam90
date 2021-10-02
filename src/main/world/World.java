@@ -2,6 +2,8 @@ package main.world;
 
 import main.Main;
 import main.misc.Tile;
+import main.world.entities.Entity;
+import main.world.entities.MovingPlatform;
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -14,6 +16,8 @@ public class World {
     private final PApplet P;
 
     private Player player;
+
+    private Entity test;
 
     public World(PApplet p) {
         P = p;
@@ -29,6 +33,13 @@ public class World {
             }
         }
 
+        test = new MovingPlatform(
+                P,
+                new PVector(250, 250),
+                new PVector(600, 250),
+                3,
+                10
+        );
         player = new Player(P, new PVector(200, BOARD_SIZE.y - 200), this);
     }
 
@@ -37,7 +48,17 @@ public class World {
             TILEMAP.get(i).displayBaseAndDecoration();
         }
 
+        update();
+        display();
+    }
+
+    private void update() {
         player.update();
+        test.update();
+    }
+
+    private void display() {
         player.display();
+        test.draw();
     }
 }
