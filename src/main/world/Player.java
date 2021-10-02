@@ -90,7 +90,7 @@ public class Player extends Entity {
             switch (offset.direction) {
                 case Up:
                     position.y += offset.offset;
-                    //velocity_y = 0;
+                    velocity_y = Math.max(0, velocity_y);
                     break;
                 case Down:
                     position.y -= offset.offset;
