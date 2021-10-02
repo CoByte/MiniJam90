@@ -3,13 +3,12 @@ package main.world;
 import main.Main;
 import main.world.entities.Entity;
 import main.misc.*;
+import main.world.entities.Illusion;
 import main.world.entities.MovingPlatform;
 import processing.core.PApplet;
-import processing.core.PImage;
 import processing.core.PVector;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class Player extends Entity {
 
@@ -42,6 +41,17 @@ public class Player extends Entity {
 
     @Override
     public void update() {
+        move();
+        handleIllusions();
+    }
+
+    private void handleIllusions() {
+        if (InputManager.getInstance().leftMouse.falling() && standingOn != null) {
+            WORLD.illusion = new Illusion(standingOn, PVector.sub(Main.matrixMousePosition, standingOn.position));
+        }
+    }
+
+    private void move() {
         IntVector axes = Utilities.getAxesFromMovementKeys();
         /*
         I use this instead of `facingLeft = axes.x < 0` because I don't want the player's

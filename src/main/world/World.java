@@ -1,12 +1,10 @@
 package main.world;
 
-import main.Main;
-import main.misc.CollisionBox;
-import main.misc.IntVector;
 import main.misc.DataControl;
+import main.misc.IntVector;
 import main.misc.Tile;
-import main.misc.Utilities;
 import main.world.entities.Entity;
+import main.world.entities.Illusion;
 import main.world.entities.MovingPlatform;
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -25,7 +23,8 @@ public class World {
     private final PApplet P;
 
     // List of all entities in the scene
-    private ArrayList<Entity> entities;
+    public ArrayList<Entity> entities;
+    public Illusion illusion;
 
     private Entity test;
     private Player player;
@@ -104,9 +103,11 @@ public class World {
 
     private void update() {
         entities.forEach(Entity::update);
+        if (illusion != null) illusion.update();
     }
 
     private void display() {
         entities.forEach(Entity::draw);
+        if (illusion != null) illusion.draw();
     }
 }

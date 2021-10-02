@@ -46,7 +46,6 @@ public class Tile extends Entity {
     }
 
     public void displayObstacle() {
-        P.tint(255);
         if (obstacle != null) P.image(obstacle, position.x, position.y, TILE_SIZE, TILE_SIZE);
     }
 
@@ -149,10 +148,11 @@ public class Tile extends Entity {
     /**
      * Tiles have multiple layers, so a single draw doesn't make sense.
      * This is just here because entity requires it
+     * FUCK YOU OWEN I'LL MAKE THIS WORK!
      */
     @Override
     public void draw() {
-        throw new RuntimeException("Don't call this");
+        displayObstacle();
     }
 
     public static class TileDS {
