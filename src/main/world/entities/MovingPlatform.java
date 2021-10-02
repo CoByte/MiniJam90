@@ -3,6 +3,7 @@ package main.world.entities;
 import main.misc.CollisionBox;
 import main.misc.Timer;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PVector;
 
 public class MovingPlatform extends Entity {
@@ -46,12 +47,15 @@ public class MovingPlatform extends Entity {
             position.set(target);
             waiting = true;
         } else {
-            position.add(PVector.lerp(starting, target, 1).setMag(speed));
+            position.add(PVector.sub(target, starting).setMag(speed));
         }
     }
 
     @Override
     public void draw() {
-
+        P.rectMode(PConstants.CENTER);
+        collider.display(position);
+        P.circle(pointA.x, pointA.y, 5);
+        P.circle(pointB.x, pointB.y, 5);
     }
 }
