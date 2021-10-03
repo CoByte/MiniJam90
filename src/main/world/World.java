@@ -30,8 +30,9 @@ public class World {
     private Entity test;
     private Player player;
 
-    public World(PApplet p, String levelFile) {
+    public World(PApplet p, String levelFile, ArrayList<Entity> entities) {
         P = p;
+        this.entities = entities;
 
         TILEMAP = new Tile.TileDS();
         for (int y = 0; y <= BOARD_SIZE.y / TILE_SIZE; y++) {
@@ -39,9 +40,6 @@ public class World {
                 TILEMAP.add(new Tile(p, new PVector(x * TILE_SIZE, y * TILE_SIZE), TILEMAP.size()), x, y);
             }
         }
-
-        entities = new ArrayList<>();
-
         DataControl.loadLevel(levelFile, TILEMAP);
 
         test = new MovingPlatform(

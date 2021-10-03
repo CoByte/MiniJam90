@@ -6,10 +6,14 @@ import main.gui.LoadingScreen;
 import main.gui.TitleScreen;
 import main.misc.InputManager;
 import main.misc.Tile;
+import main.misc.Utilities;
 import main.sound.FadeSoundLoop;
 import main.sound.SoundWithAlts;
 import main.sound.StartStopSoundLoop;
 import main.world.World;
+import main.world.entities.Entity;
+import main.world.entities.Illusion;
+import main.world.entities.MovingPlatform;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
@@ -17,6 +21,8 @@ import processing.sound.Sound;
 import processing.sound.SoundFile;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import static main.misc.SpriteLoader.loadAnimations;
@@ -132,7 +138,14 @@ public class Main extends PApplet {
 
     public static void setupWorlds(PApplet p) {
         worlds = new World[]{
-                new World(p, "test")
+            new World(p, "test", new ArrayList<>(Arrays.asList(
+                    new MovingPlatform(p,
+                            new PVector(400, 400),
+                            new PVector(800, 800),
+                            3, Utilities.secondsToFrames(1.5f)
+                    )
+                )
+            ))
         };
     }
 
