@@ -1,10 +1,12 @@
 package main.world.entities;
 
+import main.Main;
 import main.misc.CollisionBox;
 import main.misc.Timer;
 import main.misc.Utilities;
 import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.core.PImage;
 import processing.core.PVector;
 
 public class MovingPlatform extends Entity {
@@ -23,10 +25,11 @@ public class MovingPlatform extends Entity {
     private final PVector pointB;
 
     private final Timer waitTimer;
+    private final PImage sprite;
 
     public MovingPlatform(PApplet p, float width, float height, PVector pointA, PVector pointB, float speed, int endWait) {
         super(p, new CollisionBox(p, new PVector(WIDTH / 2, HEIGHT / 2)), pointA.copy());
-        if (pointA.x != pointB.x && pointA.y != pointB.x) throw new RuntimeException("No diagonal platforms allowed :(");
+        if (pointA.x != pointB.x && pointA.y != pointB.y) throw new RuntimeException("No diagonal platforms allowed :(");
 
         this.width = width;
         this.height = height;
@@ -36,6 +39,8 @@ public class MovingPlatform extends Entity {
 
         this.topSpeed = speed;
         this.waitTimer = new Timer(endWait);
+
+        sprite = Main.sprites.get("movingPlatform");
     }
 
     public MovingPlatform(PApplet p, PVector pointA, PVector pointB, float speed, int endWait) {
@@ -73,14 +78,11 @@ public class MovingPlatform extends Entity {
         velocity.div(proportion + 1);
         speed *= velocity.x;
         velocity.y *= -1;
-        System.out.println(velocity);
         return new PVector(speed, velocity.y * topSpeed * 2);
     }
 
     @Override
     public void draw() {
-        collider.display(position);
-        P.circle(pointA.x, pointA.y, 5);
-        P.circle(pointB.x, pointB.y, 5);
+        P.image(sprite, position.x, position.y, collider.getRightEdge(), collider.getBottomEdge());
     }
 }
