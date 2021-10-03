@@ -2,6 +2,7 @@ package main.world.entities;
 
 import main.misc.CollisionBox;
 import main.misc.CollisionEntity;
+import main.particles.FloatParticle;
 import processing.core.PVector;
 
 import java.awt.*;
@@ -35,8 +36,14 @@ public class Illusion extends Entity {
 
         P.tint(new Color(188, 124, 255, 195).getRGB());
         trueEntity.draw();
-
         P.tint(255);
+
+        if (P.random(3) < 1) {
+            PVector pos = trueEntity.getRandPos().add(offset);
+            world.inFrontParticles.add(new FloatParticle(P,
+                    pos.x, pos.y, new Color(124, 0, 255), world.inFrontParticles));
+        }
+
         P.popMatrix();
     }
 

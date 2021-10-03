@@ -58,4 +58,11 @@ public abstract class Entity {
         P.rect(position.x, position.y, collider.getRightEdge(), collider.getBottomEdge());
         P.strokeWeight(1);
     }
+
+    public PVector getRandPos() {
+        return new PVector(
+                P.random(position.x + collider.OFFSET.x, position.x + collider.SIZE.x + collider.OFFSET.x),
+                P.random(position.y + collider.OFFSET.y, position.y + collider.SIZE.y + collider.OFFSET.y)
+        );
+    }
 }

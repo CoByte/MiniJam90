@@ -58,11 +58,4 @@ public class Fire extends Entity {
 //                    pos.x, pos.y, Color.ORANGE, world.inFrontParticles));
 //        }
     }
-
-    private PVector getRandPos() {
-        return new PVector(
-                P.random(position.x + OFFSET.x, position.x + SIZE.x + OFFSET.x),
-                P.random(position.y + OFFSET.y, position.y + SIZE.y + OFFSET.y)
-        );
-    }
 }
