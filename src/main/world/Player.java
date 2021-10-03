@@ -3,6 +3,7 @@ package main.world;
 import com.jogamp.newt.event.KeyEvent;
 import main.Main;
 import main.particles.GravityParticle;
+import main.sound.SoundUtilities;
 import main.world.entities.Entity;
 import main.misc.*;
 import main.world.entities.Illusion;
@@ -12,6 +13,7 @@ import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
 import processing.core.PVector;
+import processing.sound.SoundFile;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -27,11 +29,10 @@ public class Player extends Entity {
 
     private static final float CAST_RADIUS = 250;
 
-    private final Animator RUNE_ANIMATION;
-    private final Animator WALK_ANIMATION;
-    private final Animator CAST_ANIMATION;
+    private final Animator RUNE_ANIMATION, WALK_ANIMATION, CAST_ANIMATION;
     private final PImage JUMP_SPRITE;
 
+    private final SoundFile DIE_SOUND, CAST_SOUND, FAIL_SOUND;
     /**Allows the player to jump if they have just stepped off an edge, this is common in platformers.**/
     private final Timer COYOTE_TIMER;
     private final Timer DEATH_TIMER;
@@ -68,6 +69,10 @@ public class Player extends Entity {
                 collider.getRightEdge() / 2,
                 collider.getBottomEdge() + 1
         );
+
+        DIE_SOUND = Main.sounds.get("die");
+        CAST_SOUND = Main.sounds.get("cast");
+        FAIL_SOUND = Main.sounds.get("castFail");
     }
 
     @Override
@@ -84,6 +89,7 @@ public class Player extends Entity {
 
     public void die() {
         dead = true;
+        SoundUtilities.playSoundRandomSpeed(P, DIE_SOUND, 1);
         for (int i = 0; i < 50; i++) {
             PVector pos = getRandPos();
             world.inFrontParticles.add(new GravityParticle(
@@ -100,13 +106,15 @@ public class Player extends Entity {
             justCast = false;
         }
         if (CAST_ANIMATION.getCurrentTime() == 2 && !justCast) {
-            RUNE_ANIMATION.reset();
             justCast = true; //prevent casting on betweenFrames
             if (world.getCollidingEntities(new CollisionEntity(
                     standing().collider,
                     illusionPosition
-            )).isEmpty() && PVector.dist(illusionPosition, position) < CAST_RADIUS)
+            )).isEmpty() && PVector.dist(illusionPosition, position) < CAST_RADIUS) {
+                RUNE_ANIMATION.reset();
                 world.illusion = new Illusion(standing(), PVector.sub(illusionPosition, standing().position));
+                SoundUtilities.playSoundRandomSpeed(P, CAST_SOUND, 1);
+            } else SoundUtilities.playSoundRandomSpeed(P, FAIL_SOUND, 1);
         }
     }
 
@@ -209,7 +217,7 @@ public class Player extends Entity {
         if (squishers.size() >= 2) {
             for (Entity squisher : squishers) {
                 if (collider.calculateOffset(position, squisher.position, squisher.collider).offset > 10) {
-                    System.out.println("SQUIMSH");
+                    die();
                     return;
                 }
             }
