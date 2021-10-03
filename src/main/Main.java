@@ -6,10 +6,14 @@ import main.gui.LoadingScreen;
 import main.gui.TitleScreen;
 import main.misc.InputManager;
 import main.misc.Tile;
+import main.misc.Utilities;
 import main.sound.FadeSoundLoop;
 import main.sound.SoundWithAlts;
 import main.sound.StartStopSoundLoop;
 import main.world.World;
+import main.world.entities.Entity;
+import main.world.entities.Illusion;
+import main.world.entities.MovingPlatform;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
@@ -17,6 +21,8 @@ import processing.sound.Sound;
 import processing.sound.SoundFile;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import static main.misc.SpriteLoader.loadAnimations;
@@ -69,7 +75,8 @@ public class Main extends PApplet {
     public static Hand hand;
     public static LevelBuilderGui levelBuilderGui;
 
-    public static World world;
+    public static ArrayList<World> worlds = new ArrayList<>();
+    public static int currentWorld;
     public static TitleScreen titleScreen;
     public static LoadingScreen loadingScreen;
 
@@ -129,6 +136,25 @@ public class Main extends PApplet {
         loadAnimations(p);
     }
 
+    public static void setupWorlds(PApplet p) {
+        World workingWorld;
+
+        workingWorld = new World(p, "test");
+        workingWorld.entities.addAll(new ArrayList<>(Arrays.asList(
+                new MovingPlatform(p, workingWorld,
+                        new PVector(400, 400),
+                        new PVector(800, 800),
+                        3, Utilities.secondsToFrames(1.5f)
+                ),
+                new MovingPlatform(p, workingWorld,
+                        new PVector(1000, 400),
+                        new PVector(1000, 800),
+                        3, Utilities.secondsToFrames(1.5f)
+                )
+        )));
+        worlds.add(workingWorld);
+    }
+
     @Override
     public void draw() {
         inputManager.update();
@@ -139,7 +165,7 @@ public class Main extends PApplet {
 
         switch (scene) {
             case World:
-                world.main();
+                worlds.get(currentWorld).main();
                 if (debug) {
                     levelBuilderGui.main();
                     hand.main();

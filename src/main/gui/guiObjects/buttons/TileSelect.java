@@ -83,7 +83,7 @@ public class TileSelect extends Button {
     public void action() {
         if (TYPE.equals("Sa")) {
             playSoundRandomSpeed(p, sounds.get("camera"), 1);
-            DataControl.saveLevel(world.TILEMAP);
+            DataControl.saveLevel(worlds.get(currentWorld).TILEMAP);
             hand.setHeld("null");
             return;
         }

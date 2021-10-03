@@ -27,35 +27,22 @@ public class World {
     public ArrayList<Entity> entities;
     public Illusion illusion;
 
-    private Entity test;
     private Player player;
 
-    public World(PApplet p) {
+    public World(PApplet p, String levelFile) {
         P = p;
-
         TILEMAP = new Tile.TileDS();
         for (int y = 0; y <= BOARD_SIZE.y / TILE_SIZE; y++) {
             for (int x = 0; x <= BOARD_SIZE.x / TILE_SIZE; x++) {
                 TILEMAP.add(new Tile(p, this, new PVector(x * TILE_SIZE, y * TILE_SIZE), TILEMAP.size()), x, y);
             }
         }
+        DataControl.loadLevel(levelFile, TILEMAP);
 
         entities = new ArrayList<>();
 
-        DataControl.loadLevel("test", TILEMAP);
-
-//        test = new MovingPlatform(
-//                P,
-//                new PVector(250, 250),
-//                new PVector(600, 250),
-//                3,
-//                10
-//        );
-        test = new Fire(P, new PVector(400, 800), this);
         player = new Player(P, new PVector(200, BOARD_SIZE.y - 200), this);
-
         entities.add(player);
-        entities.add(test);
     }
 
     public void main() {

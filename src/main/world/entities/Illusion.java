@@ -24,7 +24,7 @@ public class Illusion extends Entity {
         P.pushMatrix();
         P.translate(offset.x, offset.y);
 
-        P.tint(new Color(123, 0, 255, 195).getRGB());
+        P.tint(new Color(188, 124, 255, 195).getRGB());
         trueEntity.draw();
 
         P.tint(255);
