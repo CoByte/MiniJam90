@@ -67,6 +67,7 @@ public class Player extends Entity {
     @Override
     public void update() {
         move();
+        squish();
         handleIllusions();
     }
 
@@ -182,6 +183,18 @@ public class Player extends Entity {
         pastY1 = position.y;
 
 //        System.out.println(standing());
+    }
+
+    public void squish() {
+        ArrayList<Entity> squishers = world.getCollidingEntities(this);
+        if (squishers.size() >= 2) {
+            for (Entity squisher : squishers) {
+                if (collider.calculateOffset(position, squisher.position, squisher.collider).offset > 10) {
+                    System.out.println("SQUIMSH");
+                    return;
+                }
+            }
+        }
     }
 
     public Entity standing() {
