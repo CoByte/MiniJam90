@@ -1,6 +1,7 @@
 package main.misc;
 
-import main.Main;
+import main.particles.FloatParticle;
+import main.particles.GravityParticle;
 import main.world.World;
 import main.world.entities.Entity;
 import processing.core.PApplet;
@@ -62,34 +63,6 @@ public class Tile extends Entity {
         name = name.replace("Ba_TL", "");
         baseName = name;
         base = sprites.get(name + "Ba_TL");
-        baseEdges[0] = sprites.get(name + "Ba_T_TL");
-        baseEdges[1] = sprites.get(name + "Ba_R_TL");
-        baseEdges[2] = sprites.get(name + "Ba_B_TL");
-        baseEdges[3] = sprites.get(name + "Ba_L_TL");
-        //update hierarchies as tiles are added
-        switch (name) {
-            case "snow":
-                baseHierarchy = 6;
-                break;
-            case "grass":
-                baseHierarchy = 5;
-                break;
-            case "yellowGrass":
-                baseHierarchy = 4;
-                break;
-            case "dirt":
-                baseHierarchy = 3;
-                break;
-            case "sand":
-                baseHierarchy = 2;
-                break;
-            case "stone":
-                baseHierarchy = 1;
-                break;
-            case "water":
-                baseHierarchy = 0;
-                break;
-        }
     }
 
     public void setDecoration(String name) {
@@ -103,7 +76,6 @@ public class Tile extends Entity {
     }
 
     public void setBreakable(String name) {
-        if (name != null) name = name.replace("ultimate","titanium");
         if (name == null) {
             breakable = null;
             breakableName = null;
@@ -118,21 +90,12 @@ public class Tile extends Entity {
             obstacle = null;
             obstacleName = null;
         } else {
+            if (name.contains("wood")) flammable = true;
             setDecoration(null);
             setBreakable(null);
             obstacle = sprites.get(name);
             obstacleName = name;
-            if (name.contains("smallTree")) ;
-            if (containsCorners(name,"tree")) ;
         }
-    }
-
-    private boolean containsCorners(String name, String subName) {
-        boolean bl = name.contains(subName + "BL");
-        boolean br = name.contains(subName + "BR");
-        boolean tl = name.contains(subName + "TL");
-        boolean tr = name.contains(subName + "TR");
-        return bl || br || tl || tr;
     }
 
     public PVector getGridPosition() {
@@ -149,7 +112,21 @@ public class Tile extends Entity {
     @Override
     public void draw() {
         if (onFire) {
-            P.tint(0);
+            if (P.random(5) < 1) {
+                PVector pos = getRandPos();
+                world.inFrontParticles.add(new FloatParticle(P,
+                        pos.x, pos.y, Color.RED, world.inFrontParticles));
+            }
+            if (P.random(5) < 1) {
+                PVector pos = getRandPos();
+                world.inFrontParticles.add(new FloatParticle(P,
+                        pos.x, pos.y, Color.YELLOW, world.inFrontParticles));
+            }
+            if (P.random(5) < 1) {
+                PVector pos = getRandPos();
+                world.inFrontParticles.add(new GravityParticle(P,
+                        pos.x, pos.y, Color.ORANGE, world.inFrontParticles));
+            }
         }
         displayObstacle();
         P.tint(255);
