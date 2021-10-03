@@ -9,9 +9,10 @@ import processing.core.PApplet;
 import processing.core.PVector;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class Lever extends Entity {
+    private final LeverDoor door;
+
     public final float startingY;
     public final float endingY;
 
@@ -21,10 +22,12 @@ public class Lever extends Entity {
 
     public Trigger pressed;
 
-    public Lever(PApplet p, World world, PVector position) {
+    public Lever(PApplet p, World world, PVector position, LeverDoor door) {
         super(p, world, new CollisionBox(
                 p, new PVector(25, 5)
         ), position);
+
+        this.door = door;
 
         detection = new CollisionEntity(
                 new CollisionBox(p, new PVector(0, -5), new PVector(25, 5)),
@@ -47,6 +50,9 @@ public class Lever extends Entity {
 
         bottomedOut = position.y >= endingY;
         pressed.triggerState(bottomedOut);
+
+        if (pressed.rising()) door.activeLevers += 1;
+        if (pressed.falling()) door.activeLevers -= 1;
     }
 
     public void move(float movement, boolean detected) {

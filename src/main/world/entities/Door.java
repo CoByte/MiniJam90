@@ -15,19 +15,20 @@ public abstract class Door extends Entity {
 
     protected PImage sprite;
 
-    private final PVector moveDir;
-    private final float speed;
+    protected final float startY;
+    protected final float speed;
 
-    public Door(PApplet p, World world, PVector position, PVector moveDir, float speed) {
+    public Door(PApplet p, World world, PVector position, float speed) {
         super(p, world, new CollisionBox(p, new PVector(WIDTH, HEIGHT)), position);
-        this.moveDir = moveDir.normalize();
+        startY = position.y;
         this.speed = speed;
     }
 
     @Override
     public void update() {
         super.update();
-        if (!closed) position.add(PVector.mult(moveDir, speed));
+        if (closed) position.y = Math.max(startY, position.y - speed);
+        else position.y += speed;
     }
 
     @Override
