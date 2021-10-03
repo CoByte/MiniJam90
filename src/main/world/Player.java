@@ -16,6 +16,7 @@ public class Player extends Entity {
     private static final float WALK_SPEED = 3;
     private static final float JUMP_SPEED = -8;
     private static final float ACCELERATION_Y = 0.2f;
+    private static final PVector SPRITE_SIZE = new PVector(39, 50);
 
     private final Animator WALK_ANIMATION;
     /**Allows the player to jump if they have just stepped off an edge, this is common in platformers.**/
@@ -33,7 +34,10 @@ public class Player extends Entity {
     private Entity pastStandingOn;
 
     public Player(PApplet p, PVector position, World world) {
-        super(p, world, new CollisionBox(p, new PVector(39, 50)/*, new PVector(0, 2)*/), position);
+        super(p, world, new CollisionBox(p,
+                new PVector(10, 10),
+                new PVector(20, 40)
+                ), position);
 
         WALK_ANIMATION = new Animator(Main.animations.get("walkPlayer"), 8);
         COYOTE_TIMER = new Timer(Utilities.secondsToFrames(0.3f), true);
@@ -151,11 +155,11 @@ public class Player extends Entity {
             P.pushMatrix();
             P.translate(position.x, position.y);
             P.scale(-1, 1);
-            P.image(WALK_ANIMATION.getCurrentFrame(), -collider.getRightEdge(), 0,
-                    collider.getRightEdge(), collider.getBottomEdge());
+            P.image(WALK_ANIMATION.getCurrentFrame(), -SPRITE_SIZE.x, 0,
+                    SPRITE_SIZE.x, SPRITE_SIZE.y);
             P.popMatrix();
         } else P.image(WALK_ANIMATION.getCurrentFrame(), position.x, position.y,
-                collider.getRightEdge(), collider.getBottomEdge());
+                SPRITE_SIZE.x, SPRITE_SIZE.y);
 
         if (Main.debug) collider.display(position);
 

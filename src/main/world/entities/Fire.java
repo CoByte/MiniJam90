@@ -24,7 +24,9 @@ public class Fire extends Entity {
 
     public Fire(PApplet p, PVector position, World world) {
         super(p, world, new CollisionBox(p,
-                new PVector(SIZE.x / -3, SIZE.y / 8), new PVector(SIZE.x / 1.5f, SIZE.y / 4)), position);
+                new PVector(SIZE.x / -3, SIZE.y / 8),
+                new PVector(SIZE.x / 1.5f, SIZE.y / 4)
+                ), position);
         this.world = world;
         this.onFire = true;
 
