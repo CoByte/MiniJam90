@@ -104,11 +104,11 @@ public class MovingPlatform extends Entity {
     @Override
     public void draw() {
         P.image(sprite, position.x, position.y, collider.getRightEdge(), collider.getBottomEdge());
-        if (P.random(10) < 1) {
-            world.particles.add(new FloatParticle(P,
+        if (P.random(2) < 1) {
+            world.behindParticles.add(new FloatParticle(P,
                     P.random(position.x, position.x + collider.getRightEdge()),
                     P.random(position.y, position.y + collider.getBottomEdge()),
-                    new Color(0, 255, 255), world));
+                    new Color(0, 255, 255), world.behindParticles));
         }
     }
 }

@@ -26,7 +26,8 @@ public class World {
     public ArrayList<Entity> entities;
     public Illusion illusion;
 
-    public ArrayList<Particle> particles;
+    public ArrayList<Particle> behindParticles;
+    public ArrayList<Particle> inFrontParticles;
 
     private Player player;
 
@@ -41,7 +42,8 @@ public class World {
         DataControl.loadLevel(levelFile, TILEMAP);
 
         entities = new ArrayList<>();
-        particles = new ArrayList<>();
+        behindParticles = new ArrayList<>();
+        inFrontParticles = new ArrayList<>();
 
         player = new Player(P, new PVector(200, BOARD_SIZE.y - 200), this);
         entities.add(player);
@@ -101,6 +103,11 @@ public class World {
             if (debug) tile.collider.display(tile.position);
         }
 
+        for (int i = behindParticles.size() - 1; i >= 0; i--) {
+            Particle particle = behindParticles.get(i);
+            particle.main();
+        }
+
         entities.forEach(Entity::draw);
         if (illusion != null) illusion.draw();
 
@@ -108,8 +115,8 @@ public class World {
             TILEMAP.get(i).displayObstacle();
         }
 
-        for (int i = particles.size() - 1; i >= 0; i--) {
-            Particle particle = particles.get(i);
+        for (int i = inFrontParticles.size() - 1; i >= 0; i--) {
+            Particle particle = inFrontParticles.get(i);
             particle.main();
         }
     }

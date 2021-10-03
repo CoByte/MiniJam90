@@ -6,6 +6,7 @@ import processing.core.PConstants;
 import processing.core.PVector;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class FloatParticle extends Particle {
 
@@ -16,8 +17,8 @@ public class FloatParticle extends Particle {
 
     private int alpha;
 
-    public FloatParticle(PApplet p, float x, float y, Color color, World world) {
-        super(p, x, y, world);
+    public FloatParticle(PApplet p, float x, float y, Color color, ArrayList<Particle> home) {
+        super(p, x, y, home);
         COLOR = color;
 
         position.add(PVector.fromAngle(p.random(PConstants.TWO_PI)).setMag(5));

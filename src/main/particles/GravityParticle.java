@@ -6,6 +6,7 @@ import processing.core.PConstants;
 import processing.core.PVector;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class GravityParticle extends Particle {
 
@@ -17,8 +18,8 @@ public class GravityParticle extends Particle {
 
     private int alpha;
 
-    public GravityParticle(PApplet p, float x, float y, Color color, World world) {
-        super(p, x, y, world);
+    public GravityParticle(PApplet p, float x, float y, Color color, ArrayList<Particle> home) {
+        super(p, x, y, home);
         COLOR = color;
 
         position.add(PVector.fromAngle(p.random(PConstants.TWO_PI)).setMag(5));
