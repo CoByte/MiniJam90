@@ -15,6 +15,7 @@ public class SpriteLoader {
         getAnimation(p, "genericButton", "BT", 3);
 
         getAnimation(p, "walk", "Player", 8);
+        getAnimation(p, "cast", "Player", 6);
 
         getAnimation(p, "", "fire", 3);
     }

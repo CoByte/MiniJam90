@@ -7,6 +7,7 @@ import main.world.entities.Illusion;
 import main.world.entities.Lever;
 import main.world.entities.MovingPlatform;
 import processing.core.PApplet;
+import processing.core.PImage;
 import processing.core.PVector;
 
 import java.util.ArrayList;
@@ -19,6 +20,8 @@ public class Player extends Entity {
     private static final PVector SPRITE_SIZE = new PVector(39, 50);
 
     private final Animator WALK_ANIMATION;
+    private final Animator CAST_ANIMATION;
+
     /**Allows the player to jump if they have just stepped off an edge, this is common in platformers.**/
     private final Timer COYOTE_TIMER;
     private final PVector DETECT_OFFSET;
@@ -28,6 +31,7 @@ public class Player extends Entity {
 
     private boolean facingLeft;
     private boolean grounded;
+    private boolean justCast;
     public float velocity_y;
 
     private Entity standingOn;
@@ -40,6 +44,8 @@ public class Player extends Entity {
                 ), position);
 
         WALK_ANIMATION = new Animator(Main.animations.get("walkPlayer"), 8);
+        CAST_ANIMATION = new Animator(Main.animations.get("castPlayer"), 6, false);
+        CAST_ANIMATION.setEnded();
         COYOTE_TIMER = new Timer(Utilities.secondsToFrames(0.3f), true);
         DETECT_OFFSET = new PVector(
                 collider.getRightEdge() / 2,
@@ -54,13 +60,21 @@ public class Player extends Entity {
     }
 
     private void handleIllusions() {
-        if (InputManager.getInstance().leftMouse.falling() && standing() != null) {
+        if (!CAST_ANIMATION.ended()) CAST_ANIMATION.update();
+        if (InputManager.getInstance().leftMouse.falling() && standing() != null && CAST_ANIMATION.ended()) {
+            CAST_ANIMATION.reset();
+            justCast = false;
+        }
+        if (CAST_ANIMATION.getCurrentTime() == 2 && !justCast) {
+            justCast = true; //prevent casting on betweenFrames
             world.illusion = new Illusion(standing(), PVector.sub(Main.matrixMousePosition, standing().position));
         }
     }
 
     private void move() {
-        IntVector axes = Utilities.getAxesFromMovementKeys();
+        IntVector axes;
+        if (CAST_ANIMATION.ended()) axes = Utilities.getAxesFromMovementKeys();
+        else axes = new IntVector(0, 0);
         /*
         I use this instead of `facingLeft = axes.x < 0` because I don't want the player's
         direction to change if they stop moving (axes.x == 0).
@@ -104,10 +118,6 @@ public class Player extends Entity {
                 MovingPlatform mp = (MovingPlatform) entity;
                 speed = mp.getVelocity().x;
                 groundVelocity_Y = mp.getVelocity().y;
-
-            CollisionBox.Direction direction = offset.direction;
-            float offsetValue = offset.offset;
-
             } else if (entity instanceof Lever) {
                 if (!(((Lever) entity).bottomedOut)) offset.direction = CollisionBox.Direction.None;
             }
@@ -151,14 +161,21 @@ public class Player extends Entity {
 
     @Override
     public void draw() {
+        PImage sprite;
+        if (CAST_ANIMATION.ended()) {
+            sprite = WALK_ANIMATION.getCurrentFrame();
+        } else {
+            sprite = CAST_ANIMATION.getCurrentFrame();
+        }
+
         if (facingLeft) { //mirroring
             P.pushMatrix();
             P.translate(position.x, position.y);
             P.scale(-1, 1);
-            P.image(WALK_ANIMATION.getCurrentFrame(), -SPRITE_SIZE.x, 0,
+            P.image(sprite, -SPRITE_SIZE.x, 0,
                     SPRITE_SIZE.x, SPRITE_SIZE.y);
             P.popMatrix();
-        } else P.image(WALK_ANIMATION.getCurrentFrame(), position.x, position.y,
+        } else P.image(sprite, position.x, position.y,
                 SPRITE_SIZE.x, SPRITE_SIZE.y);
 
         if (Main.debug) collider.display(position);
