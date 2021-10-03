@@ -12,19 +12,22 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class Lever extends Entity {
+    private final LeverDoor door;
+
     public final float startingY;
     public final float endingY;
-
     private final CollisionEntity detection;
 
     public boolean bottomedOut = false;
 
     public Trigger pressed;
 
-    public Lever(PApplet p, World world, PVector position) {
+    public Lever(PApplet p, World world, PVector position, LeverDoor door) {
         super(p, world, new CollisionBox(
                 p, new PVector(25, 5)
         ), position);
+
+        this.door = door;
 
         detection = new CollisionEntity(
                 new CollisionBox(p, new PVector(0, -5), new PVector(25, 5)),
@@ -50,15 +53,6 @@ public class Lever extends Entity {
         }
 
         ArrayList<Entity> collided = world.getCollidingEntities(this);
-//        float movement = ((Double) collided.stream()
-//                .filter(e -> e instanceof Player || e instanceof MovingPlatform)
-//                .map(e -> collider.calculateOffset(position, e.position, e.collider))
-//                .filter(e -> e.direction == CollisionBox.Direction.Up)
-//                .map(e -> e.offset)
-//                .mapToDouble(Float::floatValue)
-//                .sum())
-//                .floatValue();
-
         float movement = 0;
         for (Entity e : collided) {
             if (!(e instanceof Player || e instanceof MovingPlatform)) { continue; }
@@ -91,7 +85,10 @@ public class Lever extends Entity {
 //        System.out.println(collided);
 
         bottomedOut = position.y >= endingY;
-        pressed.triggerState(bottomedOut);
+        pressed.triggerState(position.y + 2 >= endingY);
+
+        if (pressed.rising()) door.activeLevers += 1;
+        if (pressed.falling()) door.activeLevers -= 1;
     }
 
     @Override

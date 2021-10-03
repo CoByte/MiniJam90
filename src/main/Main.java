@@ -140,6 +140,7 @@ public class Main extends PApplet {
         World workingWorld;
 
         workingWorld = new World(p, "test");
+        LeverDoor door = new LeverDoor(p, workingWorld, new PVector(1200, 650), 4, 1);
         workingWorld.entities.addAll(new ArrayList<>(Arrays.asList(
                 new MovingPlatform(p, workingWorld,
                         new PVector(400, 400),
@@ -152,8 +153,9 @@ public class Main extends PApplet {
                         3, Utilities.secondsToFrames(1.5f)
                 ),
                 new Fire(p, new PVector(300, 300), workingWorld),
-                new WaxDoor(p, workingWorld, new PVector(1000, 650), new PVector(0,1), 1),
-                new Lever(p, workingWorld, new PVector(300, 700)),
+                new WaxDoor(p, workingWorld, new PVector(1000, 650), 1),
+                new Lever(p, workingWorld, new PVector(300, 700), door),
+                door,
                 new MovingPlatform(p, workingWorld,
                         new PVector(275, 400),
                         new PVector(275, 1000),

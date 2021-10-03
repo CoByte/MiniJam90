@@ -9,8 +9,8 @@ import processing.core.PVector;
 import java.awt.*;
 
 public class WaxDoor extends Door {
-    public WaxDoor(PApplet p, World world, PVector position, PVector moveDir, float speed) {
-        super(p, world, position, moveDir, speed);
+    public WaxDoor(PApplet p, World world, PVector position, float speed) {
+        super(p, world, position, speed);
         flammable = true;
         sprite = Main.sprites.get("wax");
     }
