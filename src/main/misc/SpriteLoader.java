@@ -15,6 +15,8 @@ public class SpriteLoader {
         getAnimation(p, "genericButton", "BT", 3);
 
         getAnimation(p, "walk", "Player", 8);
+
+        getAnimation(p, "", "fire", 3);
     }
 
     private static void getAnimation(PApplet p, String name, String type, int length) {
@@ -25,6 +27,9 @@ public class SpriteLoader {
                 break;
             case "Player":
                 path.append("player/");
+                break;
+            case "fire":
+                path.append("fire/");
                 break;
         }
         path.append(name).append("/");
