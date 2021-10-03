@@ -62,6 +62,7 @@ public class Player extends Entity {
         */
         if (axes.x < 0) facingLeft = true;
         else if (axes.x > 0) facingLeft = false;
+        float groundVelocity_Y = 0;
 
         //collision with ground
         if (axes.y < 0 && (grounded || !COYOTE_TIMER.triggered(false))) {
@@ -69,7 +70,6 @@ public class Player extends Entity {
             COYOTE_TIMER.setCurrentTime(COYOTE_TIMER.getAlarmTime());
         }
         velocity_y += ACCELERATION_Y;
-        if (grounded && velocity_y > 0) velocity_y = 0;
         if (axes.x != 0 && grounded) WALK_ANIMATION.update();
 
         position.x += axes.x * WALK_SPEED;
@@ -89,12 +89,14 @@ public class Player extends Entity {
                 offset = collider.calculateOffset(position, illusion.getPosition(), illusion.getCollider());
                 if (illusion.trueEntity instanceof MovingPlatform) {
                     MovingPlatform mp = (MovingPlatform) ((Illusion) entity).trueEntity;
-                    speed = mp.getSpeed();
+                    speed = mp.getVelocity().x;
+                    groundVelocity_Y = mp.getVelocity().y;
                 }
             }
             if (entity instanceof MovingPlatform) {
                 MovingPlatform mp = (MovingPlatform) entity;
-                speed = mp.getSpeed();
+                speed = mp.getVelocity().x;
+                groundVelocity_Y = mp.getVelocity().y;
             }
 //            System.out.println(offset);
             switch (offset.direction) {
@@ -119,6 +121,7 @@ public class Player extends Entity {
         if (grounded) COYOTE_TIMER.reset();
         COYOTE_TIMER.update();
 
+        if (grounded && velocity_y > groundVelocity_Y) velocity_y = groundVelocity_Y;
         if (pastY2 == pastY1 && pastY1 == position.y && !grounded) {
             velocity_y = 0;
         }
