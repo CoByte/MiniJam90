@@ -38,7 +38,7 @@ public class CollisionBox {
         P.rect(position.x + OFFSET.x, position.y + OFFSET.y, SIZE.x, SIZE.y);
 
         PVector center = getCenter();
-        P.circle(center.x, center.y, 5);
+//        P.circle(center.x, center.y, 5);
     }
 
     public float getRightEdge() {
