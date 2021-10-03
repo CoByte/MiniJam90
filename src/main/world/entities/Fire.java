@@ -43,20 +43,5 @@ public class Fire extends Entity {
             collider.display(position);
             burnAura.draw();
         }
-//        if (P.random(5) < 1) {
-//            PVector pos = getRandPos();
-//            world.inFrontParticles.add(new FloatParticle(P,
-//                    pos.x, pos.y, Color.RED, world.inFrontParticles));
-//        }
-//        if (P.random(5) < 1) {
-//            PVector pos = getRandPos();
-//            world.inFrontParticles.add(new FloatParticle(P,
-//                    pos.x, pos.y, Color.YELLOW, world.inFrontParticles));
-//        }
-//        if (P.random(5) < 1) {
-//            PVector pos = getRandPos();
-//            world.inFrontParticles.add(new GravityParticle(P,
-//                    pos.x, pos.y, Color.ORANGE, world.inFrontParticles));
-//        }
     }
 }
