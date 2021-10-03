@@ -95,10 +95,6 @@ public class World {
         }
         entities.forEach(Entity::update);
         if (illusion != null) illusion.update();
-
-        if (InputManager.getInstance().getEvent(KeyEvent.VK_SPACE).rising()) {
-            worlds.set(currentWorld, WorldBuilder.buildWorld(P, currentWorld));
-        }
     }
 
     private void display() {
@@ -134,5 +130,9 @@ public class World {
             Particle particle = inFrontParticles.get(i);
             particle.main();
         }
+    }
+
+    public void reset() {
+        worlds.set(currentWorld, WorldBuilder.buildWorld(P, currentWorld));
     }
 }

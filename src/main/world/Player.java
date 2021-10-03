@@ -1,6 +1,8 @@
 package main.world;
 
+import com.jogamp.newt.event.KeyEvent;
 import main.Main;
+import main.particles.GravityParticle;
 import main.world.entities.Entity;
 import main.misc.*;
 import main.world.entities.Illusion;
@@ -11,6 +13,7 @@ import processing.core.PConstants;
 import processing.core.PImage;
 import processing.core.PVector;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Player extends Entity {
@@ -29,6 +32,7 @@ public class Player extends Entity {
 
     /**Allows the player to jump if they have just stepped off an edge, this is common in platformers.**/
     private final Timer COYOTE_TIMER;
+    private final Timer DEATH_TIMER;
     private final PVector DETECT_OFFSET;
 
     private float pastY1 = 0;
@@ -37,6 +41,7 @@ public class Player extends Entity {
     private boolean facingLeft;
     private boolean grounded;
     private boolean justCast;
+    private boolean dead;
     private PVector illusionPosition;
 
     private Entity standingOn;
@@ -56,6 +61,7 @@ public class Player extends Entity {
         JUMP_SPRITE = Main.sprites.get("jumpPlayer");
 
         COYOTE_TIMER = new Timer(Utilities.secondsToFrames(0.3f), true);
+        DEATH_TIMER = new Timer(Utilities.secondsToFrames(1));
         DETECT_OFFSET = new PVector(
                 collider.getRightEdge() / 2,
                 collider.getBottomEdge() + 1
@@ -64,8 +70,23 @@ public class Player extends Entity {
 
     @Override
     public void update() {
-        move();
-        handleIllusions();
+        if (!dead) {
+            move();
+            handleIllusions();
+        }
+        if (InputManager.getInstance().getEvent(KeyEvent.VK_SPACE).rising()) die();
+        if (dead) DEATH_TIMER.update();
+        if (DEATH_TIMER.triggered(false)) world.reset();
+    }
+
+    public void die() {
+        dead = true;
+        for (int i = 0; i < 50; i++) {
+            PVector pos = getRandPos();
+            world.inFrontParticles.add(new GravityParticle(
+                    P, pos.x, pos.y, new Color(166, 0, 0), world.inFrontParticles
+            ));
+        }
     }
 
     private void handleIllusions() {
@@ -182,6 +203,7 @@ public class Player extends Entity {
 
     @Override
     public void draw() {
+        if (dead) return;
         PImage sprite;
         if (CAST_ANIMATION.ended()) sprite = WALK_ANIMATION.getCurrentFrame();
         else sprite = CAST_ANIMATION.getCurrentFrame();
