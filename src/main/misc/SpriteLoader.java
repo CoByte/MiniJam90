@@ -46,5 +46,6 @@ public class SpriteLoader {
 
         sprites.put("movingPlatform", p.loadImage("sprites/movingPlatform.png"));
         sprites.put("wax", p.loadImage("sprites/wax.png"));
+        sprites.put("door", p.loadImage("sprites/door.png"));
     }
 }

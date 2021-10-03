@@ -7,7 +7,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
 
-public class Door extends Entity {
+public abstract class Door extends Entity {
     public static final float WIDTH = Main.TILE_SIZE;
     public static final float HEIGHT = Main.TILE_SIZE * 2;
 
