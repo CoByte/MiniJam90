@@ -26,6 +26,7 @@ public class MovingPlatform extends Entity {
 
     public MovingPlatform(PApplet p, float width, float height, PVector pointA, PVector pointB, float speed, int endWait) {
         super(p, new CollisionBox(p, new PVector(WIDTH / 2, HEIGHT / 2)), pointA.copy());
+        if (pointA.x != pointB.x && pointA.y != pointB.x) throw new RuntimeException("No diagonal platforms allowed :(");
 
         this.width = width;
         this.height = height;
@@ -62,16 +63,18 @@ public class MovingPlatform extends Entity {
         }
     }
 
-    public float getSpeed() {
+    public PVector getVelocity() {
         float speed = topSpeed * 2;
         if (goingToB) speed *= -1;
         if (waiting) speed = 0;
         PVector velocity = PVector.sub(pointA, pointB).normalize();
         float angle = Utilities.getAngle(pointA, pointB);
-        float proportion = 1 - Math.abs(1 - ((angle / PConstants.QUARTER_PI) % 2));
+        float proportion = Math.abs(1 - ((angle / PConstants.QUARTER_PI) % 2));
         velocity.div(proportion + 1);
         speed *= velocity.x;
-        return speed;
+        velocity.y *= -1;
+        System.out.println(velocity);
+        return new PVector(speed, velocity.y * topSpeed * 2);
     }
 
     @Override
