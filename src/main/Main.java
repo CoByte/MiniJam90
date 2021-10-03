@@ -12,6 +12,8 @@ import main.sound.SoundWithAlts;
 import main.sound.StartStopSoundLoop;
 import main.world.World;
 import main.world.entities.*;
+import main.world.entities.Fire;
+import main.world.entities.MovingPlatform;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
