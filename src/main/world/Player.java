@@ -4,6 +4,7 @@ import main.Main;
 import main.world.entities.Entity;
 import main.misc.*;
 import main.world.entities.Illusion;
+import main.world.entities.Lever;
 import main.world.entities.MovingPlatform;
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -26,7 +27,7 @@ public class Player extends Entity {
 
     private boolean facingLeft;
     private boolean grounded;
-    private float velocity_y;
+    public float velocity_y;
 
     private Entity standingOn;
     private Entity pastStandingOn;
@@ -38,7 +39,7 @@ public class Player extends Entity {
         COYOTE_TIMER = new Timer(Utilities.secondsToFrames(0.3f), true);
         DETECT_OFFSET = new PVector(
                 collider.getRightEdge() / 2,
-                collider.getBottomEdge() + 5
+                collider.getBottomEdge() + 1
         );
     }
 
@@ -83,22 +84,30 @@ public class Player extends Entity {
         for (Entity entity : entities) {
             CollisionBox otherCollider = entity.collider;
             CollisionBox.Collision offset = collider.calculateOffset(position, entity.position, otherCollider);
+
             float speed = 0;
             if (entity instanceof Illusion) {
                 Illusion illusion = (Illusion) entity;
                 offset = collider.calculateOffset(position, illusion.getPosition(), illusion.getCollider());
+
                 if (illusion.trueEntity instanceof MovingPlatform) {
                     MovingPlatform mp = (MovingPlatform) ((Illusion) entity).trueEntity;
                     speed = mp.getVelocity().x;
                     groundVelocity_Y = mp.getVelocity().y;
                 }
-            }
-            if (entity instanceof MovingPlatform) {
+
+            } else if (entity instanceof MovingPlatform) {
                 MovingPlatform mp = (MovingPlatform) entity;
                 speed = mp.getVelocity().x;
                 groundVelocity_Y = mp.getVelocity().y;
+
+            CollisionBox.Direction direction = offset.direction;
+            float offsetValue = offset.offset;
+
+            } else if (entity instanceof Lever) {
+                if (!(((Lever) entity).bottomedOut)) offset.direction = CollisionBox.Direction.None;
             }
-//            System.out.println(offset);
+
             switch (offset.direction) {
                 case Up:
                     position.y += offset.offset;

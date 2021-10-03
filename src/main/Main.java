@@ -152,7 +152,12 @@ public class Main extends PApplet {
                         3, Utilities.secondsToFrames(1.5f)
                 ),
                 new Fire(p, new PVector(300, 300), workingWorld),
-                new WaxDoor(p, workingWorld, new PVector(1000, 650), new PVector(0,1), 1)
+                new WaxDoor(p, workingWorld, new PVector(1000, 650), new PVector(0,1), 1),
+                new Lever(p, workingWorld, new PVector(300, 700)),
+                new MovingPlatform(p, workingWorld,
+                        new PVector(275, 400),
+                        new PVector(275, 1000),
+                        3, 0)
         )));
         worlds.add(workingWorld);
     }

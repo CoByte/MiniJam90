@@ -28,6 +28,9 @@ public class MovingPlatform extends Entity {
     private final Timer waitTimer;
     private final PImage sprite;
 
+    private float lastY;
+    public boolean goingUp;
+
     public MovingPlatform(
             PApplet p,
             World world,
@@ -83,6 +86,9 @@ public class MovingPlatform extends Entity {
         } else {
             position.add(PVector.sub(target, starting).setMag(topSpeed));
         }
+
+        goingUp = lastY > position.y;
+        lastY = position.y;
     }
 
     public PVector getVelocity() {
@@ -95,7 +101,7 @@ public class MovingPlatform extends Entity {
         velocity.div(proportion + 1);
         speed *= velocity.x;
         velocity.y *= -1;
-        System.out.println(velocity);
+//        System.out.println(velocity);
         return new PVector(speed, velocity.y * topSpeed * 2);
     }
 

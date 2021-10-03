@@ -36,12 +36,12 @@ public abstract class Entity {
 
     public void update() {
         if (onFire) {
-            System.out.println(this);
+//            System.out.println(this);
             ArrayList<Entity> colliding = world.getCollidingEntities(burnAura);
-            System.out.println(colliding);
+//            System.out.println(colliding);
             for (Entity e: colliding) {
                 if (!e.flammable || e == this) continue;
-                System.out.println("burn damn you!");
+//                System.out.println("burn damn you!");
                 if (P.random(60) < 1) {
                     e.onFire = true;
                 }
