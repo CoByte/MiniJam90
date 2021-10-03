@@ -14,10 +14,13 @@ import java.util.stream.Collectors;
 public class Lever extends Entity {
     private final LeverDoor door;
 
-    public final float startingY;
-    public final float endingY;
+    public final float maxDrop = 25;
     private final CollisionEntity detection;
 
+    float movement = 0;
+    boolean detected = false;
+
+    public boolean collidedWith = false;
     public boolean bottomedOut = false;
 
     public Trigger pressed;
@@ -30,20 +33,25 @@ public class Lever extends Entity {
         this.door = door;
 
         detection = new CollisionEntity(
-                new CollisionBox(p, new PVector(0, -5), new PVector(25, 5)),
-                position);
-
-        startingY = position.y;
-        endingY = startingY + 25;
+                new CollisionBox(p, new PVector(0, -7), new PVector(25, 7)),
+                position.copy());
 
         pressed = new Trigger();
     }
 
     @Override
     public void update() {
-        super.update();
+        if (movement <= 0 && !detected) {
+            movement = -1;
+        }
+        collider.OFFSET.set(collider.OFFSET.x, Math.min(maxDrop, Math.max(0, collider.OFFSET.y + movement)));
+        movement = 0;
+        detected = false;
+        innerUpdate(position);
+    }
 
-        boolean detected = false;
+    public void innerUpdate(PVector testPosition) {
+        detection.position.set(testPosition);
         ArrayList<Entity> detectedEntities = world.getCollidingEntities(detection);
         for (Entity e : detectedEntities) {
             if (e instanceof Player || e instanceof MovingPlatform) {
@@ -52,12 +60,19 @@ public class Lever extends Entity {
             }
         }
 
-        ArrayList<Entity> collided = world.getCollidingEntities(this);
-        float movement = 0;
+        CollisionEntity colliderTest = new CollisionEntity(
+                collider,
+                testPosition
+        );
+
+        ArrayList<Entity> collided = world.getCollidingEntities(colliderTest);
+        collidedWith = false;
         for (Entity e : collided) {
             if (!(e instanceof Player || e instanceof MovingPlatform)) { continue; }
 
-            CollisionBox.Collision offset = collider.calculateOffset(position, e.position, e.collider);
+            collidedWith = true;
+
+            CollisionBox.Collision offset = collider.calculateOffset(testPosition, e.position, e.collider);
 
             if (offset.direction != CollisionBox.Direction.Up) { continue; }
 
@@ -73,19 +88,18 @@ public class Lever extends Entity {
                 }
             }
 
-            movement += offset.offset;
+            movement = Math.max(offset.offset, movement);
         }
 
-        if (movement > 0) {
-            position.y = Math.min(endingY, Math.max(position.y, position.y + movement));
-        } else if (!detected) {
-            position.y = Math.min(endingY, Math.max(startingY, position.y - 1));
-        }
+//        if (movement > 0) {
+//            collider.OFFSET.set(collider.OFFSET.x, Math.min(maxDrop, Math.max(0, collider.OFFSET.y + movement)));
+//        } else if (!detected) {
+//            collider.OFFSET.set(collider.OFFSET.x, Math.min(maxDrop, Math.max(0, collider.OFFSET.y - 1)));
+//        }
 
-//        System.out.println(collided);
+        bottomedOut = collider.OFFSET.y  >= maxDrop;
 
-        bottomedOut = position.y >= endingY;
-        pressed.triggerState(position.y + 2 >= endingY);
+        pressed.triggerState(collider.OFFSET.y + 2 >= maxDrop);
 
         if (pressed.rising()) door.activeLevers += 1;
         if (pressed.falling()) door.activeLevers -= 1;

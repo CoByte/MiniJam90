@@ -94,6 +94,8 @@ public class Player extends Entity {
                     MovingPlatform mp = (MovingPlatform) ((Illusion) entity).trueEntity;
                     speed = mp.getVelocity().x;
                     groundVelocity_Y = mp.getVelocity().y;
+                } else if (illusion.trueEntity instanceof Lever) {
+                    if (!(((Lever) illusion.trueEntity).bottomedOut)) offset.direction = CollisionBox.Direction.None;
                 }
 
             } else if (entity instanceof MovingPlatform) {

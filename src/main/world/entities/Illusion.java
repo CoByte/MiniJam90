@@ -26,6 +26,15 @@ public class Illusion extends Entity {
                 PVector.add(collider.SIZE, new PVector(DEFAULT_AURA, DEFAULT_AURA).mult(2))),
                 PVector.add(trueEntity.position, offset));
         super.update();
+
+        if (trueEntity instanceof Lever) {
+            Lever entity = (Lever) trueEntity;
+            entity.innerUpdate(getPosition());
+//            if (!entity.collidedWith) {
+//                entity.innerUpdate(getPosition());
+//                entity.stopFuckingMoving = entity.bottomedOut;
+//            }
+        }
     }
 
     @Override

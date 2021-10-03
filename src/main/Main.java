@@ -50,7 +50,7 @@ public class Main extends PApplet {
     public static final String TITLE = "template";
 
     public static float globalVolume = 0.25f;
-    public static boolean debug = true;
+    public static boolean debug = false;
 
     private static final Color BACKGROUND_COLOR = new Color(0, 15, 45);
     private static final boolean FULLSCREEN = true;

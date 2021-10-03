@@ -13,7 +13,7 @@ public class LeverDoor extends Door {
     public LeverDoor(PApplet p, World world, PVector position, float speed, int numLevers) {
         super(p, world, position, speed);
         this.numLevers = numLevers;
-        sprite = Main.sprites.get("wax");
+        sprite = Main.sprites.get("door");
     }
 
     @Override
