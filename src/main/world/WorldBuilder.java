@@ -30,13 +30,16 @@ public class WorldBuilder {
                         new Fire(p, new PVector(300, 300), world),
                         new WaxDoor(p, world, new PVector(1000, 650), 1),
                         new Lever(p, world, new PVector(300, 700), door),
-                        door,
+//                        door,
                         new MovingPlatform(p, world,
                                 new PVector(275, 400),
                                 new PVector(275, 1000),
                                 3, 0),
                         new Spikes(p, world, new PVector(400, 750))
                 )));
+                break;
+            case 1:
+                world = new World(p, "test");
                 break;
             default:
                 world = null;

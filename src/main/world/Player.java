@@ -63,7 +63,7 @@ public class Player extends Entity {
         JUMP_SPRITE = Main.sprites.get("jumpPlayer");
 
         COYOTE_TIMER = new Timer(Utilities.secondsToFrames(0.3f), true);
-        DEATH_TIMER = new Timer(Utilities.secondsToFrames(1));
+        DEATH_TIMER = new Timer(Utilities.secondsToFrames(0.5f));
         DETECT_OFFSET = new PVector(
                 collider.getRightEdge() / 2,
                 collider.getBottomEdge() + 1
@@ -81,9 +81,9 @@ public class Player extends Entity {
             squish();
             handleIllusions();
         }
-        if (InputManager.getInstance().getEvent(KeyEvent.VK_SPACE).rising()) die();
         if (dead) DEATH_TIMER.update();
         if (DEATH_TIMER.triggered(false)) world.reset();
+        if (position.x > Main.BOARD_SIZE.x) world.advance();
     }
 
     public void die() {
@@ -112,6 +112,7 @@ public class Player extends Entity {
             )).stream().anyMatch(e -> !(e instanceof Illusion));
             if (!isColliding && PVector.dist(illusionPosition, position) < CAST_RADIUS) {
                 world.illusion = new Illusion(standing(), PVector.sub(illusionPosition, standing().position));
+                RUNE_ANIMATION.reset();
                 SoundUtilities.playSoundRandomSpeed(P, CAST_SOUND, 1);
             } else SoundUtilities.playSoundRandomSpeed(P, FAIL_SOUND, 1);
         }
