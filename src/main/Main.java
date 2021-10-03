@@ -143,7 +143,7 @@ public class Main extends PApplet {
         workingWorld.entities.addAll(new ArrayList<>(Arrays.asList(
                 new MovingPlatform(p, workingWorld,
                         new PVector(400, 400),
-                        new PVector(800, 800),
+                        new PVector(800, 400),
                         3, Utilities.secondsToFrames(1.5f)
                 ),
                 new MovingPlatform(p, workingWorld,
