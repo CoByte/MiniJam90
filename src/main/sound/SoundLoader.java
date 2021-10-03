@@ -16,5 +16,9 @@ public class SoundLoader {
         sounds.put("die", new SoundFile(p, "sounds/die.wav"));
         sounds.put("cast", new SoundFile(p, "sounds/cast.wav"));
         sounds.put("castFail", new SoundFile(p, "sounds/castFail.wav"));
+
+        //environment
+        sounds.put("door", new SoundFile(p, "sounds/door.wav"));
+        sounds.put("doorSlam", new SoundFile(p, "sounds/doorSlam.wav"));
     }
 }
