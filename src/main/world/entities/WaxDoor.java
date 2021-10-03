@@ -9,6 +9,7 @@ public class WaxDoor extends Door {
     public WaxDoor(PApplet p, World world, PVector position, PVector moveDir, float speed) {
         super(p, world, position, moveDir, speed);
         flammable = true;
+        sprite = Main.sprites.get("wax");
     }
 
     @Override
@@ -17,12 +18,5 @@ public class WaxDoor extends Door {
             closed = false;
         }
         super.update();
-    }
-
-    @Override
-    public void draw() {
-        P.fill(255);
-        P.rect(position.x, position.y, WIDTH, HEIGHT);
-        if (Main.debug) collider.display(position);
     }
 }

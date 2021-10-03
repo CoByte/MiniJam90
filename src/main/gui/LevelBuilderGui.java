@@ -63,7 +63,6 @@ public class LevelBuilderGui {
             placeButton(x, lastY, "wood" + nf(x, 3) + "Ob");
         }
 
-
         placeButton(0, 16, "backBa");
         placeButton(0, 17, "Na");
         placeButton(3, bottom, "Sa");

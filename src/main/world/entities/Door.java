@@ -4,6 +4,7 @@ import main.Main;
 import main.misc.CollisionBox;
 import main.world.World;
 import processing.core.PApplet;
+import processing.core.PImage;
 import processing.core.PVector;
 
 public class Door extends Entity {
@@ -11,6 +12,8 @@ public class Door extends Entity {
     public static final float HEIGHT = Main.TILE_SIZE * 2;
 
     public boolean closed = true;
+
+    protected PImage sprite;
 
     private final PVector moveDir;
     private final float speed;
@@ -29,6 +32,6 @@ public class Door extends Entity {
 
     @Override
     public void draw() {
-
+        P.image(sprite, position.x, position.y, WIDTH, HEIGHT);
     }
 }

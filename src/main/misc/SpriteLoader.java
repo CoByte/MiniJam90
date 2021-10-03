@@ -45,5 +45,6 @@ public class SpriteLoader {
         }
 
         sprites.put("movingPlatform", p.loadImage("sprites/movingPlatform.png"));
+        sprites.put("wax", p.loadImage("sprites/wax.png"));
     }
 }
