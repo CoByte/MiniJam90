@@ -40,25 +40,40 @@ public class Lever extends Entity {
     public void update() {
         super.update();
 
-        boolean detected = false;
+        move(
+                getMovement(world, this, collider, position),
+                !getDetected(world, detection)
+        );
+
+        bottomedOut = position.y >= endingY;
+        pressed.triggerState(bottomedOut);
+    }
+
+    public void move(float movement, boolean detected) {
+        if (movement > 0) {
+            position.y = Math.min(endingY, Math.max(position.y, position.y + movement));
+        } else if (detected) {
+            position.y = Math.min(endingY, Math.max(startingY, position.y - 1));
+        }
+    }
+
+    @Override
+    public void draw() {
+        collider.display(position);
+    }
+
+    public static boolean getDetected(World world, CollisionEntity detection) {
         ArrayList<Entity> detectedEntities = world.getCollidingEntities(detection);
         for (Entity e : detectedEntities) {
             if (e instanceof Player || e instanceof MovingPlatform) {
-                detected = true;
-                break;
+                return true;
             }
         }
+        return false;
+    }
 
-        ArrayList<Entity> collided = world.getCollidingEntities(this);
-//        float movement = ((Double) collided.stream()
-//                .filter(e -> e instanceof Player || e instanceof MovingPlatform)
-//                .map(e -> collider.calculateOffset(position, e.position, e.collider))
-//                .filter(e -> e.direction == CollisionBox.Direction.Up)
-//                .map(e -> e.offset)
-//                .mapToDouble(Float::floatValue)
-//                .sum())
-//                .floatValue();
-
+    public static float getMovement(World world, Entity entity, CollisionBox collider, PVector position) {
+        ArrayList<Entity> collided = world.getCollidingEntities(entity);
         float movement = 0;
         for (Entity e : collided) {
             if (!(e instanceof Player || e instanceof MovingPlatform)) { continue; }
@@ -81,21 +96,6 @@ public class Lever extends Entity {
 
             movement += offset.offset;
         }
-
-        if (movement > 0) {
-            position.y = Math.min(endingY, Math.max(position.y, position.y + movement));
-        } else if (!detected) {
-            position.y = Math.min(endingY, Math.max(startingY, position.y - 1));
-        }
-
-//        System.out.println(collided);
-
-        bottomedOut = position.y >= endingY;
-        pressed.triggerState(bottomedOut);
-    }
-
-    @Override
-    public void draw() {
-        collider.display(position);
+        return movement;
     }
 }

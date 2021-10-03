@@ -27,6 +27,17 @@ public class Illusion extends Entity {
                 PVector.add(collider.SIZE, new PVector(DEFAULT_AURA, DEFAULT_AURA).mult(2))),
                 PVector.add(trueEntity.position, offset));
         super.update();
+
+        if (trueEntity instanceof Lever) {
+            Lever lever = (Lever) trueEntity;
+            lever.move(
+                    Lever.getMovement(world, lever, lever.collider, getPosition()),
+                    Lever.getDetected(world, new CollisionEntity(
+                            new CollisionBox(P, new PVector(0, -5), new PVector(25, 5)),
+                            getPosition()
+                    ))
+            );
+        }
     }
 
     @Override
