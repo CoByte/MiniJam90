@@ -122,7 +122,7 @@ public class Lever extends Entity {
 
         bottomedOut = collider.OFFSET.y  >= maxDrop;
 
-        pressed.triggerState(collider.OFFSET.y + 2 >= maxDrop);
+        pressed.triggerState(collider.OFFSET.y + 4 >= maxDrop);
 
         if (pressed.rising()) door.activeLevers += 1;
         if (pressed.falling()) door.activeLevers -= 1;
