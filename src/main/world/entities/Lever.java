@@ -52,11 +52,11 @@ public class Lever extends Entity {
     }
 
     public void drawBack() {
+        float size = maxDrop * 2f;
         P.imageMode(PConstants.CENTER);
-        float size = (endingY - startingY) * 2f;
         P.image(baseSprite,
                 collider.getWorldCenter(position).x,
-                startingY + (endingY - startingY) / 2,
+                position.y + maxDrop / 2,
                 size, size
         );
         P.imageMode(Main.DEFAULT_MODE);
@@ -130,6 +130,7 @@ public class Lever extends Entity {
 
     @Override
     public void draw() {
-        collider.display(position);
+        P.image(handleSprite, position.x, position.y + collider.OFFSET.y,
+                collider.SIZE.x, collider.SIZE.y);
     }
 }
