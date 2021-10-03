@@ -30,6 +30,8 @@ public class Fire extends Entity {
         this.world = world;
         this.onFire = true;
 
+        burnAura.collider.OFFSET.add(0, -10);
+
         animator = new Animator(Main.animations.get("fire"), 10);
     }
 

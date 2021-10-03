@@ -12,7 +12,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public abstract class Entity {
-    public static final float DEFAULT_AURA = 10;
+    public static final float DEFAULT_AURA = 15;
 
     public final PApplet P;
     public final World world;
@@ -39,7 +39,7 @@ public abstract class Entity {
         if (onFire) {
 //            System.out.println(this);
             ArrayList<Entity> colliding = world.getCollidingEntities(burnAura);
-//            System.out.println(colliding);
+
             for (Entity e: colliding) {
                 if (!e.flammable || e == this) continue;
 //                System.out.println("burn damn you!");

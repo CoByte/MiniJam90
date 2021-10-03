@@ -1,5 +1,6 @@
 package main.misc;
 
+import main.Main;
 import main.particles.FloatParticle;
 import main.particles.GravityParticle;
 import main.sound.FadeSoundLoop;

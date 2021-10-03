@@ -23,6 +23,10 @@ public class World {
 
     private final PApplet P;
 
+    private final boolean hasBeenLoaded;
+
+    public DialogueEngine dialogue;
+
     // List of all entities in the scene
     public ArrayList<Entity> entities;
     public Illusion illusion;
@@ -32,8 +36,10 @@ public class World {
 
     private Player player;
 
-    public World(PApplet p, String levelFile) {
+    public World(PApplet p, String levelFile, boolean hasBeenLoaded) {
         P = p;
+        this.hasBeenLoaded = hasBeenLoaded;
+
         TILEMAP = new Tile.TileDS();
         for (int y = 0; y <= BOARD_SIZE.y / TILE_SIZE; y++) {
             for (int x = 0; x <= BOARD_SIZE.x / TILE_SIZE; x++) {
@@ -47,7 +53,12 @@ public class World {
         inFrontParticles = new ArrayList<>();
 
         player = new Player(P, new PVector(200, BOARD_SIZE.y - 200), this);
-        entities.add(player);
+
+        dialogue = new DialogueEngine(p, player, new ArrayList<>());
+    }
+
+    public void addDialogue(String... text) {
+        dialogue.dialogue.addAll(Arrays.asList(text));
     }
 
     public void main() {
@@ -70,6 +81,8 @@ public class World {
         if (illusion != null &&
                 entity.collider.intersects(entity.position, illusion.getPosition(), illusion.getCollider()))
             collided.add(illusion);
+        if (entity.collider.intersects(entity.position, player.position, player.collider))
+            collided.add(player);
 
         return collided;
     }
@@ -90,9 +103,13 @@ public class World {
     }
 
     private void update() {
+
         for (int i = 0; i < TILEMAP.size(); i++) {
             TILEMAP.get(i).update();
         }
+
+        if (dialogue.finished()) player.update();
+
         entities.forEach(Entity::update);
         if (illusion != null) illusion.update();
     }
@@ -119,6 +136,8 @@ public class World {
             }
         }
 
+        player.draw();
+
         entities.forEach(Entity::draw);
         if (illusion != null) illusion.draw();
 
@@ -129,6 +148,10 @@ public class World {
         for (int i = inFrontParticles.size() - 1; i >= 0; i--) {
             Particle particle = inFrontParticles.get(i);
             particle.main();
+        }
+
+        if (!dialogue.finished()) {
+            dialogue.play();
         }
     }
 
