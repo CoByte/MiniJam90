@@ -40,5 +40,7 @@ public class SpriteLoader {
         for (int i = 0; i < 21; i++) {
             sprites.put("wall" + nf(i, 3) + "Ob_TL", p.loadImage("sprites/tiles/wall/" + nf(i, 3) + ".png"));
         }
+
+        sprites.put("movingPlatform", p.loadImage("sprites/movingPlatform.png"));
     }
 }
