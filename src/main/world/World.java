@@ -1,8 +1,8 @@
 package main.world;
 
-import main.misc.DataControl;
-import main.misc.IntVector;
-import main.misc.Tile;
+import com.jogamp.newt.event.KeyEvent;
+import main.Main;
+import main.misc.*;
 import main.particles.Particle;
 import main.world.entities.Entity;
 import main.world.entities.Illusion;
@@ -95,6 +95,10 @@ public class World {
         }
         entities.forEach(Entity::update);
         if (illusion != null) illusion.update();
+
+        if (InputManager.getInstance().getEvent(KeyEvent.VK_SPACE).rising()) {
+            worlds.set(currentWorld, WorldBuilder.buildWorld(P, currentWorld));
+        }
     }
 
     private void display() {

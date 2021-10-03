@@ -11,6 +11,7 @@ import main.sound.FadeSoundLoop;
 import main.sound.SoundWithAlts;
 import main.sound.StartStopSoundLoop;
 import main.world.World;
+import main.world.WorldBuilder;
 import main.world.entities.*;
 import main.world.entities.Fire;
 import main.world.entities.MovingPlatform;
@@ -137,31 +138,9 @@ public class Main extends PApplet {
     }
 
     public static void setupWorlds(PApplet p) {
-        World workingWorld;
-
-        workingWorld = new World(p, "test");
-        LeverDoor door = new LeverDoor(p, workingWorld, new PVector(1200, 650), 4, 1);
-        workingWorld.entities.addAll(new ArrayList<>(Arrays.asList(
-                new MovingPlatform(p, workingWorld,
-                        new PVector(400, 400),
-                        new PVector(800, 400),
-                        3, Utilities.secondsToFrames(1.5f)
-                ),
-                new MovingPlatform(p, workingWorld,
-                        new PVector(1000, 400),
-                        new PVector(1000, 800),
-                        3, Utilities.secondsToFrames(1.5f)
-                ),
-                new Fire(p, new PVector(300, 300), workingWorld),
-                new WaxDoor(p, workingWorld, new PVector(1000, 650), 1),
-                new Lever(p, workingWorld, new PVector(300, 700), door),
-                door,
-                new MovingPlatform(p, workingWorld,
-                        new PVector(275, 400),
-                        new PVector(275, 1000),
-                        3, 0)
-        )));
-        worlds.add(workingWorld);
+        for (int i = 0; i < 1; i++) {
+            worlds.add(WorldBuilder.buildWorld(p, 0));
+        }
     }
 
     @Override
