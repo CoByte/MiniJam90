@@ -92,7 +92,6 @@ public class World {
         }
         entities.forEach(Entity::update);
         if (illusion != null) illusion.update();
-        for (Particle particle : particles) particle.main();
     }
 
     private void display() {
@@ -107,6 +106,11 @@ public class World {
 
         for (int i = 0; i < TILEMAP.size(); i++) {
             TILEMAP.get(i).displayObstacle();
+        }
+
+        for (int i = particles.size() - 1; i >= 0; i--) {
+            Particle particle = particles.get(i);
+            particle.main();
         }
     }
 }
