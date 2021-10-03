@@ -3,11 +3,14 @@ package main.world.entities;
 import main.misc.CollisionBox;
 import main.misc.CollisionEntity;
 import main.particles.FloatParticle;
+import main.particles.GravityParticle;
 import processing.core.PVector;
 
 import java.awt.*;
 
 public class Illusion extends Entity {
+
+    private static final Color PARTICLE_COLOR = new Color(124, 0, 255);
 
     public final Entity trueEntity;
     public final PVector offset;
@@ -16,6 +19,16 @@ public class Illusion extends Entity {
         super(trueEntity.P, trueEntity.world, trueEntity.collider.copy(), trueEntity.position.copy());
         this.trueEntity = trueEntity;
         this.offset = offset;
+
+        for (int i = 0; i < 50; i++) {
+            PVector pos = getRandPos();
+            world.inFrontParticles.add(new GravityParticle(P,
+                    pos.x, pos.y, PARTICLE_COLOR, world.inFrontParticles));
+        } for (int i = 0; i < 25; i++) {
+            PVector pos = trueEntity.getRandPos();
+            world.inFrontParticles.add(new GravityParticle(P,
+                    pos.x, pos.y, PARTICLE_COLOR, world.inFrontParticles));
+        }
     }
 
     @Override
@@ -53,7 +66,7 @@ public class Illusion extends Entity {
         if (P.random(3) < 1) {
             PVector pos = trueEntity.getRandPos().add(offset);
             world.inFrontParticles.add(new FloatParticle(P,
-                    pos.x, pos.y, new Color(124, 0, 255), world.inFrontParticles));
+                    pos.x, pos.y, PARTICLE_COLOR, world.inFrontParticles));
         }
 
         P.popMatrix();
@@ -70,9 +83,9 @@ public class Illusion extends Entity {
         P.tint(255);
 
         if (P.random(6) < 1) {
-            PVector pos = trueEntity.getRandPos().add(offset);
+            PVector pos = getRandPos();
             world.behindParticles.add(new FloatParticle(P,
-                    pos.x, pos.y, new Color(124, 0, 255), world.inFrontParticles));
+                    pos.x, pos.y, PARTICLE_COLOR, world.inFrontParticles));
         }
 
         P.popMatrix();
@@ -84,5 +97,10 @@ public class Illusion extends Entity {
 
     public CollisionBox getCollider() {
         return trueEntity.collider;
+    }
+
+    @Override
+    public PVector getRandPos() {
+        return trueEntity.getRandPos().add(offset);
     }
 }
