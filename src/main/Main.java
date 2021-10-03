@@ -143,6 +143,11 @@ public class Main extends PApplet {
                             new PVector(400, 400),
                             new PVector(800, 800),
                             3, Utilities.secondsToFrames(1.5f)
+                    ),
+                    new MovingPlatform(p,
+                            new PVector(1000, 400),
+                            new PVector(1000, 800),
+                            3, Utilities.secondsToFrames(1.5f)
                     )
                 )
             ))

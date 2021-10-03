@@ -128,7 +128,7 @@ public class Player extends Entity {
         pastY2 = pastY1;
         pastY1 = position.y;
 
-        System.out.println(standing());
+//        System.out.println(standing());
     }
 
     public Entity standing() {

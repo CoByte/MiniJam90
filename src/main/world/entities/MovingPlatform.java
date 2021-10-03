@@ -2,6 +2,7 @@ package main.world.entities;
 
 import main.misc.CollisionBox;
 import main.misc.Timer;
+import main.misc.Utilities;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PVector;
@@ -63,8 +64,13 @@ public class MovingPlatform extends Entity {
 
     public float getSpeed() {
         float speed = topSpeed * 2;
-        if (!goingToB) speed *= -1;
+        if (goingToB) speed *= -1;
         if (waiting) speed = 0;
+        PVector velocity = PVector.sub(pointA, pointB).normalize();
+        float angle = Utilities.getAngle(pointA, pointB);
+        float proportion = 1 - Math.abs(1 - ((angle / PConstants.QUARTER_PI) % 2));
+        velocity.div(proportion + 1);
+        speed *= velocity.x;
         return speed;
     }
 
