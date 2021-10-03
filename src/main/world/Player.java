@@ -22,6 +22,8 @@ public class Player extends Entity {
     private static final float ACCELERATION_Y = 0.2f;
     private static final PVector SPRITE_SIZE = new PVector(39, 50);
 
+    private static final float CAST_RADIUS = 250;
+
     private final Animator RUNE_ANIMATION;
     private final Animator WALK_ANIMATION;
     private final Animator CAST_ANIMATION;
@@ -69,7 +71,9 @@ public class Player extends Entity {
     }
 
     private void handleIllusions() {
-        if (!CAST_ANIMATION.ended()) CAST_ANIMATION.update();
+        if (!CAST_ANIMATION.ended()) {
+            CAST_ANIMATION.update();
+        }
         if (InputManager.getInstance().leftMouse.falling() && standing() != null && CAST_ANIMATION.ended()) {
             CAST_ANIMATION.reset();
             illusionPosition = Main.matrixMousePosition.copy();
@@ -78,7 +82,11 @@ public class Player extends Entity {
         if (CAST_ANIMATION.getCurrentTime() == 2 && !justCast) {
             RUNE_ANIMATION.reset();
             justCast = true; //prevent casting on betweenFrames
-            world.illusion = new Illusion(standing(), PVector.sub(illusionPosition, standing().position));
+            if (world.getCollidingEntities(new CollisionEntity(
+                    standing().collider,
+                    illusionPosition
+            )).isEmpty() && PVector.dist(illusionPosition, position) < CAST_RADIUS)
+                world.illusion = new Illusion(standing(), PVector.sub(illusionPosition, standing().position));
         }
     }
 
@@ -198,6 +206,8 @@ public class Player extends Entity {
             P.imageMode(PConstants.CENTER);
             P.image(RUNE_ANIMATION.getCurrentFrame(), runePosition.x, runePosition.y);
             P.imageMode(Main.DEFAULT_MODE);
+            P.fill(175, 1, 175, 35);
+            P.circle(position.x + collider.OFFSET.x / 2, position.y + collider.OFFSET.y / 2, CAST_RADIUS * 2);
         }
 
         if (facingLeft) { //mirroring

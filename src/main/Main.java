@@ -149,17 +149,13 @@ public class Main extends PApplet {
                 ),
                 new MovingPlatform(p, workingWorld,
                         new PVector(1000, 400),
-                        new PVector(1000, 800),
-                        3, Utilities.secondsToFrames(1.5f)
+                        new PVector(1000, 500),
+                        3, Utilities.secondsToFrames(3f)
                 ),
                 new Fire(p, new PVector(300, 300), workingWorld),
                 new WaxDoor(p, workingWorld, new PVector(1000, 650), 1),
                 new Lever(p, workingWorld, new PVector(300, 700), door),
-                door,
-                new MovingPlatform(p, workingWorld,
-                        new PVector(275, 400),
-                        new PVector(275, 1000),
-                        3, 0)
+                door
         )));
         worlds.add(workingWorld);
     }
