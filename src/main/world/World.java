@@ -3,10 +3,9 @@ package main.world;
 import main.misc.DataControl;
 import main.misc.IntVector;
 import main.misc.Tile;
+import main.particles.Particle;
 import main.world.entities.Entity;
-import main.world.entities.Fire;
 import main.world.entities.Illusion;
-import main.world.entities.MovingPlatform;
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -27,6 +26,9 @@ public class World {
     public ArrayList<Entity> entities;
     public Illusion illusion;
 
+    public ArrayList<Particle> behindParticles;
+    public ArrayList<Particle> inFrontParticles;
+
     private Player player;
 
     public World(PApplet p, String levelFile) {
@@ -40,6 +42,8 @@ public class World {
         DataControl.loadLevel(levelFile, TILEMAP);
 
         entities = new ArrayList<>();
+        behindParticles = new ArrayList<>();
+        inFrontParticles = new ArrayList<>();
 
         player = new Player(P, new PVector(200, BOARD_SIZE.y - 200), this);
         entities.add(player);
@@ -99,11 +103,21 @@ public class World {
             if (debug) tile.collider.display(tile.position);
         }
 
+        for (int i = behindParticles.size() - 1; i >= 0; i--) {
+            Particle particle = behindParticles.get(i);
+            particle.main();
+        }
+
         entities.forEach(Entity::draw);
         if (illusion != null) illusion.draw();
 
         for (int i = 0; i < TILEMAP.size(); i++) {
             TILEMAP.get(i).displayObstacle();
+        }
+
+        for (int i = inFrontParticles.size() - 1; i >= 0; i--) {
+            Particle particle = inFrontParticles.get(i);
+            particle.main();
         }
     }
 }

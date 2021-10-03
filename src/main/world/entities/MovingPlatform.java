@@ -3,12 +3,15 @@ package main.world.entities;
 import main.Main;
 import main.misc.CollisionBox;
 import main.misc.Timer;
+import main.particles.FloatParticle;
 import main.world.World;
 import main.misc.Utilities;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
 import processing.core.PVector;
+
+import java.awt.*;
 
 public class MovingPlatform extends Entity {
 
@@ -108,5 +111,11 @@ public class MovingPlatform extends Entity {
     @Override
     public void draw() {
         P.image(sprite, position.x, position.y, collider.getRightEdge(), collider.getBottomEdge());
+        if (P.random(2) < 1) {
+            world.behindParticles.add(new FloatParticle(P,
+                    P.random(position.x, position.x + collider.getRightEdge()),
+                    P.random(position.y, position.y + collider.getBottomEdge()),
+                    new Color(0, 255, 255), world.behindParticles));
+        }
     }
 }

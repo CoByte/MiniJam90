@@ -15,6 +15,8 @@ public class SpriteLoader {
         getAnimation(p, "genericButton", "BT", 3);
 
         getAnimation(p, "walk", "Player", 8);
+
+        getAnimation(p, "", "fire", 3);
     }
 
     private static void getAnimation(PApplet p, String name, String type, int length) {
@@ -25,6 +27,9 @@ public class SpriteLoader {
                 break;
             case "Player":
                 path.append("player/");
+                break;
+            case "fire":
+                path.append("fire/");
                 break;
         }
         path.append(name).append("/");
@@ -45,5 +50,9 @@ public class SpriteLoader {
         }
 
         sprites.put("movingPlatform", p.loadImage("sprites/movingPlatform.png"));
+        sprites.put("wax", p.loadImage("sprites/wax.png"));
+        sprites.put("door", p.loadImage("sprites/door.png"));
+        sprites.put("leverBack", p.loadImage("sprites/leverBack.png"));
+        sprites.put("leverHandle", p.loadImage("sprites/leverHandle.png"));
     }
 }
