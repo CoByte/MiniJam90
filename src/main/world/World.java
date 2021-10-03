@@ -3,10 +3,9 @@ package main.world;
 import main.misc.DataControl;
 import main.misc.IntVector;
 import main.misc.Tile;
+import main.particles.Particle;
 import main.world.entities.Entity;
-import main.world.entities.Fire;
 import main.world.entities.Illusion;
-import main.world.entities.MovingPlatform;
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -27,6 +26,8 @@ public class World {
     public ArrayList<Entity> entities;
     public Illusion illusion;
 
+    public ArrayList<Particle> particles;
+
     private Player player;
 
     public World(PApplet p, String levelFile) {
@@ -40,6 +41,7 @@ public class World {
         DataControl.loadLevel(levelFile, TILEMAP);
 
         entities = new ArrayList<>();
+        particles = new ArrayList<>();
 
         player = new Player(P, new PVector(200, BOARD_SIZE.y - 200), this);
         entities.add(player);
@@ -90,6 +92,7 @@ public class World {
         }
         entities.forEach(Entity::update);
         if (illusion != null) illusion.update();
+        for (Particle particle : particles) particle.main();
     }
 
     private void display() {
