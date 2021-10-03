@@ -42,7 +42,7 @@ public class WorldBuilder {
                         new Fire(p, new PVector(300, 400), world),
                         new WaxDoor(p, world, new PVector(1000, 650), 1),
                         new Lever(p, world, new PVector(300, 700), door),
-                        door,
+//                        door,
                         new MovingPlatform(p, world,
                                 new PVector(275, 400),
                                 new PVector(275, 1000),
@@ -55,6 +55,9 @@ public class WorldBuilder {
                         "damn thats the good stuff",
                         "very long string, wow so long, incredible, isnt this hot, wow, so thicc and big, its so immense, it just keeps going, truly fantastic, would probably make jesus wet, honestly shocked its still going, someone really needs to put a stop to this, its just too big and girthy owo,"
                 );
+                break;
+            case 1:
+                world = new World(p, "test");
                 break;
             default:
                 world = null;

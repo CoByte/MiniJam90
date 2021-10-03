@@ -1,6 +1,8 @@
 package main.world;
 
+import com.jogamp.newt.event.KeyEvent;
 import main.misc.DataControl;
+import main.misc.InputManager;
 import main.misc.IntVector;
 import main.misc.Tile;
 import main.particles.Particle;
@@ -19,6 +21,10 @@ import static main.Main.*;
 
 public class World {
 
+    private enum State {
+        Playing, Resetting, Advancing, Exiting
+    }
+
     public final Tile.TileDS TILEMAP;
 
     private final PApplet P;
@@ -33,6 +39,10 @@ public class World {
 
     public ArrayList<Particle> behindParticles;
     public ArrayList<Particle> inFrontParticles;
+
+    private State currentState = State.Playing;
+
+    private float black_x;
 
     private Player player;
 
@@ -55,6 +65,8 @@ public class World {
         player = new Player(P, new PVector(200, BOARD_SIZE.y - 200), this);
 
         dialogue = new DialogueEngine(p, player, new ArrayList<>());
+
+        black_x = BOARD_SIZE.x;
     }
 
     public void addDialogue(String... text) {
@@ -64,6 +76,12 @@ public class World {
     public void main() {
         update();
         display();
+        exitControl();
+
+        if (InputManager.getInstance().getEvent(KeyEvent.VK_ESCAPE).rising()) exit();
+
+        //todo: temp
+        fadeSoundLoops.get("music").setTargetVolume(1);
     }
 
     public ArrayList<Entity> getCollidingEntities(Entity entity) {
@@ -103,7 +121,6 @@ public class World {
     }
 
     private void update() {
-
         for (int i = 0; i < TILEMAP.size(); i++) {
             TILEMAP.get(i).update();
         }
@@ -155,7 +172,47 @@ public class World {
         }
     }
 
+    private void exitControl() {
+        black_x += 50;
+
+        if (currentState != State.Playing) {
+            if (black_x > BOARD_SIZE.x) {
+                switch (currentState) {
+                    case Resetting:
+                        worlds.set(currentWorld, WorldBuilder.buildWorld(P, currentWorld));
+                        break;
+                    case Advancing:
+                        currentWorld++;
+                        break;
+                    case Exiting:
+                        scene = Scene.TitleScreen;
+                        break;
+                }
+            }
+        }
+
+        P.fill(0);
+        P.rect(black_x, 0, BOARD_SIZE.x * -1.5f, BOARD_SIZE.y);
+    }
+
+    private void setBlack() {
+        if (currentState.equals(State.Playing)) {
+            black_x = 0;
+        }
+    }
+
     public void reset() {
-        worlds.set(currentWorld, WorldBuilder.buildWorld(P, currentWorld));
+        setBlack();
+        currentState = State.Resetting;
+    }
+
+    public void advance() {
+        setBlack();
+        currentState = State.Advancing;
+    }
+
+    public void exit() {
+        setBlack();
+        currentState = State.Exiting;
     }
 }

@@ -24,5 +24,6 @@ public class SoundLoader {
 
         //loops
         fadeSoundLoops.put("fire",  new FadeSoundLoop(p, "fire", 1));
+        fadeSoundLoops.put("music",  new FadeSoundLoop(p, "music", 1));
     }
 }

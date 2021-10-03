@@ -22,6 +22,7 @@ import processing.sound.Sound;
 import processing.sound.SoundFile;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -51,7 +52,7 @@ public class Main extends PApplet {
     public static final String TITLE = "template";
 
     public static float globalVolume = 0.25f;
-    public static boolean debug = true;
+    public static boolean debug = false;
 
     private static final Color BACKGROUND_COLOR = new Color(0, 15, 45);
     private static final boolean FULLSCREEN = true;
@@ -138,8 +139,8 @@ public class Main extends PApplet {
     }
 
     public static void setupWorlds(PApplet p) {
-        for (int i = 0; i < 1; i++) {
-            worlds.add(WorldBuilder.buildWorld(p, 0));
+        for (int i = 0; i < 2; i++) {
+            worlds.add(WorldBuilder.buildWorld(p, i));
         }
     }
 
@@ -216,11 +217,13 @@ public class Main extends PApplet {
     @Override
     public void keyPressed() {
         inputManager.testPresses((short) keyCode);
+        if (key == ESC) key = 0;
     }
 
     @Override
     public void keyReleased() {
         inputManager.testReleases((short) keyCode);
+        if (key == ESC) key = 0;
     }
 
     @Override
