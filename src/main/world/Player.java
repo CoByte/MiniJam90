@@ -12,9 +12,9 @@ import java.util.ArrayList;
 
 public class Player extends Entity {
 
-    private static final float WALK_SPEED = 2;
-    private static final float JUMP_SPEED = -5;
-    private static final float ACCELERATION_Y = 0.1f;
+    private static final float WALK_SPEED = 3;
+    private static final float JUMP_SPEED = -8;
+    private static final float ACCELERATION_Y = 0.2f;
 
     private final World WORLD;
     private final Animator WALK_ANIMATION;
