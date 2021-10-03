@@ -69,7 +69,8 @@ public class Main extends PApplet {
     public static Hand hand;
     public static LevelBuilderGui levelBuilderGui;
 
-    public static World world;
+    public static World[] worlds;
+    public static int currentWorld;
     public static TitleScreen titleScreen;
     public static LoadingScreen loadingScreen;
 
@@ -129,6 +130,12 @@ public class Main extends PApplet {
         loadAnimations(p);
     }
 
+    public static void setupWorlds(PApplet p) {
+        worlds = new World[]{
+                new World(p, "test")
+        };
+    }
+
     @Override
     public void draw() {
         inputManager.update();
@@ -139,7 +146,7 @@ public class Main extends PApplet {
 
         switch (scene) {
             case World:
-                world.main();
+                worlds[currentWorld].main();
                 if (debug) {
                     levelBuilderGui.main();
                     hand.main();

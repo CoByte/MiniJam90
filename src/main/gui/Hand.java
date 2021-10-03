@@ -80,7 +80,7 @@ public class Hand {
      */
     private void place() {
         if (held.endsWith("TL")) {
-            Tile tile = world.TILEMAP.get((roundToInteger(matrixMousePosition.x, 50) / 50), (roundToInteger(matrixMousePosition.y, 50) / 50));
+            Tile tile = worlds[currentWorld].TILEMAP.get((roundToInteger(matrixMousePosition.x, 50) / 50), (roundToInteger(matrixMousePosition.y, 50) / 50));
             if (tile == null) return;
             if (held.endsWith("Ba_TL")) tile.setBase(held);
             else if (held.endsWith("De_TL")) tile.setDecoration(held);

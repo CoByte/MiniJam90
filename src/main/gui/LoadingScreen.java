@@ -1,7 +1,6 @@
 package main.gui;
 
 import main.Main;
-import main.misc.DataControl;
 import main.misc.Utilities;
 import main.world.World;
 import processing.core.PApplet;
@@ -9,6 +8,7 @@ import processing.core.PConstants;
 import processing.core.PFont;
 
 import static main.Main.BOARD_SIZE;
+import static main.Main.setupWorlds;
 
 public class LoadingScreen {
 
@@ -38,7 +38,7 @@ public class LoadingScreen {
                 Main.setupMisc(P);
                 break;
             case 2:
-                Main.world = new World(P);
+                setupWorlds(P);
                 Main.titleScreen = new TitleScreen(P);
                 break;
             case 3:

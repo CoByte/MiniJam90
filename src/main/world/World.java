@@ -30,7 +30,7 @@ public class World {
     private Entity test;
     private Player player;
 
-    public World(PApplet p) {
+    public World(PApplet p, String levelFile) {
         P = p;
 
         TILEMAP = new Tile.TileDS();
@@ -42,7 +42,7 @@ public class World {
 
         entities = new ArrayList<>();
 
-        DataControl.loadLevel("test", TILEMAP);
+        DataControl.loadLevel(levelFile, TILEMAP);
 
         test = new MovingPlatform(
                 P,
