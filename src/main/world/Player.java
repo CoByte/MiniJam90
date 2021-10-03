@@ -28,7 +28,9 @@ public class Player extends Entity {
     private boolean facingLeft;
     private boolean grounded;
     private float velocity_y;
+
     private Entity standingOn;
+    private Entity pastStandingOn;
 
     public Player(PApplet p, PVector position, World world) {
         super(p, new CollisionBox(p, new PVector(39, 50)/*, new PVector(0, 2)*/), position);
@@ -49,8 +51,8 @@ public class Player extends Entity {
     }
 
     private void handleIllusions() {
-        if (InputManager.getInstance().leftMouse.falling() && standingOn != null) {
-            WORLD.illusion = new Illusion(standingOn, PVector.sub(Main.matrixMousePosition, standingOn.position));
+        if (InputManager.getInstance().leftMouse.falling() && standing() != null) {
+            WORLD.illusion = new Illusion(standing(), PVector.sub(Main.matrixMousePosition, standing().position));
         }
     }
 
@@ -76,6 +78,7 @@ public class Player extends Entity {
         position.y += velocity_y;
 
         grounded = false;
+        pastStandingOn = standingOn;
         standingOn = null;
         ArrayList<Entity> entities = WORLD.getCollidingEntities(this);
 //        System.out.println(entities);
@@ -124,6 +127,12 @@ public class Player extends Entity {
 
         pastY2 = pastY1;
         pastY1 = position.y;
+
+        System.out.println(standing());
+    }
+
+    public Entity standing() {
+        return standingOn != null ? standingOn : pastStandingOn;
     }
 
     @Override

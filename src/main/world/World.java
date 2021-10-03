@@ -44,14 +44,14 @@ public class World {
 
         DataControl.loadLevel("test", TILEMAP);
 
-//        test = new MovingPlatform(
-//                P,
-//                new PVector(250, 250),
-//                new PVector(600, 250),
-//                3,
-//                10
-//        );
-        test = new Fire(P, new PVector(400, 700));
+        test = new MovingPlatform(
+                P,
+                new PVector(250, 250),
+                new PVector(600, 250),
+                3,
+                10
+        );
+//        test = new Fire(P, new PVector(400, 700));
         player = new Player(P, new PVector(200, BOARD_SIZE.y - 200), this);
 
         entities.add(player);
