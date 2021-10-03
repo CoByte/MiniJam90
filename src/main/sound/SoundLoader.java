@@ -3,6 +3,7 @@ package main.sound;
 import processing.core.PApplet;
 import processing.sound.SoundFile;
 
+import static main.Main.fadeSoundLoops;
 import static main.Main.sounds;
 
 public class SoundLoader {
@@ -20,5 +21,8 @@ public class SoundLoader {
         //environment
         sounds.put("door", new SoundFile(p, "sounds/door.wav"));
         sounds.put("doorSlam", new SoundFile(p, "sounds/doorSlam.wav"));
+
+        //loops
+        fadeSoundLoops.put("fire",  new FadeSoundLoop(p, "fire", 1));
     }
 }

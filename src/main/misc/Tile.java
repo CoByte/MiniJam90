@@ -2,6 +2,7 @@ package main.misc;
 
 import main.particles.FloatParticle;
 import main.particles.GravityParticle;
+import main.sound.FadeSoundLoop;
 import main.world.World;
 import main.world.entities.Entity;
 import processing.core.PApplet;
@@ -25,6 +26,7 @@ public class Tile extends Entity {
     public String obstacleName;
 
     private final Timer burnTimer;
+    private final FadeSoundLoop fireSound;
 
     public Tile(PApplet p, World world, PVector position, int id) {
         super(p, world, new CollisionBox(p, new PVector(), new PVector(TILE_SIZE, TILE_SIZE)), position);
@@ -33,6 +35,7 @@ public class Tile extends Entity {
         this.flammable = false;
 
         burnTimer = new Timer(Utilities.secondsToFrames(5));
+        fireSound = fadeSoundLoops.get("fire");
     }
 
     public void highlight(Color color) {
@@ -51,6 +54,7 @@ public class Tile extends Entity {
     public void displayObstacle() {
         if (obstacle != null) P.image(obstacle, position.x, position.y, TILE_SIZE, TILE_SIZE);
         if (onFire) {
+            fireSound.setTargetVolume(1);
             if (P.random(5) < 1) {
                 PVector pos = getRandPos();
                 world.inFrontParticles.add(new FloatParticle(P,
