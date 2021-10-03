@@ -110,7 +110,7 @@ public class Player extends Entity {
                     standing().collider,
                     illusionPosition
             )).stream().anyMatch(e -> !(e instanceof Illusion));
-            if (!isColliding && PVector.dist(illusionPosition, position) < CAST_RADIUS)
+            if (!isColliding && PVector.dist(illusionPosition, position) < CAST_RADIUS) {
                 world.illusion = new Illusion(standing(), PVector.sub(illusionPosition, standing().position));
                 SoundUtilities.playSoundRandomSpeed(P, CAST_SOUND, 1);
             } else SoundUtilities.playSoundRandomSpeed(P, FAIL_SOUND, 1);
