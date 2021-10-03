@@ -24,15 +24,15 @@ public class Tile extends Entity {
     public PImage obstacle;
     public String obstacleName;
 
-    int baseHierarchy;
-    PImage[] baseEdges;
+    private final Timer burnTimer;
 
     public Tile(PApplet p, World world, PVector position, int id) {
         super(p, world, new CollisionBox(p, new PVector(), new PVector(TILE_SIZE, TILE_SIZE)), position);
 
         this.id = id;
         this.flammable = false;
-        baseEdges = new PImage[4];
+
+        burnTimer = new Timer(Utilities.secondsToFrames(5));
     }
 
     public void highlight(Color color) {
@@ -50,8 +50,26 @@ public class Tile extends Entity {
 
     public void displayObstacle() {
         if (obstacle != null) P.image(obstacle, position.x, position.y, TILE_SIZE, TILE_SIZE);
-        P.fill(255, 0, 0);
-        if (onFire) P.rect(position.x, position.y, TILE_SIZE, TILE_SIZE);
+        if (onFire) {
+            if (P.random(5) < 1) {
+                PVector pos = getRandPos();
+                world.inFrontParticles.add(new FloatParticle(P,
+                        pos.x, pos.y, new Color(255, 60, 0), world.inFrontParticles));
+            }
+            if (P.random(5) < 1) {
+                PVector pos = getRandPos();
+                world.inFrontParticles.add(new FloatParticle(P,
+                        pos.x, pos.y, new Color(255, 183, 0), world.inFrontParticles));
+            }
+            if (P.random(5) < 1) {
+                PVector pos = getRandPos();
+                world.inFrontParticles.add(new GravityParticle(P,
+                        pos.x, pos.y, new Color(255, 136, 0), world.inFrontParticles));
+            }
+            burnTimer.update();
+            if (burnTimer.triggered(false) && !obstacleName.contains("Charred"))
+                setObstacle(obstacleName.replace("wood", "woodCharred"));
+        }
     }
 
     /**
@@ -129,7 +147,6 @@ public class Tile extends Entity {
             }
         }
         displayObstacle();
-        P.tint(255);
     }
 
     public static class TileDS {

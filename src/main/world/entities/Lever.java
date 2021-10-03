@@ -5,6 +5,7 @@ import main.Main;
 import main.misc.CollisionBox;
 import main.misc.CollisionEntity;
 import main.misc.Trigger;
+import main.sound.SoundUtilities;
 import main.world.Player;
 import main.world.World;
 import processing.core.PApplet;
@@ -12,6 +13,7 @@ import processing.core.PConstants;
 import processing.core.PImage;
 import processing.core.PConstants;
 import processing.core.PVector;
+import processing.sound.SoundFile;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -29,6 +31,7 @@ public class Lever extends Entity {
 
     private final PImage handleSprite;
     private final PImage baseSprite;
+    private final SoundFile openSound;
 
     public boolean bottomedOut = false;
 
@@ -49,6 +52,8 @@ public class Lever extends Entity {
 
         handleSprite = Main.sprites.get("leverHandle");
         baseSprite = Main.sprites.get("leverBack");
+
+        openSound = Main.sounds.get("door");
     }
 
     public void drawBack() {
@@ -124,7 +129,10 @@ public class Lever extends Entity {
 
         pressed.triggerState(collider.OFFSET.y + 4 >= maxDrop);
 
-        if (pressed.rising()) door.activeLevers += 1;
+        if (pressed.rising()) {
+            door.activeLevers += 1;
+            SoundUtilities.playSoundRandomSpeed(P, openSound, 1);
+        }
         if (pressed.falling()) door.activeLevers -= 1;
     }
 

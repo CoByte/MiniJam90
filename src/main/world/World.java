@@ -1,8 +1,8 @@
 package main.world;
 
-import com.jogamp.newt.event.KeyEvent;
-import main.Main;
-import main.misc.*;
+import main.misc.DataControl;
+import main.misc.IntVector;
+import main.misc.Tile;
 import main.particles.Particle;
 import main.world.entities.Entity;
 import main.world.entities.Illusion;

@@ -50,6 +50,9 @@ public class SpriteLoader {
         for (int i = 0; i < 3; i++) {
             sprites.put("wood" + nf(i, 3) + "Ob_TL", p.loadImage("sprites/tiles/wood/" + nf(i, 3) + ".png"));
         }
+        for (int i = 0; i < 3; i++) {
+            sprites.put("woodCharred" + nf(i, 3) + "Ob_TL", p.loadImage("sprites/tiles/woodCharred/" + nf(i, 3) + ".png"));
+        }
 
         sprites.put("movingPlatform", p.loadImage("sprites/movingPlatform.png"));
         sprites.put("wax", p.loadImage("sprites/wax.png"));
