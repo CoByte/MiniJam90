@@ -11,10 +11,7 @@ import main.sound.FadeSoundLoop;
 import main.sound.SoundWithAlts;
 import main.sound.StartStopSoundLoop;
 import main.world.World;
-import main.world.entities.Entity;
-import main.world.entities.Fire;
-import main.world.entities.Illusion;
-import main.world.entities.MovingPlatform;
+import main.world.entities.*;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
@@ -152,7 +149,8 @@ public class Main extends PApplet {
                         new PVector(1000, 800),
                         3, Utilities.secondsToFrames(1.5f)
                 ),
-                new Fire(p, new PVector(300, 300), workingWorld)
+                new Fire(p, new PVector(300, 300), workingWorld),
+                new WaxDoor(p, workingWorld, new PVector(1000, 650), new PVector(0,1), 1)
         )));
         worlds.add(workingWorld);
     }

@@ -46,15 +46,6 @@ public class World {
     }
 
     public void main() {
-        for (int i = 0; i < TILEMAP.size(); i++) {
-            Tile tile = TILEMAP.get(i);
-            tile.displayBaseAndDecoration();
-            if (debug) tile.collider.display(tile.position);
-        }
-        for (int i = 0; i < TILEMAP.size(); i++) {
-            TILEMAP.get(i).displayObstacle();
-        }
-
         update();
         display();
     }
@@ -102,7 +93,17 @@ public class World {
     }
 
     private void display() {
+        for (int i = 0; i < TILEMAP.size(); i++) {
+            Tile tile = TILEMAP.get(i);
+            tile.displayBaseAndDecoration();
+            if (debug) tile.collider.display(tile.position);
+        }
+
         entities.forEach(Entity::draw);
         if (illusion != null) illusion.draw();
+
+        for (int i = 0; i < TILEMAP.size(); i++) {
+            TILEMAP.get(i).displayObstacle();
+        }
     }
 }

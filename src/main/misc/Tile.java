@@ -30,7 +30,7 @@ public class Tile extends Entity {
         super(p, world, new CollisionBox(p, new PVector(), new PVector(TILE_SIZE, TILE_SIZE)), position);
 
         this.id = id;
-        this.flammable = true;
+        this.flammable = false;
         baseEdges = new PImage[4];
     }
 
