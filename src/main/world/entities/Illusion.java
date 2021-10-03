@@ -11,7 +11,7 @@ public class Illusion extends Entity {
     public final PVector offset;
 
     public Illusion(Entity trueEntity, PVector offset) {
-        super(trueEntity.P, trueEntity.collider.copy(), trueEntity.position.copy());
+        super(trueEntity.P, trueEntity.world, trueEntity.collider.copy(), trueEntity.position.copy());
         this.trueEntity = trueEntity;
         this.offset = offset;
     }

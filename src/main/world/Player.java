@@ -16,7 +16,6 @@ public class Player extends Entity {
     private static final float JUMP_SPEED = -8;
     private static final float ACCELERATION_Y = 0.2f;
 
-    private final World WORLD;
     private final Animator WALK_ANIMATION;
     /**Allows the player to jump if they have just stepped off an edge, this is common in platformers.**/
     private final Timer COYOTE_TIMER;
@@ -33,9 +32,8 @@ public class Player extends Entity {
     private Entity pastStandingOn;
 
     public Player(PApplet p, PVector position, World world) {
-        super(p, new CollisionBox(p, new PVector(39, 50)/*, new PVector(0, 2)*/), position);
+        super(p, world, new CollisionBox(p, new PVector(39, 50)/*, new PVector(0, 2)*/), position);
 
-        WORLD = world;
         WALK_ANIMATION = new Animator(Main.animations.get("walkPlayer"), 8);
         COYOTE_TIMER = new Timer(Utilities.secondsToFrames(0.3f), true);
         DETECT_OFFSET = new PVector(
@@ -52,7 +50,7 @@ public class Player extends Entity {
 
     private void handleIllusions() {
         if (InputManager.getInstance().leftMouse.falling() && standing() != null) {
-            WORLD.illusion = new Illusion(standing(), PVector.sub(Main.matrixMousePosition, standing().position));
+            world.illusion = new Illusion(standing(), PVector.sub(Main.matrixMousePosition, standing().position));
         }
     }
 
@@ -80,7 +78,7 @@ public class Player extends Entity {
         grounded = false;
         pastStandingOn = standingOn;
         standingOn = null;
-        ArrayList<Entity> entities = WORLD.getCollidingEntities(this);
+        ArrayList<Entity> entities = world.getCollidingEntities(this);
 //        System.out.println(entities);
         for (Entity entity : entities) {
             CollisionBox otherCollider = entity.collider;
@@ -152,6 +150,6 @@ public class Player extends Entity {
 
         if (Main.debug) collider.display(position);
 
-        if (standingOn != null) standingOn.highlight();
+        if (standing() != null) standing().highlight();
     }
 }

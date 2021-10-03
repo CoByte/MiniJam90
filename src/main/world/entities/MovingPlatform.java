@@ -3,6 +3,7 @@ package main.world.entities;
 import main.Main;
 import main.misc.CollisionBox;
 import main.misc.Timer;
+import main.world.World;
 import main.misc.Utilities;
 import processing.core.PApplet;
 import processing.core.PConstants;
@@ -27,9 +28,18 @@ public class MovingPlatform extends Entity {
     private final Timer waitTimer;
     private final PImage sprite;
 
-    public MovingPlatform(PApplet p, float width, float height, PVector pointA, PVector pointB, float speed, int endWait) {
-        super(p, new CollisionBox(p, new PVector(WIDTH / 2, HEIGHT / 2)), pointA.copy());
-        if (pointA.x != pointB.x && pointA.y != pointB.y) throw new RuntimeException("No diagonal platforms allowed :(");
+    public MovingPlatform(
+            PApplet p,
+            World world,
+            float width,
+            float height,
+            PVector pointA,
+            PVector pointB,
+            float speed,
+            int endWait)
+    {
+        super(p, world, new CollisionBox(p, new PVector(WIDTH / 2, HEIGHT / 2)), pointA.copy());
+        if (pointA.x != pointB.x && pointA.y != pointB.x) throw new RuntimeException("No diagonal platforms allowed :(");
 
         this.width = width;
         this.height = height;
@@ -43,8 +53,15 @@ public class MovingPlatform extends Entity {
         sprite = Main.sprites.get("movingPlatform");
     }
 
-    public MovingPlatform(PApplet p, PVector pointA, PVector pointB, float speed, int endWait) {
-        this(p, WIDTH, HEIGHT, pointA, pointB, speed, endWait);
+    public MovingPlatform(
+            PApplet p,
+            World world,
+            PVector pointA,
+            PVector pointB,
+            float speed,
+            int endWait)
+    {
+        this(p, world, WIDTH, HEIGHT, pointA, pointB, speed, endWait);
     }
 
     @Override
@@ -78,6 +95,7 @@ public class MovingPlatform extends Entity {
         velocity.div(proportion + 1);
         speed *= velocity.x;
         velocity.y *= -1;
+        System.out.println(velocity);
         return new PVector(speed, velocity.y * topSpeed * 2);
     }
 

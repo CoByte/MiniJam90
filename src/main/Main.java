@@ -75,7 +75,7 @@ public class Main extends PApplet {
     public static Hand hand;
     public static LevelBuilderGui levelBuilderGui;
 
-    public static World[] worlds;
+    public static ArrayList<World> worlds = new ArrayList<>();
     public static int currentWorld;
     public static TitleScreen titleScreen;
     public static LoadingScreen loadingScreen;
@@ -137,16 +137,22 @@ public class Main extends PApplet {
     }
 
     public static void setupWorlds(PApplet p) {
-        worlds = new World[]{
-            new World(p, "test", new ArrayList<>(Arrays.asList(
-                    new MovingPlatform(p,
-                            new PVector(1000, 400),
-                            new PVector(1000, 800),
-                            3, Utilities.secondsToFrames(1.5f)
-                    )
+        World workingWorld;
+
+        workingWorld = new World(p, "test");
+        workingWorld.entities.addAll(new ArrayList<>(Arrays.asList(
+                new MovingPlatform(p, workingWorld,
+                        new PVector(400, 400),
+                        new PVector(800, 800),
+                        3, Utilities.secondsToFrames(1.5f)
+                ),
+                new MovingPlatform(p, workingWorld,
+                        new PVector(1000, 400),
+                        new PVector(1000, 800),
+                        3, Utilities.secondsToFrames(1.5f)
                 )
-            ))
-        };
+        )));
+        worlds.add(workingWorld);
     }
 
     @Override
@@ -159,7 +165,7 @@ public class Main extends PApplet {
 
         switch (scene) {
             case World:
-                worlds[currentWorld].main();
+                worlds.get(currentWorld).main();
                 if (debug) {
                     levelBuilderGui.main();
                     hand.main();
