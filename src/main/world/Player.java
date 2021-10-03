@@ -21,6 +21,7 @@ public class Player extends Entity {
 
     private final Animator WALK_ANIMATION;
     private final Animator CAST_ANIMATION;
+    private final PImage JUMP_SPRITE;
 
     /**Allows the player to jump if they have just stepped off an edge, this is common in platformers.**/
     private final Timer COYOTE_TIMER;
@@ -46,6 +47,8 @@ public class Player extends Entity {
         WALK_ANIMATION = new Animator(Main.animations.get("walkPlayer"), 8);
         CAST_ANIMATION = new Animator(Main.animations.get("castPlayer"), 6, false);
         CAST_ANIMATION.setEnded();
+        JUMP_SPRITE = Main.sprites.get("jumpPlayer");
+
         COYOTE_TIMER = new Timer(Utilities.secondsToFrames(0.3f), true);
         DETECT_OFFSET = new PVector(
                 collider.getRightEdge() / 2,
@@ -162,11 +165,9 @@ public class Player extends Entity {
     @Override
     public void draw() {
         PImage sprite;
-        if (CAST_ANIMATION.ended()) {
-            sprite = WALK_ANIMATION.getCurrentFrame();
-        } else {
-            sprite = CAST_ANIMATION.getCurrentFrame();
-        }
+        if (CAST_ANIMATION.ended()) sprite = WALK_ANIMATION.getCurrentFrame();
+        else sprite = CAST_ANIMATION.getCurrentFrame();
+        if (!grounded) sprite = JUMP_SPRITE;
 
         if (facingLeft) { //mirroring
             P.pushMatrix();

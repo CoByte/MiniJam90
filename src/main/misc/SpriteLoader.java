@@ -55,5 +55,6 @@ public class SpriteLoader {
         sprites.put("door", p.loadImage("sprites/door.png"));
         sprites.put("leverBack", p.loadImage("sprites/leverBack.png"));
         sprites.put("leverHandle", p.loadImage("sprites/leverHandle.png"));
+        sprites.put("jumpPlayer", p.loadImage("sprites/player/jump.png"));
     }
 }
