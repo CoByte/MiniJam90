@@ -15,6 +15,8 @@ public class SpriteLoader {
         getAnimation(p, "genericButton", "BT", 3);
 
         getAnimation(p, "walk", "Player", 8);
+        getAnimation(p, "cast", "Player", 6);
+        getAnimation(p, "illusion", "Player", 5);
 
         getAnimation(p, "", "fire", 3);
     }
@@ -54,5 +56,6 @@ public class SpriteLoader {
         sprites.put("door", p.loadImage("sprites/door.png"));
         sprites.put("leverBack", p.loadImage("sprites/leverBack.png"));
         sprites.put("leverHandle", p.loadImage("sprites/leverHandle.png"));
+        sprites.put("jumpPlayer", p.loadImage("sprites/player/jump.png"));
     }
 }

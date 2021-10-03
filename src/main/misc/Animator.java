@@ -49,6 +49,10 @@ public class Animator {
         ANIMATION_TIMER.reset();
     }
 
+    public void setEnded() {
+        ANIMATION_TIMER.setCurrentTime(ANIMATION.length - 1);
+    }
+
     public PImage getFrame(int i) {
         try {
             return ANIMATION[i];

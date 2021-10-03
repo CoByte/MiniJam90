@@ -7,17 +7,26 @@ import main.world.entities.Illusion;
 import main.world.entities.Lever;
 import main.world.entities.MovingPlatform;
 import processing.core.PApplet;
+import processing.core.PConstants;
+import processing.core.PImage;
 import processing.core.PVector;
 
 import java.util.ArrayList;
 
 public class Player extends Entity {
 
+    public float velocity_y;
+
     private static final float WALK_SPEED = 3;
     private static final float JUMP_SPEED = -8;
     private static final float ACCELERATION_Y = 0.2f;
+    private static final PVector SPRITE_SIZE = new PVector(39, 50);
 
+    private final Animator RUNE_ANIMATION;
     private final Animator WALK_ANIMATION;
+    private final Animator CAST_ANIMATION;
+    private final PImage JUMP_SPRITE;
+
     /**Allows the player to jump if they have just stepped off an edge, this is common in platformers.**/
     private final Timer COYOTE_TIMER;
     private final PVector DETECT_OFFSET;
@@ -27,15 +36,25 @@ public class Player extends Entity {
 
     private boolean facingLeft;
     private boolean grounded;
-    public float velocity_y;
+    private boolean justCast;
+    private PVector illusionPosition;
 
     private Entity standingOn;
     private Entity pastStandingOn;
 
     public Player(PApplet p, PVector position, World world) {
-        super(p, world, new CollisionBox(p, new PVector(39, 50)/*, new PVector(0, 2)*/), position);
+        super(p, world, new CollisionBox(p,
+                new PVector(10, 10),
+                new PVector(20, 40)
+                ), position);
 
+        RUNE_ANIMATION = new Animator(Main.animations.get("illusionPlayer"), 4, false);
+        RUNE_ANIMATION.setEnded();
         WALK_ANIMATION = new Animator(Main.animations.get("walkPlayer"), 8);
+        CAST_ANIMATION = new Animator(Main.animations.get("castPlayer"), 6, false);
+        CAST_ANIMATION.setEnded();
+        JUMP_SPRITE = Main.sprites.get("jumpPlayer");
+
         COYOTE_TIMER = new Timer(Utilities.secondsToFrames(0.3f), true);
         DETECT_OFFSET = new PVector(
                 collider.getRightEdge() / 2,
@@ -50,13 +69,31 @@ public class Player extends Entity {
     }
 
     private void handleIllusions() {
-        if (InputManager.getInstance().leftMouse.falling() && standing() != null) {
-            world.illusion = new Illusion(standing(), PVector.sub(Main.matrixMousePosition, standing().position));
+        if (!CAST_ANIMATION.ended()) CAST_ANIMATION.update();
+        if (InputManager.getInstance().leftMouse.falling() && standing() != null && CAST_ANIMATION.ended()) {
+            CAST_ANIMATION.reset();
+            illusionPosition = Main.matrixMousePosition.copy();
+            justCast = false;
+        }
+        if (CAST_ANIMATION.getCurrentTime() == 2 && !justCast) {
+            RUNE_ANIMATION.reset();
+            justCast = true; //prevent casting on betweenFrames
+            world.illusion = new Illusion(standing(), PVector.sub(illusionPosition, standing().position));
         }
     }
 
     private void move() {
-        IntVector axes = Utilities.getAxesFromMovementKeys();
+        IntVector axes;
+        if (CAST_ANIMATION.ended()) axes = Utilities.getAxesFromMovementKeys();
+        else {
+            axes = new IntVector(0, 0);
+            facingLeft = Utilities.angleIsFacingLeftWeird(
+                    Utilities.getAngle(
+                            illusionPosition,
+                            collider.getWorldCenter(position)
+                    ) - PConstants.HALF_PI
+            );
+        }
         /*
         I use this instead of `facingLeft = axes.x < 0` because I don't want the player's
         direction to change if they stop moving (axes.x == 0).
@@ -102,10 +139,6 @@ public class Player extends Entity {
                 MovingPlatform mp = (MovingPlatform) entity;
                 speed = mp.getVelocity().x;
                 groundVelocity_Y = mp.getVelocity().y;
-
-            CollisionBox.Direction direction = offset.direction;
-            float offsetValue = offset.offset;
-
             } else if (entity instanceof Lever) {
                 if (!(((Lever) entity).bottomedOut)) offset.direction = CollisionBox.Direction.None;
             }
@@ -149,15 +182,33 @@ public class Player extends Entity {
 
     @Override
     public void draw() {
+        PImage sprite;
+        if (CAST_ANIMATION.ended()) sprite = WALK_ANIMATION.getCurrentFrame();
+        else sprite = CAST_ANIMATION.getCurrentFrame();
+        if (!grounded) sprite = JUMP_SPRITE;
+
+        if (!CAST_ANIMATION.ended()) {
+            RUNE_ANIMATION.update();
+            float angle = Utilities.getAngle(collider.getWorldCenter(position), illusionPosition);
+            angle -= PConstants.HALF_PI;
+            PVector runePosition = PVector.add(
+                    collider.getWorldCenter(position),
+                    PVector.fromAngle(angle).setMag(50)
+            );
+            P.imageMode(PConstants.CENTER);
+            P.image(RUNE_ANIMATION.getCurrentFrame(), runePosition.x, runePosition.y);
+            P.imageMode(Main.DEFAULT_MODE);
+        }
+
         if (facingLeft) { //mirroring
             P.pushMatrix();
             P.translate(position.x, position.y);
             P.scale(-1, 1);
-            P.image(WALK_ANIMATION.getCurrentFrame(), -collider.getRightEdge(), 0,
-                    collider.getRightEdge(), collider.getBottomEdge());
+            P.image(sprite, -SPRITE_SIZE.x, 0,
+                    SPRITE_SIZE.x, SPRITE_SIZE.y);
             P.popMatrix();
-        } else P.image(WALK_ANIMATION.getCurrentFrame(), position.x, position.y,
-                collider.getRightEdge(), collider.getBottomEdge());
+        } else P.image(sprite, position.x, position.y,
+                SPRITE_SIZE.x, SPRITE_SIZE.y);
 
         if (Main.debug) collider.display(position);
 

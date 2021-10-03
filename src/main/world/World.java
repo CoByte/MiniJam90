@@ -6,6 +6,7 @@ import main.misc.Tile;
 import main.particles.Particle;
 import main.world.entities.Entity;
 import main.world.entities.Illusion;
+import main.world.entities.Lever;
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -106,6 +107,16 @@ public class World {
         for (int i = behindParticles.size() - 1; i >= 0; i--) {
             Particle particle = behindParticles.get(i);
             particle.main();
+        }
+
+        if (illusion != null && illusion.trueEntity instanceof Lever) {
+            illusion.drawLeverBack();
+        }
+
+        for (Entity entity : entities) {
+            if (entity instanceof Lever) {
+                ((Lever) entity).drawBack();
+            }
         }
 
         entities.forEach(Entity::draw);

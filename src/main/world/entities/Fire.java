@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public class Fire extends Entity {
 
     public static final PVector SIZE = new PVector(50, 50);
-    public static final PVector OFFSET = PVector.div(SIZE, -2);
 
     public final World world;
 
@@ -25,7 +24,9 @@ public class Fire extends Entity {
 
     public Fire(PApplet p, PVector position, World world) {
         super(p, world, new CollisionBox(p,
-                new PVector(SIZE.x / -2, 0), new PVector(SIZE.x, SIZE.y / 2)), position);
+                new PVector(SIZE.x / -3, SIZE.y / 8),
+                new PVector(SIZE.x / 1.5f, SIZE.y / 4)
+                ), position);
         this.world = world;
         this.onFire = true;
 
@@ -57,12 +58,5 @@ public class Fire extends Entity {
 //            world.inFrontParticles.add(new GravityParticle(P,
 //                    pos.x, pos.y, Color.ORANGE, world.inFrontParticles));
 //        }
-    }
-
-    private PVector getRandPos() {
-        return new PVector(
-                P.random(position.x + OFFSET.x, position.x + SIZE.x + OFFSET.x),
-                P.random(position.y + OFFSET.y, position.y + SIZE.y + OFFSET.y)
-        );
     }
 }
