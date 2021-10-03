@@ -1,11 +1,14 @@
 package main.world.entities;
 
+import main.Main;
 import main.misc.CollisionBox;
 import main.misc.CollisionEntity;
 import main.misc.Trigger;
 import main.world.Player;
 import main.world.World;
 import processing.core.PApplet;
+import processing.core.PConstants;
+import processing.core.PImage;
 import processing.core.PVector;
 
 import java.util.ArrayList;
@@ -17,6 +20,9 @@ public class Lever extends Entity {
     public final float endingY;
 
     private final CollisionEntity detection;
+
+    private final PImage handleSprite;
+    private final PImage baseSprite;
 
     public boolean bottomedOut = false;
 
@@ -37,6 +43,9 @@ public class Lever extends Entity {
         endingY = startingY + 25;
 
         pressed = new Trigger();
+
+        handleSprite = Main.sprites.get("leverHandle");
+        baseSprite = Main.sprites.get("leverBack");
     }
 
     @Override
@@ -65,7 +74,18 @@ public class Lever extends Entity {
 
     @Override
     public void draw() {
-        collider.display(position);
+        P.image(handleSprite, position.x, position.y, collider.SIZE.x, collider.SIZE.y);
+    }
+
+    public void drawBack() {
+        P.imageMode(PConstants.CENTER);
+        float size = (endingY - startingY) * 2f;
+        P.image(baseSprite,
+                collider.getWorldCenter(position).x,
+                startingY + (endingY - startingY) / 2,
+                size, size
+        );
+        P.imageMode(Main.DEFAULT_MODE);
     }
 
     public static boolean getDetected(World world, CollisionEntity detection) {

@@ -179,4 +179,11 @@ public class CollisionBox {
     public CollisionBox copy() {
         return new CollisionBox(P, OFFSET, SIZE);
     }
+
+    public PVector getWorldCenter(PVector position) {
+        return new PVector(
+                position.x + OFFSET.x + (SIZE.x / 2),
+                position.y + OFFSET.y + (SIZE.y / 2)
+        );
+    }
 }

@@ -28,6 +28,7 @@ public class Illusion extends Entity {
                 PVector.add(trueEntity.position, offset));
         super.update();
 
+        //whelp, I tried
         if (trueEntity instanceof Lever) {
             Lever lever = (Lever) trueEntity;
             lever.move(
@@ -52,6 +53,25 @@ public class Illusion extends Entity {
         if (P.random(3) < 1) {
             PVector pos = trueEntity.getRandPos().add(offset);
             world.inFrontParticles.add(new FloatParticle(P,
+                    pos.x, pos.y, new Color(124, 0, 255), world.inFrontParticles));
+        }
+
+        P.popMatrix();
+    }
+
+    public void drawLeverBack() {
+        Lever lever = (Lever) trueEntity;
+
+        P.pushMatrix();
+        P.translate(offset.x, offset.y);
+
+        P.tint(new Color(188, 124, 255, 195).getRGB());
+        lever.drawBack();
+        P.tint(255);
+
+        if (P.random(6) < 1) {
+            PVector pos = trueEntity.getRandPos().add(offset);
+            world.behindParticles.add(new FloatParticle(P,
                     pos.x, pos.y, new Color(124, 0, 255), world.inFrontParticles));
         }
 
