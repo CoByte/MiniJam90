@@ -36,7 +36,7 @@ public class MovingPlatform extends Entity {
             int endWait)
     {
         super(p, world, new CollisionBox(p, new PVector(WIDTH / 2, HEIGHT / 2)), pointA.copy());
-        if (pointA.x != pointB.x && pointA.y != pointB.x) throw new RuntimeException("No diagonal platforms allowed :(");
+        if (pointA.x != pointB.x && pointA.y != pointB.y) throw new RuntimeException("No diagonal platforms allowed :(");
 
         this.width = width;
         this.height = height;

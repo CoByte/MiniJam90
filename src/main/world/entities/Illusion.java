@@ -1,6 +1,7 @@
 package main.world.entities;
 
 import main.misc.CollisionBox;
+import main.misc.CollisionEntity;
 import processing.core.PVector;
 
 import java.awt.*;
@@ -17,7 +18,15 @@ public class Illusion extends Entity {
     }
 
     @Override
-    public void update() {}
+    public void update() {
+        onFire = trueEntity.onFire;
+        flammable = trueEntity.flammable;
+        burnAura = new CollisionEntity(new CollisionBox(P,
+                PVector.add(collider.OFFSET, new PVector(-DEFAULT_AURA, -DEFAULT_AURA)),
+                PVector.add(collider.SIZE, new PVector(DEFAULT_AURA, DEFAULT_AURA).mult(2))),
+                PVector.add(trueEntity.position, offset));
+        super.update();
+    }
 
     @Override
     public void draw() {

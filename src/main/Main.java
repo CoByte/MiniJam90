@@ -12,6 +12,7 @@ import main.sound.SoundWithAlts;
 import main.sound.StartStopSoundLoop;
 import main.world.World;
 import main.world.entities.Entity;
+import main.world.entities.Fire;
 import main.world.entities.Illusion;
 import main.world.entities.MovingPlatform;
 import processing.core.PApplet;
@@ -143,14 +144,15 @@ public class Main extends PApplet {
         workingWorld.entities.addAll(new ArrayList<>(Arrays.asList(
                 new MovingPlatform(p, workingWorld,
                         new PVector(400, 400),
-                        new PVector(800, 800),
+                        new PVector(800, 400),
                         3, Utilities.secondsToFrames(1.5f)
                 ),
                 new MovingPlatform(p, workingWorld,
                         new PVector(1000, 400),
                         new PVector(1000, 800),
                         3, Utilities.secondsToFrames(1.5f)
-                )
+                ),
+                new Fire(p, new PVector(300, 300), workingWorld)
         )));
         worlds.add(workingWorld);
     }
