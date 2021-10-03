@@ -34,7 +34,8 @@ public class WorldBuilder {
                         new MovingPlatform(p, world,
                                 new PVector(275, 400),
                                 new PVector(275, 1000),
-                                3, 0)
+                                3, 0),
+                        new Spikes(p, world, new PVector(400, 750))
                 )));
                 break;
             default:

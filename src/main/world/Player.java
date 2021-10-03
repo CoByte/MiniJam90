@@ -3,11 +3,8 @@ package main.world;
 import com.jogamp.newt.event.KeyEvent;
 import main.Main;
 import main.particles.GravityParticle;
-import main.world.entities.Entity;
+import main.world.entities.*;
 import main.misc.*;
-import main.world.entities.Illusion;
-import main.world.entities.Lever;
-import main.world.entities.MovingPlatform;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -15,6 +12,7 @@ import processing.core.PVector;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Player extends Entity {
 
@@ -102,10 +100,11 @@ public class Player extends Entity {
         if (CAST_ANIMATION.getCurrentTime() == 2 && !justCast) {
             RUNE_ANIMATION.reset();
             justCast = true; //prevent casting on betweenFrames
-            if (world.getCollidingEntities(new CollisionEntity(
+            boolean isColliding = world.getCollidingEntities(new CollisionEntity(
                     standing().collider,
                     illusionPosition
-            )).isEmpty() && PVector.dist(illusionPosition, position) < CAST_RADIUS)
+            )).stream().anyMatch(e -> !(e instanceof Illusion));
+            if (!isColliding && PVector.dist(illusionPosition, position) < CAST_RADIUS)
                 world.illusion = new Illusion(standing(), PVector.sub(illusionPosition, standing().position));
         }
     }
@@ -167,8 +166,12 @@ public class Player extends Entity {
                 MovingPlatform mp = (MovingPlatform) entity;
                 speed = mp.getVelocity().x;
                 groundVelocity_Y = mp.getVelocity().y;
+
             } else if (entity instanceof Lever) {
                 if (!(((Lever) entity).bottomedOut)) offset.direction = CollisionBox.Direction.None;
+
+            } else if (entity instanceof Spikes) {
+                die();
             }
 
             switch (offset.direction) {
@@ -210,6 +213,7 @@ public class Player extends Entity {
             for (Entity squisher : squishers) {
                 if (collider.calculateOffset(position, squisher.position, squisher.collider).offset > 10) {
                     System.out.println("SQUIMSH");
+                    die();
                     return;
                 }
             }
