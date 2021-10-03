@@ -53,6 +53,9 @@ public class World {
     public void main() {
         update();
         display();
+
+        //todo: temp
+        fadeSoundLoops.get("music").setTargetVolume(1);
     }
 
     public ArrayList<Entity> getCollidingEntities(Entity entity) {
