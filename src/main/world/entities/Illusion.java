@@ -10,7 +10,7 @@ import java.awt.*;
 
 public class Illusion extends Entity {
 
-    private static final Color PARTICLE_COLOR = new Color(124, 0, 255);
+    public static final Color PARTICLE_COLOR = new Color(124, 0, 255);
 
     public final Entity trueEntity;
     public final PVector offset;

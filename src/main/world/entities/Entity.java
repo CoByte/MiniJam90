@@ -3,6 +3,7 @@ package main.world.entities;
 import main.Main;
 import main.misc.CollisionBox;
 import main.misc.CollisionEntity;
+import main.particles.FloatParticle;
 import main.world.World;
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -52,11 +53,11 @@ public abstract class Entity {
     public abstract void draw();
 
     public void highlight() {
-        P.noFill();
-        P.stroke(Color.BLUE.getRGB());
-        P.strokeWeight(3);
-        P.rect(position.x, position.y, collider.getRightEdge(), collider.getBottomEdge());
-        P.strokeWeight(1);
+        if (P.random(3) < 1) {
+            PVector pos = getRandPos();
+            world.inFrontParticles.add(new FloatParticle(P,
+                    pos.x, pos.y, Illusion.PARTICLE_COLOR, world.inFrontParticles));
+        }
     }
 
     public PVector getRandPos() {
