@@ -37,7 +37,7 @@ public class CollisionBox {
         P.rectMode(PConstants.CORNER);
         P.rect(position.x + OFFSET.x, position.y + OFFSET.y, SIZE.x, SIZE.y);
 
-        PVector center = PVector.sub(position, OFFSET).add(PVector.div(SIZE, 2));
+        PVector center = getCenter();
         P.circle(center.x, center.y, 5);
     }
 
@@ -135,9 +135,13 @@ public class CollisionBox {
                 boxATopLeft.y < boxBBottomRight.y;
     }
 
+    public PVector getCenter() {
+        return PVector.add(OFFSET, PVector.div(SIZE, 2));
+    }
+
     public Collision calculateOffset(PVector positionA, PVector positionB, CollisionBox boxB) {
-        PVector centerA = PVector.sub(positionA, OFFSET).add(PVector.div(SIZE, 2));
-        PVector centerB = PVector.sub(positionB, boxB.OFFSET).add(PVector.div(boxB.SIZE, 2));
+        PVector centerA = getCenter().add(positionA);
+        PVector centerB = boxB.getCenter().add(positionB);
 
         float widthDepth = (SIZE.x / 2) + (boxB.SIZE.x / 2) - Math.abs(centerB.x - centerA.x);
         float heightDepth = (SIZE.y / 2) + (boxB.SIZE.y / 2) - Math.abs(centerB.y - centerA.y);

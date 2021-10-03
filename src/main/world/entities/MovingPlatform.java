@@ -2,6 +2,7 @@ package main.world.entities;
 
 import main.misc.CollisionBox;
 import main.misc.Timer;
+import main.world.World;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PVector;
@@ -23,8 +24,17 @@ public class MovingPlatform extends Entity {
 
     private final Timer waitTimer;
 
-    public MovingPlatform(PApplet p, float width, float height, PVector pointA, PVector pointB, float speed, int endWait) {
-        super(p, new CollisionBox(p, new PVector(WIDTH / 2, HEIGHT / 2)), pointA.copy());
+    public MovingPlatform(
+            PApplet p,
+            World world,
+            float width,
+            float height,
+            PVector pointA,
+            PVector pointB,
+            float speed,
+            int endWait)
+    {
+        super(p, world, new CollisionBox(p, new PVector(WIDTH / 2, HEIGHT / 2)), pointA.copy());
 
         this.width = width;
         this.height = height;
@@ -36,8 +46,15 @@ public class MovingPlatform extends Entity {
         this.waitTimer = new Timer(endWait);
     }
 
-    public MovingPlatform(PApplet p, PVector pointA, PVector pointB, float speed, int endWait) {
-        this(p, WIDTH, HEIGHT, pointA, pointB, speed, endWait);
+    public MovingPlatform(
+            PApplet p,
+            World world,
+            PVector pointA,
+            PVector pointB,
+            float speed,
+            int endWait)
+    {
+        this(p, world, WIDTH, HEIGHT, pointA, pointB, speed, endWait);
     }
 
     @Override

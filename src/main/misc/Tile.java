@@ -1,5 +1,7 @@
 package main.misc;
 
+import main.Main;
+import main.world.World;
 import main.world.entities.Entity;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -11,7 +13,6 @@ import static main.Main.*;
 import static processing.core.PConstants.CORNER;
 
 public class Tile extends Entity {
-
     public int id;
     public PImage base;
     public String baseName;
@@ -25,10 +26,11 @@ public class Tile extends Entity {
     int baseHierarchy;
     PImage[] baseEdges;
 
-    public Tile(PApplet p, PVector position, int id) {
-        super(p, new CollisionBox(p, new PVector(), new PVector(TILE_SIZE, TILE_SIZE)), position);
+    public Tile(PApplet p, World world, PVector position, int id) {
+        super(p, world, new CollisionBox(p, new PVector(), new PVector(TILE_SIZE, TILE_SIZE)), position);
 
         this.id = id;
+        this.flammable = true;
         baseEdges = new PImage[4];
     }
 
@@ -47,6 +49,8 @@ public class Tile extends Entity {
 
     public void displayObstacle() {
         if (obstacle != null) P.image(obstacle, position.x, position.y, TILE_SIZE, TILE_SIZE);
+        P.fill(255, 0, 0);
+        if (onFire) P.rect(position.x, position.y, TILE_SIZE, TILE_SIZE);
     }
 
     /**
@@ -138,21 +142,17 @@ public class Tile extends Entity {
     }
 
     /**
-     * Tiles are static, this is just here cause entities need it
-     */
-    @Override
-    public void update() {
-        throw new RuntimeException("Don't call this");
-    }
-
-    /**
      * Tiles have multiple layers, so a single draw doesn't make sense.
      * This is just here because entity requires it
      * FUCK YOU OWEN I'LL MAKE THIS WORK!
      */
     @Override
     public void draw() {
+        if (onFire) {
+            P.tint(0);
+        }
         displayObstacle();
+        P.tint(255);
     }
 
     public static class TileDS {
