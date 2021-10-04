@@ -27,8 +27,8 @@ public class WorldBuilder {
         float bottom = Main.BOARD_SIZE.y;
         float right = Main.BOARD_SIZE.x;
         switch (num) {
-            case 0:
-                world = createWorld(p, "1");
+            case 1:
+                world = createWorld(p, "illusion 1");
                 world.entities.addAll(new ArrayList<>(Arrays.asList(
                         new LeverDoor(p, world, new PVector(50, bottom - 250), 4),
                         new Spikes(p, world, new PVector(500, bottom - 150)),
@@ -43,7 +43,7 @@ public class WorldBuilder {
                 world.addDialogue(
                         new Dialogue("YOU MAY NOW BEGIN YOUR RUNECASTING 101 FINAL", 200, 200),
                         new Dialogue("Ugh, it's too early for this..."),
-                        new Dialogue("CHAMBER 1: ILLUSIONS", 200, 200),
+                        new Dialogue("CHAMBER 1: ILLUSIONS PART 1", 200, 200),
                         new Dialogue("Alright, Illusions, these are easy..."),
                         new Dialogue("Just draw the Illusion character!"),
                         new Dialogue("CAST AN ILLUSORY PLATFORM TO CROSS THESE SPIKES", 200, 200),
@@ -52,8 +52,23 @@ public class WorldBuilder {
                                 Utilities.getCenter().x - 200, Utilities.getCenter().y)
                 );
                 break;
-            case 1:
-                world = createWorld(p, "test");
+            case 0:
+                world = createWorld(p, "illusion 2");
+                world.entities.addAll(new ArrayList<>(Arrays.asList(
+                        new LeverDoor(p, world, new PVector(50, bottom - 250), 4),
+                        new MovingPlatform(p, world,
+                                new PVector(right - 16 * 50, bottom - 4 * 50),
+                                new PVector(right - 16 * 50, bottom - 10 * 50),
+                                3, 1)
+                )));
+                world.addDialogue(
+                        new Dialogue("Ugh..."),
+                        new Dialogue("I partied too hard last night."),
+                        new Dialogue("CHAMBER 2: ILLUSIONS PART 2", 200, 200),
+                        new Dialogue("REMINDER: ILLUSIONS RETAIN THE PROPERTIES AND MOTION OF THEIR ORIGINAL", 200, 200),
+                        new Dialogue("What was in that drink...?")
+                );
+
                 break;
             default:
                 world = null;
