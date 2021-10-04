@@ -27,7 +27,7 @@ public class WorldBuilder {
         float bottom = Main.BOARD_SIZE.y;
         float right = Main.BOARD_SIZE.x;
         switch (num) {
-            case 1:
+            case 0:
                 world = createWorld(p, "illusion 1");
                 world.entities.addAll(new ArrayList<>(Arrays.asList(
                         new LeverDoor(p, world, new PVector(50, bottom - 250)),
@@ -52,7 +52,7 @@ public class WorldBuilder {
                                 Utilities.getCenter().x - 200, Utilities.getCenter().y)
                 );
                 break;
-            case 2:
+            case 1:
                 world = createWorld(p, "illusion 2");
                 world.entities.addAll(new ArrayList<>(Arrays.asList(
                         new LeverDoor(p, world, new PVector(50, bottom - 250)),
@@ -68,10 +68,8 @@ public class WorldBuilder {
                         new Dialogue("REMINDER: ILLUSIONS RETAIN THE PROPERTIES AND MOTION OF THEIR ORIGINAL", 200, 200),
                         new Dialogue("What was in that drink...?")
                 );
-
                 break;
-
-            case 0:
+            case 2:
                 world = createWorld(p, "lever 1");
                 LeverDoor door = new LeverDoor(p, world, new PVector(right - 100, bottom - 250), 4, 1);
                 world.entities.addAll(new ArrayList<>(Arrays.asList(
@@ -114,8 +112,8 @@ public class WorldBuilder {
                 )));
                 world.addDialogue(
                         new Dialogue("Alright, maybe I'm not going to fail this"),
-                        new Dialogue("CHAMBER IDK: FIRE", 200, 200),
-                        new Dialogue("CAST A FIRE SPELL TO MELT THE WAX DOOR", 200, 200),
+                        new Dialogue("CHAMBER IDK: FIRE", 250, 200),
+                        new Dialogue("CAST A FIRE SPELL TO MELT THE WAX DOOR", 250, 200),
                         new Dialogue("Alright, thats not too hard"),
                         new Dialogue("I'll just draw the fire character and melt the door, easy"),
                         new Dialogue("Step 1: draw the fire character"),
@@ -125,7 +123,21 @@ public class WorldBuilder {
                         new Dialogue("I can't afford to fail this class, there's got to be another way"),
                         new Dialogue("Maybe my fireproof boots can help...")
                 );
-
+                break;
+            case 4:
+                world = createWorld(p, "fire2");
+                world.entities.addAll(new ArrayList<>(Arrays.asList(
+                        new Fire(p, new PVector(300, 300), world),
+                        new MovingPlatform(p, world,
+                                new PVector(400, 300),
+                                new PVector(400, bottom - 250),
+                                3, Utilities.secondsToFrames(1.5f)),
+                        new WaxDoor(p, world, new PVector(right - 150, bottom - 250), 2)
+                )));
+                world.addDialogue(
+                    new Dialogue("Well, it looks like things might not be completely hopeless"),
+                    new Dialogue("CHAMBER IDK: FIRE PART 2", 250, 200)
+                );
                 break;
             default:
                 world = null;

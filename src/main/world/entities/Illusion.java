@@ -33,7 +33,8 @@ public class Illusion extends Entity {
 
     @Override
     public void update() {
-        onFire = trueEntity.onFire;
+        if (trueEntity.onFire) onFire = true;
+        if (onFire) trueEntity.onFire = true;
         flammable = trueEntity.flammable;
         burnAura = new CollisionEntity(new CollisionBox(P,
                 PVector.add(collider.OFFSET, new PVector(-DEFAULT_AURA, -DEFAULT_AURA)),
