@@ -28,11 +28,12 @@ public abstract class Door extends Entity {
     public void update() {
         super.update();
         if (closed) position.y = Math.max(startY, position.y - speed);
-        else position.y += speed;
+        else if (position.y  < startY + HEIGHT) position.y += speed;
     }
 
     @Override
     public void draw() {
+        if (position.y >= startY + HEIGHT) return;
         P.image(sprite, position.x, position.y, WIDTH, HEIGHT);
     }
 }

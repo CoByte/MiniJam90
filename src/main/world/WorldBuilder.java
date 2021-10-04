@@ -58,8 +58,8 @@ public class WorldBuilder {
                 world.entities.addAll(new ArrayList<>(Arrays.asList(
                         new LeverDoor(p, world, new PVector(50, bottom - 250)),
                         new MovingPlatform(p, world,
-                                new PVector(right - 16 * 50, bottom - 4 * 50),
-                                new PVector(right - 16 * 50, bottom - 10 * 50),
+                                new PVector(600, 300),
+                                new PVector(600, bottom - 250),
                                 3, 1)
                 )));
                 world.addDialogue(
@@ -79,12 +79,12 @@ public class WorldBuilder {
                         door,
                         new Lever(p, world, new PVector(50 * 5, bottom - 225), door),
                         new MovingPlatform(p, world,
-                                new PVector(50 * 8, bottom - 225),
-                                new PVector(50 * 8, bottom - 550),
+                                new PVector(400, bottom - 225),
+                                new PVector(400, bottom - 550),
                                 3, Utilities.secondsToFrames(2)),
                         new MovingPlatform(p, world,
-                                new PVector(12 * 50, 50 * 7),
-                                new PVector(18 * 50, 50 * 7),
+                                new PVector(600, 350),
+                                new PVector(900, 350),
                                 3, Utilities.secondsToFrames(2)),
                         new Spikes(p, world, new PVector(12 * 50, bottom - 150)),
                         new Spikes(p, world, new PVector(13 * 50, bottom - 150)),
@@ -96,7 +96,7 @@ public class WorldBuilder {
                         new Spikes(p, world, new PVector(19 * 50, bottom - 150))
                 )));
                 world.addDialogue(
-                        new Dialogue("CHAMBER IDK: ICE", 200, 200),
+                        new Dialogue("CHAMBER 3: ICE", 200, 200),
                         new Dialogue("THE LEVER CONTROLS THE EXIT DOOR", 200, 200),
                         new Dialogue("Well, I could use the ice character to freeze this lever in place."),
                         new Dialogue("But uh... can't remember how to do that..."),
@@ -108,6 +108,7 @@ public class WorldBuilder {
             case 3:
                 world = createWorld(p, "fire1");
                 world.entities.addAll(new ArrayList<>(Arrays.asList(
+                        new LeverDoor(p, world, new PVector(50, bottom - 250)),
                         new Fire(p, new PVector(300, 250), world),
                         new Fire(p, new PVector(1050, 250), world),
                         new LeverDoor(p, world, new PVector(50, bottom - 250)),
@@ -115,7 +116,7 @@ public class WorldBuilder {
                 )));
                 world.addDialogue(
                         new Dialogue("Alright, maybe I'm not going to fail this"),
-                        new Dialogue("CHAMBER IDK: FIRE", 250, 200),
+                        new Dialogue("CHAMBER 4: FIRE", 250, 200),
                         new Dialogue("CAST A FIRE SPELL TO MELT THE WAX DOOR", 250, 200),
                         new Dialogue("Alright, thats not too hard"),
                         new Dialogue("I'll just draw the fire character and melt the door, easy"),
@@ -131,6 +132,7 @@ public class WorldBuilder {
             case 4:
                 world = createWorld(p, "fire2");
                 world.entities.addAll(new ArrayList<>(Arrays.asList(
+                        new LeverDoor(p, world, new PVector(50, bottom - 250)),
                         new Fire(p, new PVector(300, 300), world),
                         new MovingPlatform(p, world,
                                 new PVector(400, 300),
@@ -140,13 +142,14 @@ public class WorldBuilder {
                 )));
                 world.addDialogue(
                     new Dialogue("Well, it looks like things might not be completely hopeless"),
-                    new Dialogue("CHAMBER IDK: FIRE PART 2", 250, 200)
+                    new Dialogue("CHAMBER 5: FIRE PART 2", 250, 200)
                 );
                 break;
 
             case 5:
                 world = createWorld(p, "fire3");
                 world.entities.addAll(new ArrayList<>(Arrays.asList(
+                        new LeverDoor(p, world, new PVector(50, bottom - 250)),
                         new Fire(p, new PVector(275, 300), world),
                         new MovingPlatform(p, world,
                                 new PVector(875f/2, 300),
@@ -156,13 +159,14 @@ public class WorldBuilder {
                 )));
                 world.addDialogue(
                         new Dialogue("Jumping into fire is really not pleasant"),
-                        new Dialogue("CHAMBER IDK: FIRE PART 3", 250, 200)
+                        new Dialogue("CHAMBER 6: FIRE PART 3", 250, 200)
                 );
                 break;
 
             case 6:
                 world = createWorld(p, "fire4");
                 world.entities.addAll(new ArrayList<>(Arrays.asList(
+                        new LeverDoor(p, world, new PVector(50, bottom - 250)),
                         new Fire(p, new PVector(275, 400), world),
                         new Spikes(p, world, new PVector(8 * 50, bottom - 150)),
                         new Spikes(p, world, new PVector(9 * 50, bottom - 150)),
@@ -177,6 +181,28 @@ public class WorldBuilder {
                         new WaxDoor(p, world, new PVector(right - 150, bottom - 250), 2)
                 )));
                 world.addDialogue(
+                        new Dialogue("CHAMBER 7: FIRE PART 3", 250, 200)
+                );
+                break;
+
+            case 7:
+                world = createWorld(p, "tele2");
+                LeverDoor door1 = new LeverDoor(p, world, new PVector(right - 100, bottom - 250), 4, 1);
+                world.entities.addAll(new ArrayList<>(Arrays.asList(
+                        new LeverDoor(p, world, new PVector(50, bottom - 250)),
+                        new MovingPlatform(p, world,
+                                new PVector(250, 400),
+                                new PVector(250, 450),
+                                3, Utilities.secondsToFrames(4f)),
+                        door1,
+                        new Lever(p, world, new PVector(275, 600), door1),
+                        new WaxDoor(p, world, new PVector(400, 400), 3),
+                        new WaxDoor(p, world, new PVector(600, 400), 3),
+                        new WaxDoor(p, world, new PVector(800, 400), 3),
+                        new Fire(p, new PVector(900, 650), world)
+                )));
+                world.addDialogue(
+                        new Dialogue("CHAMBER 9: TELEKINESIS PART 2", 250, 200)
                 );
                 break;
 
