@@ -96,7 +96,7 @@ public class WorldBuilder {
                         new Spikes(p, world, new PVector(19 * 50, bottom - 150))
                 )));
                 world.addDialogue(
-                        new Dialogue("CHAMBER IDK: ICE", 200, 200),
+                        new Dialogue("CHAMBER 3: ICE", 200, 200),
                         new Dialogue("THE LEVER CONTROLS THE EXIT DOOR", 200, 200),
                         new Dialogue("Well, I could use the ice character to freeze this lever in place."),
                         new Dialogue("But uh... can't remember how to do that..."),
@@ -116,7 +116,7 @@ public class WorldBuilder {
                 )));
                 world.addDialogue(
                         new Dialogue("Alright, maybe I'm not going to fail this"),
-                        new Dialogue("CHAMBER IDK: FIRE", 250, 200),
+                        new Dialogue("CHAMBER 4: FIRE", 250, 200),
                         new Dialogue("CAST A FIRE SPELL TO MELT THE WAX DOOR", 250, 200),
                         new Dialogue("Alright, thats not too hard"),
                         new Dialogue("I'll just draw the fire character and melt the door, easy"),
@@ -142,7 +142,7 @@ public class WorldBuilder {
                 )));
                 world.addDialogue(
                     new Dialogue("Well, it looks like things might not be completely hopeless"),
-                    new Dialogue("CHAMBER IDK: FIRE PART 2", 250, 200)
+                    new Dialogue("CHAMBER 5: FIRE PART 2", 250, 200)
                 );
                 break;
 
@@ -159,7 +159,7 @@ public class WorldBuilder {
                 )));
                 world.addDialogue(
                         new Dialogue("Jumping into fire is really not pleasant"),
-                        new Dialogue("CHAMBER IDK: FIRE PART 3", 250, 200)
+                        new Dialogue("CHAMBER 6: FIRE PART 3", 250, 200)
                 );
                 break;
 
@@ -181,6 +181,7 @@ public class WorldBuilder {
                         new WaxDoor(p, world, new PVector(right - 150, bottom - 250), 2)
                 )));
                 world.addDialogue(
+                        new Dialogue("CHAMBER 7: FIRE PART 3", 250, 200)
                 );
                 break;
 
@@ -201,6 +202,7 @@ public class WorldBuilder {
                         new Fire(p, new PVector(900, 650), world)
                 )));
                 world.addDialogue(
+                        new Dialogue("CHAMBER 9: TELEKINESIS PART 2", 250, 200)
                 );
                 break;
 
