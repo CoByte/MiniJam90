@@ -27,7 +27,7 @@ public class WorldBuilder {
         float bottom = Main.BOARD_SIZE.y;
         float right = Main.BOARD_SIZE.x;
         switch (num) {
-            case 0:
+            case -1:
                 world = createWorld(p, "illusion 1");
                 world.entities.addAll(new ArrayList<>(Arrays.asList(
                         new LeverDoor(p, world, new PVector(50, bottom - 250)),
@@ -151,11 +151,32 @@ public class WorldBuilder {
                         new MovingPlatform(p, world,
                                 new PVector(875f/2, 300),
                                 new PVector(875f/2, bottom - 250),
-                                3, Utilities.secondsToFrames(1.5f))
+                                3, Utilities.secondsToFrames(1.5f)),
+                        new WaxDoor(p, world, new PVector(right - 150, bottom - 250), 2)
                 )));
                 world.addDialogue(
                         new Dialogue("Jumping into fire is really not pleasant"),
                         new Dialogue("CHAMBER IDK: FIRE PART 3", 250, 200)
+                );
+                break;
+
+            case 0:
+                world = createWorld(p, "fire4");
+                world.entities.addAll(new ArrayList<>(Arrays.asList(
+                        new Fire(p, new PVector(275, 400), world),
+                        new Spikes(p, world, new PVector(8 * 50, bottom - 150)),
+                        new Spikes(p, world, new PVector(9 * 50, bottom - 150)),
+                        new Spikes(p, world, new PVector(10 * 50, bottom - 150)),
+                        new Spikes(p, world, new PVector(11 * 50, bottom - 150)),
+                        new Spikes(p, world, new PVector(12 * 50, bottom - 150)),
+                        new Spikes(p, world, new PVector(14 * 50, bottom - 150)),
+                        new Spikes(p, world, new PVector(15 * 50, bottom - 150)),
+                        new Spikes(p, world, new PVector(16 * 50, bottom - 150)),
+                        new Spikes(p, world, new PVector(17 * 50, bottom - 150)),
+                        new Spikes(p, world, new PVector(18 * 50, bottom - 150)),
+                        new WaxDoor(p, world, new PVector(right - 150, bottom - 250), 2)
+                )));
+                world.addDialogue(
                 );
                 break;
 
