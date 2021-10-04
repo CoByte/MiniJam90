@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static main.Main.*;
 
@@ -88,7 +89,7 @@ public class World {
         ArrayList<Entity> collided = new ArrayList<>();
 
         collided.addAll(getTileCollision(entity));
-        collided.addAll(entities.stream()
+        collided.addAll(Stream.concat(entities.stream(), Stream.of(player))
                 .filter(e -> e != entity)
                 .filter(e -> entity.collider.intersects(
                         entity.position,
@@ -99,8 +100,6 @@ public class World {
         if (illusion != null &&
                 entity.collider.intersects(entity.position, illusion.getPosition(), illusion.getCollider()))
             collided.add(illusion);
-        if (entity.collider.intersects(entity.position, player.position, player.collider))
-            collided.add(player);
 
         return collided;
     }

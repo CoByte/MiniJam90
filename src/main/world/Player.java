@@ -106,12 +106,14 @@ public class Player extends Entity {
         }
         if (CAST_ANIMATION.getCurrentTime() == 2 && !justCast) {
             justCast = true; //prevent casting on betweenFrames
+            Entity standing = standing();
+            illusionPosition.sub(standing.collider.SIZE.copy().div(2).add(standing.collider.OFFSET));
             boolean isColliding = world.getCollidingEntities(new CollisionEntity(
-                    standing().collider,
+                    standing.collider,
                     illusionPosition
             )).stream().anyMatch(e -> !(e instanceof Illusion));
             if (!isColliding && PVector.dist(illusionPosition, position) < CAST_RADIUS) {
-                world.illusion = new Illusion(standing(), PVector.sub(illusionPosition, standing().position));
+                world.illusion = new Illusion(standing, PVector.sub(illusionPosition, standing.position));
                 RUNE_ANIMATION.reset();
                 SoundUtilities.playSoundRandomSpeed(P, CAST_SOUND, 1);
             } else SoundUtilities.playSoundRandomSpeed(P, FAIL_SOUND, 1);
