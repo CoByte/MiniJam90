@@ -4,7 +4,6 @@ import main.gui.Hand;
 import main.gui.LevelBuilderGui;
 import main.gui.LoadingScreen;
 import main.gui.TitleScreen;
-import main.gui.guiObjects.EndingScreen;
 import main.misc.InputManager;
 import main.misc.Tile;
 import main.sound.FadeSoundLoop;
@@ -136,7 +135,7 @@ public class Main extends PApplet {
     }
 
     public static void setupWorlds(PApplet p) {
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 6; i++) {
             worlds.add(WorldBuilder.buildWorld(p, i));
         }
     }

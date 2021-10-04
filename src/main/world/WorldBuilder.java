@@ -52,6 +52,7 @@ public class WorldBuilder {
                                 Utilities.getCenter().x - 200, Utilities.getCenter().y)
                 );
                 break;
+
             case 1:
                 world = createWorld(p, "illusion 2");
                 world.entities.addAll(new ArrayList<>(Arrays.asList(
@@ -69,6 +70,7 @@ public class WorldBuilder {
                         new Dialogue("What was in that drink...?")
                 );
                 break;
+
             case 2:
                 world = createWorld(p, "lever 1");
                 LeverDoor door = new LeverDoor(p, world, new PVector(right - 100, bottom - 250), 4, 1);
@@ -102,6 +104,7 @@ public class WorldBuilder {
                 );
 
                 break;
+
             case 3:
                 world = createWorld(p, "fire1");
                 world.entities.addAll(new ArrayList<>(Arrays.asList(
@@ -124,6 +127,7 @@ public class WorldBuilder {
                         new Dialogue("Maybe my fireproof boots can help...")
                 );
                 break;
+
             case 4:
                 world = createWorld(p, "fire2");
                 world.entities.addAll(new ArrayList<>(Arrays.asList(
@@ -139,6 +143,22 @@ public class WorldBuilder {
                     new Dialogue("CHAMBER IDK: FIRE PART 2", 250, 200)
                 );
                 break;
+
+            case 5:
+                world = createWorld(p, "fire3");
+                world.entities.addAll(new ArrayList<>(Arrays.asList(
+                        new Fire(p, new PVector(275, 300), world),
+                        new MovingPlatform(p, world,
+                                new PVector(875f/2, 300),
+                                new PVector(875f/2, bottom - 250),
+                                3, Utilities.secondsToFrames(1.5f))
+                )));
+                world.addDialogue(
+                        new Dialogue("Jumping into fire is really not pleasant"),
+                        new Dialogue("CHAMBER IDK: FIRE PART 3", 250, 200)
+                );
+                break;
+
             default:
                 world = null;
         }
