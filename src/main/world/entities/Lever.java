@@ -95,24 +95,34 @@ public class Lever extends Entity {
 
         ArrayList<Entity> collided = world.getCollidingEntities(colliderTest);
         collidedWith = false;
-        for (Entity e : collided) {
-            if (!(e instanceof Player || e instanceof MovingPlatform)) { continue; }
+        for (Entity other : collided) {
+            if (!(other instanceof Player || other instanceof MovingPlatform
+            || other instanceof Illusion)) { continue; }
 
             collidedWith = true;
 
-            CollisionBox.Collision offset = collider.calculateOffset(testPosition, e.position, e.collider);
+            CollisionBox.Collision offset = collider.calculateOffset(testPosition, other.position, other.collider);
 
             if (offset.direction != CollisionBox.Direction.Up) { continue; }
 
-            if (e instanceof Player) {
-                if (((Player) e).velocity_y <= 0) {
+            if (other instanceof Player) {
+                if (((Player) other).velocity_y <= 0) {
                     continue;
                 }
             }
 
-            if (e instanceof MovingPlatform) {
-                if (((MovingPlatform) e).goingUp) {
+            if (other instanceof MovingPlatform) {
+                if (((MovingPlatform) other).goingUp) {
                     continue;
+                }
+            }
+
+            if (other instanceof Illusion) {
+                Illusion illusion = (Illusion) other;
+                if (illusion.trueEntity instanceof MovingPlatform) {
+                    if (((MovingPlatform) illusion.trueEntity).goingUp) {
+                        continue;
+                    }
                 }
             }
 
