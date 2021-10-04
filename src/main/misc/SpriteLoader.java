@@ -31,7 +31,7 @@ public class SpriteLoader {
                 path.append("player/");
                 break;
             case "fire":
-                path.append("fire/");
+                path.append("fire");
                 break;
         }
         path.append(name).append("/");

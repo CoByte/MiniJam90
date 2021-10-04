@@ -27,7 +27,7 @@ public class WorldBuilder {
         float bottom = Main.BOARD_SIZE.y;
         float right = Main.BOARD_SIZE.x;
         switch (num) {
-            case -1:
+            case 0:
                 world = createWorld(p, "illusion 1");
                 world.entities.addAll(new ArrayList<>(Arrays.asList(
                         new LeverDoor(p, world, new PVector(50, bottom - 250)),
@@ -160,7 +160,7 @@ public class WorldBuilder {
                 );
                 break;
 
-            case 0:
+            case 6:
                 world = createWorld(p, "fire4");
                 world.entities.addAll(new ArrayList<>(Arrays.asList(
                         new Fire(p, new PVector(275, 400), world),
