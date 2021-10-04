@@ -4,6 +4,7 @@ import main.Main;
 import main.gui.guiObjects.buttons.MenuButton;
 import main.sound.FadeSoundLoop;
 import processing.core.PApplet;
+import processing.core.PImage;
 import processing.core.PVector;
 
 import java.awt.*;
@@ -37,12 +38,16 @@ public class TitleScreen {
     private boolean gettingDark;
     private int darkAmount;
 
+    private final PImage background;
+
     public TitleScreen(PApplet p) {
         P = p;
 
         QUIT_BUTTON = new MenuButton(p, BOARD_SIZE.x / 2, (BOARD_SIZE.y / 2 + 100));
         PLAY_BUTTON = new MenuButton(p, BOARD_SIZE.x / 2, (BOARD_SIZE.y / 2));
         darkAmount = 255;
+
+        background = sprites.get("titleScreen");
     }
 
     public void main() {
@@ -80,7 +85,7 @@ public class TitleScreen {
         P.imageMode(CORNER);
         P.fill(0);
         P.noStroke();
-        P.rect(0, 0, BOARD_SIZE.x, BOARD_SIZE.y);
+        P.image(background, 0, 0, BOARD_SIZE.x, BOARD_SIZE.y);
         P.rectMode(DEFAULT_MODE);
 
         shadowedText(P, TITLE, new PVector(getCenter().x, getCenter().y - 150), new Color(0, 200, 255),
