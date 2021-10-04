@@ -4,6 +4,7 @@ import main.gui.Hand;
 import main.gui.LevelBuilderGui;
 import main.gui.LoadingScreen;
 import main.gui.TitleScreen;
+import main.gui.guiObjects.EndingScreen;
 import main.misc.InputManager;
 import main.misc.Tile;
 import main.sound.FadeSoundLoop;
@@ -30,7 +31,8 @@ public class Main extends PApplet {
     public enum Scene {
         World(0),
         TitleScreen(1),
-        LoadingScreen(2);
+        LoadingScreen(2),
+        EndingScreen(3);
 
         public final int ID;
 
@@ -43,10 +45,10 @@ public class Main extends PApplet {
     public static final int FRAMERATE = 60;
     public static final int DEFAULT_MODE = CORNER;
     public static final PVector BOARD_SIZE = new PVector(1400, 900);
-    public static final String TITLE = "template";
+    public static final String TITLE = "Runecasting 101";
 
     public static float globalVolume = 0.25f;
-    public static boolean debug = true;
+    public static boolean debug = false;
 
     private static final Color BACKGROUND_COLOR = new Color(0, 15, 45);
     private static final boolean FULLSCREEN = true;
@@ -75,6 +77,7 @@ public class Main extends PApplet {
     public static int currentWorld;
     public static TitleScreen titleScreen;
     public static LoadingScreen loadingScreen;
+    public static EndingScreen endingScreen;
 
     public static Scene scene = Scene.LoadingScreen;
 
@@ -159,6 +162,9 @@ public class Main extends PApplet {
                 break;
             case LoadingScreen:
                 loadingScreen.main();
+                break;
+            case EndingScreen:
+                endingScreen.main();
                 break;
         }
 
