@@ -4,6 +4,7 @@ import main.gui.Hand;
 import main.gui.LevelBuilderGui;
 import main.gui.LoadingScreen;
 import main.gui.TitleScreen;
+import main.gui.guiObjects.EndingScreen;
 import main.misc.InputManager;
 import main.misc.Tile;
 import main.sound.FadeSoundLoop;
@@ -44,7 +45,7 @@ public class Main extends PApplet {
     public static final int FRAMERATE = 60;
     public static final int DEFAULT_MODE = CORNER;
     public static final PVector BOARD_SIZE = new PVector(1400, 900);
-    public static final String TITLE = "template";
+    public static final String TITLE = "Runecasting 101";
 
     public static float globalVolume = 0.25f;
     public static boolean debug = true;
