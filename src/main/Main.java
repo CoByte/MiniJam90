@@ -46,7 +46,7 @@ public class Main extends PApplet {
     public static final String TITLE = "template";
 
     public static float globalVolume = 0.25f;
-    public static boolean debug = false;
+    public static boolean debug = true;
 
     private static final Color BACKGROUND_COLOR = new Color(0, 15, 45);
     private static final boolean FULLSCREEN = true;
@@ -133,7 +133,7 @@ public class Main extends PApplet {
     }
 
     public static void setupWorlds(PApplet p) {
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 7; i++) {
             worlds.add(WorldBuilder.buildWorld(p, i));
         }
     }
