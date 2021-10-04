@@ -120,6 +120,10 @@ public class World {
     }
 
     private void update() {
+        if (InputManager.getInstance().getEvent(KeyEvent.VK_SPACE).rising()) {
+            dialogue.nextLine();
+        }
+
         for (int i = 0; i < TILEMAP.size(); i++) {
             TILEMAP.get(i).update();
         }

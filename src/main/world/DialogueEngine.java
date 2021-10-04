@@ -35,4 +35,9 @@ public class DialogueEngine {
             currentLine += 1;
         }
     }
+
+    public void nextLine() {
+        currentLine += 1;
+        textTimer.reset();
+    }
 }

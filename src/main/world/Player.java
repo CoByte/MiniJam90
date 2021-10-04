@@ -176,7 +176,7 @@ public class Player extends Entity {
             } else if (entity instanceof MovingPlatform) {
                 MovingPlatform mp = (MovingPlatform) entity;
                 speed = mp.getVelocity().x;
-                groundVelocity_Y = mp.getVelocity().y * -1;
+                groundVelocity_Y = mp.getVelocity().y;
 
             } else if (entity instanceof Lever) {
                 if (!(((Lever) entity).bottomedOut)) offset.direction = CollisionBox.Direction.None;
