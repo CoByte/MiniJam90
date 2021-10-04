@@ -50,14 +50,15 @@ public class WorldBuilder {
                         new Spikes(p, world, new PVector(400, 750))
                 )));
                 world.addDialogue(
-                        "Quickly! Devour the child!",
-                        "mmmmmmm, child vore",
-                        "damn thats the good stuff",
-                        "very long string, wow so long, incredible, isnt this hot, wow, so thicc and big, its so immense, it just keeps going, truly fantastic, would probably make jesus wet, honestly shocked its still going, someone really needs to put a stop to this, its just too big and girthy owo,"
+                        new Dialogue("Quickly! Devour the child!"),
+                        new Dialogue("THIS IS THE PA SYSTEM, YOU SHOULD TOTALLY DO IT ITLL BE FUCKIN RAD", 50, 50),
+                        new Dialogue("mmmmmmm, child vore"),
+                        new Dialogue("damn thats the good stuff"),
+                        new Dialogue("very long string, wow so long, incredible, isnt this hot, wow, so thicc and big, its so immense, it just keeps going, truly fantastic, would probably make jesus wet, honestly shocked its still going, someone really needs to put a stop to this, its just too big and girthy owo,")
                 );
                 break;
             case 1:
-                world = new World(p, "test");
+                world = createWorld(p, "test");
                 break;
             default:
                 world = null;

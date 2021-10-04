@@ -69,7 +69,7 @@ public class World {
         black_x = BOARD_SIZE.x;
     }
 
-    public void addDialogue(String... text) {
+    public void addDialogue(Dialogue... text) {
         dialogue.dialogue.addAll(Arrays.asList(text));
     }
 
