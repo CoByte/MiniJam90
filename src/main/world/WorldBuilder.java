@@ -1,5 +1,6 @@
 package main.world;
 
+import main.Main;
 import main.misc.Utilities;
 import main.world.entities.*;
 import processing.core.PApplet;
@@ -7,7 +8,6 @@ import processing.core.PVector;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class WorldBuilder {
 
@@ -24,37 +24,31 @@ public class WorldBuilder {
 
     public static World buildWorld(PApplet p, int num) {
         World world;
+        float bottom = Main.BOARD_SIZE.y;
+        float right = Main.BOARD_SIZE.x;
         switch (num) {
             case 0:
-                world = createWorld(p, "test");
-                LeverDoor door = new LeverDoor(p, world, new PVector(1200, 650), 4, 1);
+                world = createWorld(p, "1");
                 world.entities.addAll(new ArrayList<>(Arrays.asList(
-                        new MovingPlatform(p, world,
-                                new PVector(400, 400),
-                                new PVector(800, 400),
-                                3, Utilities.secondsToFrames(1.5f)
-                        ),
-                        new MovingPlatform(p, world,
-                                new PVector(1000, 400),
-                                new PVector(1000, 800),
-                                3, Utilities.secondsToFrames(1.5f)
-                        ),
-                        new Fire(p, new PVector(300, 400), world),
-                        new WaxDoor(p, world, new PVector(1000, 650), 1),
-                        new Lever(p, world, new PVector(300, 700), door),
-//                        door,
-                        new MovingPlatform(p, world,
-                                new PVector(275, 400),
-                                new PVector(275, 1000),
-                                3, 0),
-                        new Spikes(p, world, new PVector(400, 750))
+                        new LeverDoor(p, world, new PVector(50, bottom - 250), 4),
+                        new Spikes(p, world, new PVector(500, bottom - 150)),
+                        new Spikes(p, world, new PVector(550, bottom - 150)),
+                        new Spikes(p, world, new PVector(600, bottom - 150)),
+                        new Spikes(p, world, new PVector(650, bottom - 150)),
+                        new Spikes(p, world, new PVector(700, bottom - 150)),
+                        new Spikes(p, world, new PVector(750, bottom - 150)),
+                        new Spikes(p, world, new PVector(800, bottom - 150)),
+                        new Spikes(p, world, new PVector(850, bottom - 150))
                 )));
                 world.addDialogue(
-                        new Dialogue("Quickly! Devour the child!"),
-                        new Dialogue("THIS IS THE PA SYSTEM, YOU SHOULD TOTALLY DO IT ITLL BE FUCKIN RAD", 50, 50),
-                        new Dialogue("mmmmmmm, child vore"),
-                        new Dialogue("damn thats the good stuff"),
-                        new Dialogue("very long string, wow so long, incredible, isnt this hot, wow, so thicc and big, its so immense, it just keeps going, truly fantastic, would probably make jesus wet, honestly shocked its still going, someone really needs to put a stop to this, its just too big and girthy owo,")
+                        new Dialogue("YOU MAY NOW BEGIN YOUR RUNECASTING 101 FINAL", 200, 200),
+                        new Dialogue("Ugh, it's too early for this..."),
+                        new Dialogue("CHAMBER 1: ILLUSIONS", 200, 200),
+                        new Dialogue("Alright, Illusions, these are easy..."),
+                        new Dialogue("Just draw the Illusion character!"),
+                        new Dialogue("CAST AN ILLUSORY PLATFORM TO CROSS THESE SPIKES", 200, 200),
+                        new Dialogue("(WASD to move, ESC to pause)", Utilities.getCenter().x, Utilities.getCenter().y),
+                        new Dialogue("(Click to create an illusory duplicate of what you are currently standing on at the mouse cursor)", Utilities.getCenter().x - 200, Utilities.getCenter().y)
                 );
                 break;
             case 1:

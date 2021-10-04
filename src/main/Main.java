@@ -6,15 +6,11 @@ import main.gui.LoadingScreen;
 import main.gui.TitleScreen;
 import main.misc.InputManager;
 import main.misc.Tile;
-import main.misc.Utilities;
 import main.sound.FadeSoundLoop;
 import main.sound.SoundWithAlts;
 import main.sound.StartStopSoundLoop;
 import main.world.World;
 import main.world.WorldBuilder;
-import main.world.entities.*;
-import main.world.entities.Fire;
-import main.world.entities.MovingPlatform;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
@@ -22,9 +18,7 @@ import processing.sound.Sound;
 import processing.sound.SoundFile;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import static main.misc.SpriteLoader.loadAnimations;

@@ -22,6 +22,10 @@ public class LeverDoor extends Door {
         slamSound = Main.sounds.get("doorSlam");
     }
 
+    public LeverDoor(PApplet p, World world, PVector position, float speed) {
+        this(p, world, position, speed, 1);
+    }
+
     @Override
     public void update() {
         super.update();
