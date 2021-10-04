@@ -48,7 +48,8 @@ public class WorldBuilder {
                         new Dialogue("Just draw the Illusion character!"),
                         new Dialogue("CAST AN ILLUSORY PLATFORM TO CROSS THESE SPIKES", 200, 200),
                         new Dialogue("(WASD to move, ESC to pause)", Utilities.getCenter().x, Utilities.getCenter().y),
-                        new Dialogue("(Click to create an illusory duplicate of what you are currently standing on at the mouse cursor)", Utilities.getCenter().x - 200, Utilities.getCenter().y)
+                        new Dialogue("(Click to create an illusory duplicate of what you are currently standing on at the mouse cursor)",
+                                Utilities.getCenter().x - 200, Utilities.getCenter().y)
                 );
                 break;
             case 1:
