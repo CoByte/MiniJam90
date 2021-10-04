@@ -260,7 +260,7 @@ public class Utilities {
                                     float textSize, int textAlign) {
         p.textAlign(textAlign);
         p.textSize(textSize);
-        int offset = 2;
+        int offset = 5;
 
         p.fill(darkColor.getRGB(), darkColor.getAlpha());
         p.text(text, position.x + offset, position.y + offset);

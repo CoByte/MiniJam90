@@ -42,7 +42,6 @@ public class LoadingScreen {
                 Main.titleScreen = new TitleScreen(P);
                 break;
             case 3:
-//                DataControl.loadLevel("world");
                 break;
             case 4:
                 Main.titleScreen = new TitleScreen(P);
@@ -50,7 +49,7 @@ public class LoadingScreen {
         }
 
         progress++;
-        if (progress == MAX_PROGRESS) Main.scene = Main.Scene.World;
+        if (progress == MAX_PROGRESS) Main.scene = Main.Scene.TitleScreen;
     }
 
     private void display() {

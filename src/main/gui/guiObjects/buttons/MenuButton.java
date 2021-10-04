@@ -17,7 +17,7 @@ public class MenuButton extends Button {
     public MenuButton(PApplet p, float x, float y) {
         super(p, x, y);
         position = new PVector(x, y);
-        size = new PVector(80, 16);
+        size = new PVector(320, 64);
         spriteIdle = animations.get("genericButtonBT")[0];
         spritePressed = animations.get("genericButtonBT")[1];
         spriteHover = animations.get("genericButtonBT")[2];
