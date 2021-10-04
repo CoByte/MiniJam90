@@ -95,13 +95,13 @@ public class WorldBuilder {
                         new Spikes(p, world, new PVector(18 * 50, bottom - 150)),
                         new Spikes(p, world, new PVector(19 * 50, bottom - 150))
                 )));
-//                world.addDialogue(
-//                        new Dialogue("CHAMBER IDK: ICE", 200, 200),
-//                        new Dialogue("THE LEVER CONTROLS THE EXIT DOOR", 200, 200),
-//                        new Dialogue("Well, I could use the ice character to freeze this lever in place."),
-//                        new Dialogue("But uh... can't remember how to do that..."),
-//                        new Dialogue("There's got to be some other way to do this...")
-//                );
+                world.addDialogue(
+                        new Dialogue("CHAMBER IDK: ICE", 200, 200),
+                        new Dialogue("THE LEVER CONTROLS THE EXIT DOOR", 200, 200),
+                        new Dialogue("Well, I could use the ice character to freeze this lever in place."),
+                        new Dialogue("But uh... can't remember how to do that..."),
+                        new Dialogue("There's got to be some other way to do this...")
+                );
 
                 break;
             case 3:
