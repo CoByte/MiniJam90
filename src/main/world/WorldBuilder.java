@@ -180,6 +180,25 @@ public class WorldBuilder {
                 );
                 break;
 
+            case 7:
+                world = createWorld(p, "lever 2");
+                LeverDoor aowdaw = new LeverDoor(p, world, new PVector(right - 100, bottom - 250), 2, 1);
+                world.entities.addAll(new ArrayList<>(Arrays.asList(
+                        new LeverDoor(p, world, new PVector(50, bottom - 250)),
+                        aowdaw,
+                        new Lever(p, world, new PVector(right - 500, bottom - 250), aowdaw),
+                        new MovingPlatform(p, world,
+                                new PVector(975f/1.5f, 300),
+                                new PVector(975f/1.5f, bottom - 250),
+                                3, Utilities.secondsToFrames(1.5f))
+                )));
+                world.addDialogue(
+                        new Dialogue("CHAMBER IDK: TELEKINESIS", 200, 200),
+                        new Dialogue("Hmm, there's probably a lever hidden in this wall..."),
+                        new Dialogue("This'll be interesting")
+                );
+                break;
+
             default:
                 world = null;
         }
