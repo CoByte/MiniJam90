@@ -62,5 +62,6 @@ public class SpriteLoader {
         sprites.put("jumpPlayer", p.loadImage("sprites/player/jump.png"));
         sprites.put("spikes", p.loadImage("sprites/spikes.png"));
         sprites.put("titleScreen", p.loadImage("sprites/titleScreen.png"));
+        sprites.put("endingScreen", p.loadImage("sprites/ending.png"));
     }
 }

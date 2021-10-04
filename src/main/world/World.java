@@ -182,6 +182,10 @@ public class World {
                         break;
                     case Advancing:
                         currentWorld++;
+                        if (currentWorld >= worlds.size()) {
+                            currentWorld = 0;
+                            scene = Scene.EndingScreen;
+                        }
                         break;
                     case Exiting:
                         scene = Scene.TitleScreen;

@@ -1,6 +1,7 @@
 package main.gui;
 
 import main.Main;
+import main.gui.guiObjects.EndingScreen;
 import main.misc.Utilities;
 import main.world.World;
 import processing.core.PApplet;
@@ -45,6 +46,7 @@ public class LoadingScreen {
                 break;
             case 4:
                 Main.titleScreen = new TitleScreen(P);
+                Main.endingScreen = new EndingScreen(P);
                 break;
         }
 

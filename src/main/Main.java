@@ -4,6 +4,7 @@ import main.gui.Hand;
 import main.gui.LevelBuilderGui;
 import main.gui.LoadingScreen;
 import main.gui.TitleScreen;
+import main.gui.guiObjects.EndingScreen;
 import main.misc.InputManager;
 import main.misc.Tile;
 import main.sound.FadeSoundLoop;
@@ -30,7 +31,8 @@ public class Main extends PApplet {
     public enum Scene {
         World(0),
         TitleScreen(1),
-        LoadingScreen(2);
+        LoadingScreen(2),
+        EndingScreen(3);
 
         public final int ID;
 
@@ -75,6 +77,7 @@ public class Main extends PApplet {
     public static int currentWorld;
     public static TitleScreen titleScreen;
     public static LoadingScreen loadingScreen;
+    public static EndingScreen endingScreen;
 
     public static Scene scene = Scene.LoadingScreen;
 
@@ -133,7 +136,7 @@ public class Main extends PApplet {
     }
 
     public static void setupWorlds(PApplet p) {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 1; i++) {
             worlds.add(WorldBuilder.buildWorld(p, i));
         }
     }
@@ -159,6 +162,9 @@ public class Main extends PApplet {
                 break;
             case LoadingScreen:
                 loadingScreen.main();
+                break;
+            case EndingScreen:
+                endingScreen.main();
                 break;
         }
 
